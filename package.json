@@ -1,0 +1,15 @@
+{
+  "name": "libretro",
+  "description": "libretro headers.",
+  "version": "0.1.0",
+  "author": "Matthew Bauer <mjbauer95@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matthewbauer/libretro.git"
+  },
+  "main": "libretro.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
