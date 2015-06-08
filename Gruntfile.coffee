@@ -7,7 +7,7 @@ module.exports = (grunt) ->
       compile:
         files: [
           expand: true
-          src: ['libretro_h.coffee']
+          src: ['libretro.coffee']
           ext: '.js'
         ]
 
