@@ -1,2 +1,3 @@
-*.js
+*.bc
+*.o
 node_modules

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+source ~/emsdk_portable/emsdk_set_env.sh
+CFLAGS='-Wall -Wno-unused-result -Wno-unused-variable -std=gnu99'
+
+em++ -std=c++11 -c libretro.emscripten.cpp -o libretro.emscripten.bc
+
+for core in core/*
+do
+  emmake make -C $core -f Makefile.libretro || emmake make -C $core/libretro || emmake make -C $core || emmake make -C $core/libgambatte -f Makefile.libretro
+  emcc libretro.emscripten.bc `find $core -name '*.bc' -print` --bind --post-js post.js --js-library glue.js -o $core/index.js -s DEMANGLE_SUPPORT=1 -s TOTAL_MEMORY=268435456 -s ASSERTIONS=2 -s RESERVED_FUNCTION_POINTERS=20 -s EXPORTED_FUNCTIONS="['_retro_get_system_av_info', '_retro_load_game_special', '_retro_get_system_info', '_retro_serialize', '_retro_unserialize', '_retro_load_game', '_retro_cheat_set', '_retro_get_memory_data', '_retro_get_system_av_info']"
+done

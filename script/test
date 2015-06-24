@@ -1,0 +1,3 @@
+#!/bin/sh
+mocha test.js
+#istanbul cover _mocha -- -R spec

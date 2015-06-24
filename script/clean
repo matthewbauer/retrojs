@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for core in core/*
+do
+  emmake make -C $core clean
+  rm $core/*.js
+done

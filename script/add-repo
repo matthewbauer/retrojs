@@ -1,0 +1,3 @@
+  #!/bin/sh
+
+  git submodule add --force https://github.com/libretro/$1.git core/$1

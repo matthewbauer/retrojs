@@ -1,0 +1,6 @@
+#!/bin/sh
+
+git submodule deinit -f core/$1
+git rm -f --cached core/$1
+git submodule sync
+rm -r core/$1
