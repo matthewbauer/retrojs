@@ -2,6 +2,10 @@
 
 for core in core/*
 do
+  emmake make -C $core -f Makefile.libretro clean
+  emmake make -C $core/libretro clean
   emmake make -C $core clean
-  rm $core/*.js
+  emmake make -C $core/libgambatte -f Makefile.libretro clean
+  rm -f $core/*.js
+  rm -f $core/*.bc
 done

@@ -1,5 +1,7 @@
 {
   "name": "vba-next",
+  "version": "0.0.4",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "main": "index.js"
 }

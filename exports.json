@@ -1,0 +1,11 @@
+[
+  "_retro_get_system_av_info",
+  "_retro_load_game_special",
+  "_retro_get_system_info",
+  "_retro_serialize",
+  "_retro_unserialize",
+  "_retro_load_game",
+  "_retro_cheat_set",
+  "_retro_get_memory_data",
+  "_retro_get_system_av_info"
+]

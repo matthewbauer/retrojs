@@ -1,16 +1,15 @@
-/* global describe, it */
+/* global describe, it, beforeEach, afterEach */
 var expect = require('chai').expect
 var fs = require('fs')
-var nointro = require('gametime-nointro')
 var sinon = require('sinon')
 var cores = fs.readdirSync('core').map(function (corename) {
   return './core/' + corename
 })
 
-describe('testing built cores', function () {
+describe('testing cores without initializing', function () {
   cores.forEach(function (corefile) {
+    var core = require(corefile)
     describe(corefile, function () {
-      var core = require(corefile)
       describe('constants are defined', function () {
         it('API_VERSION === 1', function () {
           expect(core.API_VERSION).to.equal(1)
@@ -57,8 +56,9 @@ describe('testing built cores', function () {
       })
     })
   })
-
-  describe('SNES9X NEXT', function () {
+})
+describe('loading cores', function () {
+  describe('SNES9X NEXT info', function () {
     var core = require('./core/snes9x-next')
     it('system_info', function () {
       var info = core.get_system_info()
@@ -82,68 +82,65 @@ describe('testing built cores', function () {
       expect(info.timing.fps).to.be.below(61)
       expect(info.timing.sample_rate).to.equal(32040.5)
     })
-    describe('loading games', function (done) {
-      it('loading super mario world', function (done) {
-        var snes = require('./core/snes9x-next')
-        this.timeout(4000)
-        snes.environment = function (cmd, _data) {
-          if (cmd === snes.ENVIRONMENT_GET_LOG_INTERFACE) {
-            return function () {
-            }
-          } else {
-            return true
-          }
+  })
+  describe('loading games', function (done) {
+    this.timeout(10000)
+    var snes = null
+    beforeEach(function () {
+      snes = require('./core/snes9x-next')
+      snes.environment = function (cmd, _data) {
+        if (cmd === snes.ENVIRONMENT_GET_LOG_INTERFACE) {
+          return function () { }
+        } else {
+          return true
         }
-        snes.init()
-        snes.audio_sample = sinon.stub()
-        snes.audio_sample_batch = sinon.stub()
-        snes.input_state = sinon.stub()
-        snes.input_poll = sinon.stub()
-        snes.video_refresh = sinon.stub()
-        nointro.getROM({
-          nointro_name: 'Super Mario World (USA)',
-          nointro_console: 'Nintendo - Super Nintendo Entertainment System',
-          file_name: 'Super Mario World (USA).sfc'
-        }).then(function (buffer) {
-          snes.load_game({
-            data: new Uint8Array(buffer)
-          })
-          snes.run()
-          expect(snes.audio_sample.notCalled)
-          expect(snes.input_poll.calledOnce)
-          expect(snes.video_refresh.calledOnce)
-          expect(snes.input_state.calledOnce)
-          expect(snes.audio_sample_batch.calledOnce)
-          done()
-        })
+      }
+      snes.init()
+      snes.audio_sample = sinon.stub()
+      snes.audio_sample_batch = sinon.stub()
+      snes.input_state = sinon.stub()
+      snes.input_poll = sinon.stub()
+      snes.video_refresh = sinon.stub()
+    })
+    afterEach(function () {
+      snes.unload_game()
+      snes.deinit()
+      delete require.cache[require.resolve('./core/snes9x-next')]
+      snes = null
+    })
+    it('loading super mario world', function () {
+      snes.load_game({
+        data: new Uint8Array(fs.readFileSync('roms/Super Mario World.smc'))
       })
-      it('load nwarp', function () {
-        var snes = require('./core/snes9x-next')
-        this.timeout(8000)
-        snes.environment = function (cmd, _data) {
-          if (cmd === snes.ENVIRONMENT_GET_LOG_INTERFACE) {
-            return function () {
-            }
-          } else {
-            return true
-          }
-        }
-        snes.init()
-        snes.audio_sample = sinon.stub()
-        snes.audio_sample_batch = sinon.stub()
-        snes.input_state = sinon.stub()
-        snes.input_poll = sinon.stub()
-        snes.video_refresh = sinon.stub()
-        snes.load_game({
-          data: new Uint8Array(fs.readFileSync('roms/nwarp.smc'))
-        })
+      for (var i = 0; i < 500; i++) {
         snes.run()
-        expect(snes.audio_sample.notCalled)
-        expect(snes.input_poll.calledOnce)
-        expect(snes.video_refresh.calledOnce)
-        expect(snes.input_state.calledOnce)
-        expect(snes.audio_sample_batch.calledOnce)
+      }
+      expect(snes.audio_sample.notCalled)
+      expect(snes.input_poll.calledOnce)
+      expect(snes.video_refresh.calledOnce)
+      expect(snes.input_state.calledOnce)
+      expect(snes.audio_sample_batch.calledOnce)
+      expect(snes.serialize_size()).to.equal(433242)
+    })
+    it('loading nwarp', function () {
+      snes.load_game({
+        data: new Uint8Array(fs.readFileSync('roms/nwarp.smc'))
       })
+      for (var i = 0; i < 50; i++) {
+        snes.run()
+      }
+      expect(snes.audio_sample.notCalled)
+      expect(snes.input_poll.calledOnce)
+      expect(snes.video_refresh.calledOnce)
+      expect(snes.input_state.calledOnce)
+      expect(snes.audio_sample_batch.calledOnce)
+      var save = new Uint8Array(snes.serialize())
+      snes.reset()
+      var notnewsave = new Uint8Array(snes.serialize())
+      expect(notnewsave).not.deep.equal(save)
+      snes.unserialize(save)
+      var newsave = new Uint8Array(snes.serialize())
+      expect(newsave).deep.equal(save)
     })
   })
 })
