@@ -4,8 +4,7 @@
 mergeInto(LibraryManager.library, { // TODO: use _free more
   video_refresh: function (_data, width, height, pitch) {
     var size = height * pitch
-    var data = new ArrayBuffer(size)
-    new Uint8Array(data).set(new Uint8Array(Module.HEAP8.buffer, _data, size))
+    var data = new Uint8Array(Module.HEAP8.buffer, _data, size)
     Module.video_refresh(data, width, height, pitch)
   },
   audio_sample_batch: function (_data, frames) {
@@ -19,6 +18,7 @@ mergeInto(LibraryManager.library, { // TODO: use _free more
     return Module.audio_sample_batch(left, right, frames)
   },
   environment: function (cmd, _data) {
+    var str, buffer
     switch (cmd) {
       case Module.ENVIRONMENT_SET_ROTATION:
         return Module.environment(cmd, Module.getValue(_data, 'i32'))
@@ -33,8 +33,8 @@ mergeInto(LibraryManager.library, { // TODO: use _free more
       case Module.ENVIRONMENT_SET_PERFORMANCE_LEVEL:
         return Module.environment(cmd, Module.getValue(_data, 'i32'))
       case Module.ENVIRONMENT_GET_SYSTEM_DIRECTORY:
-        var str = Module.environment(cmd)
-        var buffer = Module._malloc(str.length + 1)
+        str = Module.environment(cmd)
+        buffer = Module._malloc(str.length + 1)
         Module.writeStringToMemory(str, buffer)
         Module.setValue(_data, buffer, '*')
         return true
@@ -46,8 +46,8 @@ mergeInto(LibraryManager.library, { // TODO: use _free more
       case Module.ENVIRONMENT_SET_SUPPORT_NO_GAME:
         return Module.environment(cmd, Module.getValue(_data, 'i8'))
       case Module.ENVIRONMENT_GET_LIBPATH:
-        var str = Module.environment(cmd)
-        var buffer = Module._malloc(str.length + 1)
+        str = Module.environment(cmd)
+        buffer = Module._malloc(str.length + 1)
         Module.writeStringToMemory(str, buffer)
         Module.setValue(_data, buffer, '*')
         return true
@@ -58,14 +58,14 @@ mergeInto(LibraryManager.library, { // TODO: use _free more
         Module.setValue(_data, Runtime.addFunction(Module.environment(cmd)), '*')
         return true
       case Module.ENVIRONMENT_GET_CORE_ASSETS_DIRECTORY:
-        var str = Module.environment(cmd)
-        var buffer = Module._malloc(str.length + 1)
+        str = Module.environment(cmd)
+        buffer = Module._malloc(str.length + 1)
         Module.writeStringToMemory(str, buffer)
         Module.setValue(_data, buffer, '*')
         return true
       case Module.ENVIRONMENT_GET_SAVE_DIRECTORY:
-        var str = Module.environment(cmd)
-        var buffer = Module._malloc(str.length + 1)
+        str = Module.environment(cmd)
+        buffer = Module._malloc(str.length + 1)
         Module.writeStringToMemory(str, buffer)
         Module.setValue(_data, buffer, '*')
         return true
@@ -78,8 +78,8 @@ mergeInto(LibraryManager.library, { // TODO: use _free more
           aspect_ratio: Module.getValue(_data + 16, 'float')
         })
       case Module.ENVIRONMENT_GET_USERNAME:
-        var str = Module.environment(cmd)
-        var buffer = Module._malloc(str.length + 1)
+        str = Module.environment(cmd)
+        buffer = Module._malloc(str.length + 1)
         Module.writeStringToMemory(str, buffer)
         Module.setValue(_data, buffer, '*')
         return true

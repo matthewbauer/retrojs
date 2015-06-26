@@ -1,19 +1,25 @@
-/* global describe, it, beforeEach, afterEach */
+/* global describe, it, beforeEach, afterEach, after, before */
 var expect = require('chai').expect
 var fs = require('fs')
 var sinon = require('sinon')
-var cores = fs.readdirSync('core').map(function (corename) {
-  return './core/' + corename
+var cores = fs.readdirSync('core').filter(function (corename) {
+  return corename[0] !== '.'
 })
 
-describe('testing cores without initializing', function () {
-  cores.forEach(function (corefile) {
-    var core = require(corefile)
-    describe(corefile, function () {
-      describe('constants are defined', function () {
-        it('API_VERSION === 1', function () {
-          expect(core.API_VERSION).to.equal(1)
-        })
+process.setMaxListeners(0)
+
+describe('testing cores', function () {
+  cores.forEach(function (corename) {
+    var corefile = './core/' + corename
+    describe(corefile + ' properties', function () {
+      var core = require(corefile)
+      after(function () {
+        core.deinit()
+        delete require.cache[require.resolve(corefile)]
+        core = null
+      })
+      it('API_VERSION === 1', function () {
+        expect(core.API_VERSION).to.equal(1)
       })
       it('api_version()', function () {
         expect(core.api_version()).to.equal(1)
@@ -55,11 +61,131 @@ describe('testing cores without initializing', function () {
         })
       })
     })
+    describe('initing ' + corefile, function () {
+      var core = null
+      var log = sinon.spy()
+      beforeEach(function () {
+        core = require(corefile)
+        core.environment = sinon.spy(function (cmd, _data) {
+          if (cmd === core.ENVIRONMENT_GET_LOG_INTERFACE) {
+            return log
+          } else {
+            return true
+          }
+        })
+        core.init()
+        core.audio_sample = sinon.spy()
+        core.audio_sample_batch = sinon.spy()
+        core.input_state = sinon.spy()
+        core.input_poll = sinon.spy()
+        core.video_refresh = sinon.spy()
+      })
+      it('set_controller_port_device', function () {
+        core.set_controller_port_device(0, core.DEVICE_JOYPAD)
+      })
+      it('get_memory_size', function () {
+        expect(core.get_memory_size(core.MEMORY_SAVE_RAM)).to.be.a('number')
+        expect(core.get_memory_size(core.MEMORY_RTC)).to.be.a('number')
+        expect(core.get_memory_size(core.MEMORY_SYSTEM_RAM)).to.be.a('number')
+        expect(core.get_memory_size(core.MEMORY_VIDEO_RAM)).to.be.a('number')
+      })
+      it('cheat_reset', function () {
+        core.cheat_reset()
+      })
+      afterEach(function () {
+        core.deinit()
+        delete require.cache[require.resolve(corefile)]
+        core = null
+      })
+    })
+    if (!fs.existsSync('./roms/' + corename)) {
+      return
+    }
+    var roms = fs.readdirSync('./roms/' + corename).filter(function (romname) {
+      return romname[0] !== '.'
+    })
+    roms.forEach(function (romname) {
+      describe('loading ' + romname, function (done) {
+        this.timeout(10000)
+        var core = null
+        before(function () {
+          core = require(corefile)
+          core.environment = function (cmd, _data) {
+            if (cmd === core.ENVIRONMENT_GET_LOG_INTERFACE) {
+              return function () { }
+            } else {
+              return true
+            }
+          }
+          core.init()
+          core.audio_sample = sinon.spy()
+          core.audio_sample_batch = sinon.spy()
+          core.input_state = sinon.spy()
+          core.input_poll = sinon.spy()
+          core.video_refresh = sinon.spy()
+          core.load_game({
+            data: new Uint8Array(fs.readFileSync('roms/' + corename + '/' + romname))
+          })
+        })
+        after(function () {
+          core.unload_game()
+          core.deinit()
+          delete require.cache[require.resolve(corefile)]
+          core = null
+        })
+        it('running for 50 frames...', function () {
+          for (var i = 0; i < 50; i++) {
+            core.run()
+          }
+          expect(core.audio_sample.notCalled)
+          expect(core.input_poll.called)
+          expect(core.input_poll.alwaysCalledWith())
+          expect(core.video_refresh.called)
+          expect(core.video_refresh.alwaysCalledWith(sinon.match.object, sinon.match.number, sinon.match.number, sinon.match.number))
+          expect(core.input_state.called)
+          expect(core.input_state.alwaysCalledWith(sinon.match.number, sinon.match.number, sinon.match.number, sinon.match.number))
+          expect(core.audio_sample_batch.called)
+          expect(core.audio_sample_batch.alwaysCalledWith(sinon.match.object, sinon.match.object, sinon.match.number))
+        })
+        it('mashing buttons', function () {
+          core.input_state = function () {
+            return (Math.floor(Math.random() * 100) === 0) ? 1 : 0
+          }
+          core.audio_sample_batch = function () {}
+          core.input_poll = function () {}
+          core.video_refresh = function () {}
+          for (var i = 0; i < 1000; i++) {
+            core.run()
+          }
+        })
+        it('fps >= 60', function () {
+          var frames = 100
+          this.timeout(1000 * frames / 60)
+          core.input_state = function () {}
+          core.audio_sample_batch = function () {}
+          core.input_poll = function () {}
+          core.video_refresh = function () {}
+          for (var i = 0; i < frames; i++) {
+            core.run()
+          }
+        })
+        it('saving...', function () {
+          var save = new Uint8Array(core.serialize())
+          core.reset()
+          var notnewsave = new Uint8Array(core.serialize())
+          expect(notnewsave).not.deep.equal(save)
+          core.unserialize(save)
+          var newsave = new Uint8Array(core.serialize())
+          expect(newsave).deep.equal(save)
+        })
+      })
+    })
   })
 })
 describe('loading cores', function () {
   describe('SNES9X NEXT info', function () {
-    var core = require('./core/snes9x-next')
+    var corefile = './core/snes9x-next'
+    var core = require(corefile)
     it('system_info', function () {
       var info = core.get_system_info()
       expect(info.library_name).to.equal('Snes9X Next')
@@ -82,65 +208,50 @@ describe('loading cores', function () {
       expect(info.timing.fps).to.be.below(61)
       expect(info.timing.sample_rate).to.equal(32040.5)
     })
-  })
-  describe('loading games', function (done) {
-    this.timeout(10000)
-    var snes = null
-    beforeEach(function () {
-      snes = require('./core/snes9x-next')
-      snes.environment = function (cmd, _data) {
-        if (cmd === snes.ENVIRONMENT_GET_LOG_INTERFACE) {
-          return function () { }
-        } else {
-          return true
+    describe('loading specific games', function () {
+      before(function () {
+        core.environment = function (cmd, _data) {
+          if (cmd === core.ENVIRONMENT_GET_LOG_INTERFACE) {
+            return function () { }
+          } else {
+            return true
+          }
         }
-      }
-      snes.init()
-      snes.audio_sample = sinon.stub()
-      snes.audio_sample_batch = sinon.stub()
-      snes.input_state = sinon.stub()
-      snes.input_poll = sinon.stub()
-      snes.video_refresh = sinon.stub()
-    })
-    afterEach(function () {
-      snes.unload_game()
-      snes.deinit()
-      delete require.cache[require.resolve('./core/snes9x-next')]
-      snes = null
-    })
-    it('loading super mario world', function () {
-      snes.load_game({
-        data: new Uint8Array(fs.readFileSync('roms/Super Mario World.smc'))
+        core.init()
+        core.audio_sample = sinon.spy()
+        core.audio_sample_batch = sinon.spy()
+        core.input_state = sinon.spy()
+        core.input_poll = sinon.spy()
+        core.video_refresh = sinon.spy()
       })
-      for (var i = 0; i < 500; i++) {
-        snes.run()
-      }
-      expect(snes.audio_sample.notCalled)
-      expect(snes.input_poll.calledOnce)
-      expect(snes.video_refresh.calledOnce)
-      expect(snes.input_state.calledOnce)
-      expect(snes.audio_sample_batch.calledOnce)
-      expect(snes.serialize_size()).to.equal(433242)
-    })
-    it('loading nwarp', function () {
-      snes.load_game({
-        data: new Uint8Array(fs.readFileSync('roms/nwarp.smc'))
+      after(function () {
+        core.unload_game()
+        core.deinit()
+        delete require.cache[require.resolve(corefile)]
+        core = null
       })
-      for (var i = 0; i < 50; i++) {
-        snes.run()
-      }
-      expect(snes.audio_sample.notCalled)
-      expect(snes.input_poll.calledOnce)
-      expect(snes.video_refresh.calledOnce)
-      expect(snes.input_state.calledOnce)
-      expect(snes.audio_sample_batch.calledOnce)
-      var save = new Uint8Array(snes.serialize())
-      snes.reset()
-      var notnewsave = new Uint8Array(snes.serialize())
-      expect(notnewsave).not.deep.equal(save)
-      snes.unserialize(save)
-      var newsave = new Uint8Array(snes.serialize())
-      expect(newsave).deep.equal(save)
+      it('running super mario world', function () {
+        core.load_game({
+          data: new Uint8Array(fs.readFileSync('roms/snes9x-next/Super Mario World.smc'))
+        })
+        for (var i = 0; i < 50; i++) {
+          core.run()
+        }
+        expect(core.serialize_size()).to.equal(433242)
+        expect(core.get_memory_size(core.MEMORY_SAVE_RAM)).to.equal(2048)
+        expect(core.get_memory_size(core.MEMORY_RTC)).to.equal(0)
+        expect(core.get_memory_size(core.MEMORY_SYSTEM_RAM)).to.equal(131072)
+        expect(core.get_memory_size(core.MEMORY_VIDEO_RAM)).to.equal(65536)
+      })
+      it('load cheats onto smw', function () {
+        core.load_game({
+          data: new Uint8Array(fs.readFileSync('roms/snes9x-next/Super Mario World.smc'))
+        })
+        for (var i = 0; i < 5; i++) {
+          core.run()
+        }
+        core.cheat_set(0, true, '3E2C-AF6F')
+      })
     })
   })
 })

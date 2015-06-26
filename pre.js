@@ -1,5 +1,7 @@
 var Module = {
   'noInitialRun': true,
+  'print': function () {},
+  'printErr': function () {},
   'get_system_info': function () {
     var _data = Module._malloc(14)
     Module._retro_get_system_info(_data)
@@ -38,8 +40,7 @@ var Module = {
     var result = Module._retro_serialize(_data, size)
     var data = false
     if (result) {
-      data = new ArrayBuffer(size)
-      new Uint8Array(data).set(new Uint8Array(Module.HEAP8.buffer, _data, size))
+      data = new Uint8Array(Module.HEAP8.buffer, _data, size)
     }
     return data
   },
