@@ -1,6 +1,6 @@
 {
   "name": "snes9x-next",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "dependencies": {},
   "devDependencies": {},
   "main": "index.js"

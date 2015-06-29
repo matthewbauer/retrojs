@@ -1,4 +1,5 @@
 *
-!index.js
+!*.js
+!*.mem
 !package.json
 !.npmignore

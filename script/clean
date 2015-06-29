@@ -1,11 +1,13 @@
 #!/bin/sh
 
+source ~/emsdk_portable/emsdk_set_env.sh
+
+find . -name .DS_Store -delete
+
 for core in core/*
 do
-  emmake make -C $core -f Makefile.libretro clean
-  emmake make -C $core/libretro clean
-  emmake make -C $core clean
-  emmake make -C $core/libgambatte -f Makefile.libretro clean
-  rm -f $core/*.js
-  rm -f $core/*.bc
+  find $core -name '*.bc' -delete
+  find $core -name '*.js' -delete
+  find $core -name '*.o' -delete
+  find $core -name '*.mem' -delete
 done

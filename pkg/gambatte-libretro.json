@@ -1,7 +1,7 @@
 {
   "name": "gambatte",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "dependencies": {},
   "devDependencies": {},
-  "main": "index.js"
+  "main": "libgambatte/index.js"
 }

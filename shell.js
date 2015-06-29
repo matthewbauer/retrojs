@@ -1,5 +1,8 @@
+var ENVIRONMENT_IS_WEB = true
+var ENVIRONMENT_IS_NODE = false
+var ENVIRONMENT_IS_SHELL = false
+
 var Module = {
-  'noInitialRun': true,
   'print': function () {},
   'printErr': function () {},
   'get_system_info': function () {
@@ -78,5 +81,9 @@ var Module = {
     return new Uint8Array(Module.HEAP8.buffer, Module._retro_get_memory_data(id), Module.get_memory_size(id))
   }
 }
-// TODO:
-// retro_load_game_special
+
+{{BODY}}
+
+// {{MODULE_ADDITIONS}}
+
+module.exports = Module

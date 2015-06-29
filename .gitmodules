@@ -1,0 +1,18 @@
+[submodule "snes9x-next"]
+  path = core/snes9x-next
+  url = https://github.com/libretro/snes9x-next.git
+[submodule "mgba"]
+  path = core/mgba
+  url = https://github.com/libretro/mgba.git
+[submodule "gambatte"]
+  path = core/gambatte-libretro
+  url = https://github.com/libretro/gambatte-libretro.git
+[submodule "tyrquake"]
+  path = core/tyrquake
+  url = https://github.com/libretro/tyrquake.git
+[submodule "vba-next"]
+  path = core/vba-next
+  url = https://github.com/libretro/vba-next.git
+[submodule "core/QuickNES_Core"]
+	path = core/QuickNES_Core
+	url = https://github.com/libretro/QuickNES_Core.git
