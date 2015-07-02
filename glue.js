@@ -3,15 +3,14 @@
 // scripts try to javascriptify them by getting rid of pointers
 mergeInto(LibraryManager.library, { // TODO: use _free more
   video_refresh: function (_data, width, height, pitch) {
-    var size = height * pitch
-    var data = new Uint8Array(Module.HEAP8.buffer, _data, size)
+    var data = new Uint8Array(Module.HEAP8.buffer, _data, height * pitch)
     Module.video_refresh(data, width, height, pitch)
   },
   audio_sample_batch: function (_data, frames) {
-    var left = new Float32Array(frames / 4)
-    var right = new Float32Array(frames / 4)
-    var data = new Int16Array(Module.HEAP8.buffer, _data, frames * 8)
-    for (var i = 0; i < frames / 2; i++) {
+    var left = new Float32Array(frames)
+    var right = new Float32Array(frames)
+    var data = new Int16Array(Module.HEAP8.buffer, _data, frames * 4)
+    for (var i = 0; i < frames; i++) {
       left[i] = data[i * 2] / 0x8000
       right[i] = data[i * 2 + 1] / 0x8000
     }
