@@ -10,7 +10,7 @@
       "mocha": "npm:mocha@^2.2.5",
       "path": "github:jspm/nodelibs-path@^0.1.0",
       "samsam": "npm:samsam@^1.1.2",
-      "sinon": "npm:sinon@^1.15.4",
+      "sinon": "npm:sinon@1.15.4",
       "systemjs": "npm:systemjs@^0.18.3",
       "traceur": "github:jmcriffey/bower-traceur@^0.0.90",
       "ws": "npm:ws@^0.7.2"
