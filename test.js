@@ -18,8 +18,9 @@ System.config({
 
 const cores = [
   {
-    name: 'gambatte-libretro',
-    roms: []
+    name: 'gambatte',
+    roms: [],
+    region: 'REGION_NTSC'
   },
   {
     name: 'snes9x-next',
@@ -37,15 +38,58 @@ const cores = [
       valid_extensions: 'smc|fig|sfc|gd3|gd7|dx2|bsx|swc',
       need_fullpath: false,
       block_extract: false
-    }
+    },
+    region: 'REGION_NTSC'
   },
   {
     name: 'tyrquake',
-    roms: []
+    roms: [],
+    region: 'REGION_NTSC'
   },
   {
     name: 'vba-next',
-    roms: []
+    roms: [],
+    region: 'REGION_NTSC'
+  },
+  {
+    name: '4do',
+    roms: [],
+    region: 'REGION_NTSC'
+  },
+  {
+    name: 'bluemsx',
+    roms: [],
+    region: 'REGION_NTSC'
+  },
+  {
+    name: 'fceumm',
+    roms: [],
+    region: 'REGION_NTSC'
+  },
+  {
+    name: 'gw',
+    roms: [],
+    region: 'REGION_NTSC'
+  },
+  {
+    name: 'handy',
+    roms: [],
+    region: 'REGION_NTSC'
+  },
+  {
+    name: 'o2em',
+    roms: [],
+    region: 'REGION_NTSC'
+  },
+  {
+    name: 'picodrive',
+    roms: [],
+    region: 'REGION_NTSC'
+  },
+  {
+    name: 'vecx',
+    roms: [],
+    region: 'REGION_PAL'
   }
 ]
 
@@ -82,7 +126,7 @@ cores.forEach(function (info) {
         expect(core.api_version()).to.equal(core.API_VERSION)
       })
       it('get_region()', function () {
-        expect(core.get_region()).to.equal(core.REGION_NTSC)
+        expect(core.get_region()).to.equal(core[info.region])
       })
       it('get_system_info()', function () {
         let info = core.get_system_info()

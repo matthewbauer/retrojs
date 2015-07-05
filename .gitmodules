@@ -1,36 +1,18 @@
 [submodule "snes9x-next"]
 	path = core/snes9x-next
 	url = https://github.com/libretro/snes9x-next.git
-[submodule "mgba"]
-	path = core/mgba
-	url = https://github.com/libretro/mgba.git
 [submodule "tyrquake"]
 	path = core/tyrquake
 	url = https://github.com/libretro/tyrquake.git
 [submodule "vba-next"]
 	path = core/vba-next
 	url = https://github.com/libretro/vba-next.git
-[submodule "mame"]
-	path = core/mame
-	url = https://github.com/libretro/mame.git
 [submodule "gw"]
 	path = core/gw
 	url = https://github.com/libretro/gw-libretro.git
-[submodule "ffmpeg"]
-	path = core/ffmpeg
-	url = https://github.com/libretro/FFmpeg.git
 [submodule "fba"]
 	path = core/fba
 	url = https://github.com/libretro/libretro-fba.git
-[submodule "mupen64plus"]
-	path = core/mupen64plus
-	url = https://github.com/libretro/mupen64plus-libretro.git
-[submodule "fuse"]
-	path = core/fuse
-	url = https://github.com/libretro/fuse-libretro.git
-[submodule "ppsspp"]
-	path = core/ppsspp
-	url = https://github.com/libretro/libretro-ppsspp.git
 [submodule "4do"]
 	path = core/4do
 	url = https://github.com/libretro/4do-libretro.git
@@ -46,9 +28,6 @@
 [submodule "hatari"]
 	path = core/hatari
 	url = https://github.com/libretro/hatari.git
-[submodule "crawl"]
-	path = core/crawl
-	url = https://github.com/libretro/crawl-ref.git
 [submodule "yabause"]
 	path = core/yabause
 	url = https://github.com/libretro/yabause.git
@@ -64,15 +43,6 @@
 [submodule "dosbox"]
 	path = core/dosbox
 	url = https://github.com/libretro/dosbox-libretro.git
-[submodule "pcsx-rearmed"]
-	path = core/pcsx-rearmed
-	url = https://github.com/libretro/pcsx_rearmed.git
-[submodule "scummvm"]
-	path = core/scummvm
-	url = https://github.com/libretro/scummvm.git
-[submodule "prboom"]
-	path = core/prboom
-	url = https://github.com/libretro/libretro-prboom.git
 [submodule "desmume"]
 	path = core/desmume
 	url = https://github.com/libretro/desmume.git

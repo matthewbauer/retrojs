@@ -6,10 +6,6 @@ em++ -std=c++11 -c libretro.emscripten.cpp -o libretro.emscripten.bc -O3
 
 for core in core/*
 do
-  emmake make -C $core -f Makefile.libretro \
-    || emmake make -C $core/libretro \
-    || emmake make -C $core \
-    || emmake make -C $core/libgambatte -f Makefile.libretro
   emcc libretro.emscripten.bc `find $core -name '*.bc' -print` --bind \
     --memory-init-file 0 -O3 --js-library glue.js \
     -o $core/index.js -s ALLOW_MEMORY_GROWTH=1 -s RESERVED_FUNCTION_POINTERS=20 \
