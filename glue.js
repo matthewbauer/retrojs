@@ -1,6 +1,6 @@
 /* global Module, mergeInto, LibraryManager, Runtime */
 // callbacks defined in libretro.h
-// scripts try to javascriptify them by getting rid of pointers
+// scripts try to javascriptify them by abstracting away pointers
 mergeInto(LibraryManager.library, { // TODO: use _free more
   video_refresh: function (_data, width, height, pitch) {
     var data = new Uint8Array(Module.HEAP8.buffer, _data, height * pitch)
@@ -16,7 +16,7 @@ mergeInto(LibraryManager.library, { // TODO: use _free more
     }
     return Module.audio_sample_batch(left, right, frames)
   },
-  environment: function (cmd, _data) {
+  environment: function (cmd, _data) { // TODO: handle logging pointers
     var str, buffer
     switch (cmd) {
       case Module.ENVIRONMENT_SET_ROTATION:

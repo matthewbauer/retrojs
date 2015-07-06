@@ -4,8 +4,9 @@ source ~/emsdk_portable/emsdk_set_env.sh
 
 em++ -std=c++11 -c libretro.emscripten.cpp -o libretro.emscripten.bc -O3
 
-for core in core/*
+for core in core/{gambatte,snes9x-next,vba-next,4do,bluemsx,gw,handy,o2em,picodrive,vecx}
 do
+  # FBA has trouble with not having enough memory.
   emcc libretro.emscripten.bc `find $core -name '*.bc' -print` --bind \
     --memory-init-file 0 -O3 --js-library glue.js \
     -o $core/index.js -s ALLOW_MEMORY_GROWTH=1 -s RESERVED_FUNCTION_POINTERS=20 \

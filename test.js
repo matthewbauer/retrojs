@@ -48,7 +48,11 @@ const cores = [
   },
   {
     name: 'vba-next',
-    roms: [],
+    roms: [
+      {
+        name: 'Super Mario World.gba'
+      }
+    ],
     region: 'REGION_NTSC'
   },
   {
