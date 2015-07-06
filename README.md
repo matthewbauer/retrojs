@@ -28,6 +28,24 @@ To run the cores you must define the following callbacks:
 ## API
 The API closely follows libretro.h with pointers converted into Javascript objects.
 
+* init
+* deinit
+* api_version
+* reset
+* run
+* unload_game
+* get_region
+* cheat_reset
+* get_memory_size
+* serialize_size
+* set_controller_port_device
+* get_system_info
+* get_system_av_info
+* serialize
+* unserialize
+* load_game
+* get_memory_data
+
 ## Building
 To build, you will need to run the bootstrapper script:
 
