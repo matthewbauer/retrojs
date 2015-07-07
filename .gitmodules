@@ -79,3 +79,6 @@
 [submodule "pce-fast"]
 	path = core/pce-fast
 	url = https://github.com/libretro/beetle-pce-fast-libretro.git
+[submodule "core/stella"]
+	path = core/stella
+	url = https://github.com/libretro/stella-libretro.git
