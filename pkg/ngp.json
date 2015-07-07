@@ -1,0 +1,7 @@
+{
+  "name": "ngp",
+  "version": "0.1.1",
+  "dependencies": {},
+  "devDependencies": {},
+  "main": "index.js"
+}

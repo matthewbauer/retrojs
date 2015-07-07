@@ -55,3 +55,27 @@
 [submodule "gambatte"]
 	path = core/gambatte
 	url = https://github.com/libretro/gambatte-libretro.git
+[submodule "bnes"]
+	path = core/bnes
+	url = https://github.com/libretro/bnes-libretro.git
+[submodule "quicknes"]
+	path = core/quicknes
+	url = https://github.com/libretro/QuickNES_Core.git
+[submodule "stella"]
+	path = core/stella
+	url = https://github.com/libretro/stella-libretro.git
+[submodule "fuse"]
+	path = core/fuse
+	url = https://github.com/libretro/fuse-libretro.git
+[submodule "wswan"]
+	path = core/wswan
+	url = https://github.com/libretro/beetle-wswan-libretro.git
+[submodule "vb"]
+	path = core/vb
+	url = https://github.com/libretro/beetle-vb-libretro.git
+[submodule "ngp"]
+	path = core/ngp
+	url = https://github.com/libretro/beetle-ngp-libretro.git
+[submodule "pce-fast"]
+	path = core/pce-fast
+	url = https://github.com/libretro/beetle-pce-fast-libretro.git

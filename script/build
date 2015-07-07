@@ -4,7 +4,7 @@ source ~/emsdk_portable/emsdk_set_env.sh
 
 em++ -std=c++11 -c libretro.emscripten.cpp -o libretro.emscripten.bc -O3
 
-for core in core/{gambatte,snes9x-next,vba-next,4do,bluemsx,gw,handy,o2em,picodrive,vecx}
+for core in core/{gambatte,snes9x-next,vba-next,4do,bluemsx,gw,handy,o2em,picodrive,vecx,quicknes,stella,wswan,ngp,pce-fast,vb}
 do
   # FBA has trouble with not having enough memory.
   emcc libretro.emscripten.bc `find $core -name '*.bc' -print` --bind \

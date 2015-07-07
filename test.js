@@ -19,17 +19,33 @@ System.config({
 const cores = [
   {
     name: 'gambatte',
-    roms: [],
+    roms: [
+      {
+        name: 'Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc'
+      },
+      {
+        name: 'Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb'
+      },
+      {
+        name: 'Pac-Man (USA).gb'
+      },
+      {
+        name: 'Frogger (USA) (Rev A).gbc'
+      }
+    ],
     region: 'REGION_NTSC'
   },
   {
     name: 'snes9x-next',
     roms: [
       {
-        name: 'nwarp.smc'
+        name: 'Super Mario All-Stars (USA).sfc'
       },
       {
-        name: 'Super Mario World.smc'
+        name: 'Super Star Wars - Return of the Jedi (Europe) (Rev 1).sfc'
+      },
+      {
+        name: 'Chrono Trigger (USA).sfc'
       }
     ],
     system_info: {
@@ -50,7 +66,10 @@ const cores = [
     name: 'vba-next',
     roms: [
       {
-        name: 'Super Mario World.gba'
+        name: 'Super Mario Advance 4 - Super Mario Bros. 3 (USA, Australia) (Rev 1).gba'
+      },
+      {
+        name: 'Pokemon - Ruby Version (USA).gba'
       }
     ],
     region: 'REGION_NTSC'
@@ -62,11 +81,21 @@ const cores = [
   },
   {
     name: 'bluemsx',
-    roms: [],
+    roms: [
+      {
+        name: 'Star Wars (USA).col'
+      },
+      {
+        name: 'Bubble Bobble (Japan) (Alt 1),rom'
+      },
+      {
+        name: 'Space Invaders (Japan).rom'
+      }
+    ],
     region: 'REGION_NTSC'
   },
   {
-    name: 'fceumm',
+    name: 'quicknes',
     roms: [],
     region: 'REGION_NTSC'
   },
@@ -77,7 +106,11 @@ const cores = [
   },
   {
     name: 'handy',
-    roms: [],
+    roms: [
+      {
+        name: 'Steel Talons (USA, Europe).lnx'
+      }
+    ],
     region: 'REGION_NTSC'
   },
   {
@@ -87,13 +120,82 @@ const cores = [
   },
   {
     name: 'picodrive',
-    roms: [],
+    roms: [
+      {
+        name: 'Simpsons, The - Bart vs. the Space Mutants (Europe).sms'
+      },
+      {
+        name: 'Little Wizard (Europe).smc'
+      },
+      {
+        name: 'Professor Pico e l\'Enigma della Scatola di Pastelli, Il (Italy).md'
+      },
+      {
+        name: 'Kuma no Pooh-san - Christopher Robin wo Sagase! (Japan).md'
+      },
+      {
+        name: 'World Series Baseball \'96 (USA).md'
+      },
+      {
+        name: 'Wheel of Fortune (USA).gg'
+      }
+    ],
     region: 'REGION_NTSC'
   },
   {
     name: 'vecx',
-    roms: [],
+    roms: [
+      {
+        name: 'Berzerk (World).vec'
+      }
+    ],
     region: 'REGION_PAL'
+  },
+  {
+    name: 'stella',
+    roms: [],
+    region: 'REGION_NTSC'
+  },
+  {
+    name: 'wswan',
+    roms: [
+      {
+        name: 'Tetris (Japan).wsc'
+      },
+      {
+        name: 'Bakusou Dekotora Densetsu for WonderSwan (Japan).ws'
+      }
+    ],
+    region: 'REGION_NTSC'
+  },
+  {
+    name: 'vb',
+    roms: [
+      {
+        name: 'V-Tetris (Japan).vb'
+      }
+    ],
+    region: 'REGION_PAL'
+  },
+  {
+    name: 'pce-fast',
+    roms: [
+      {
+        name: 'Sinistron (USA).pce'
+      }
+    ],
+    region: 'REGION_PAL'
+  },
+  {
+    name: 'ngp',
+    roms: [
+      {
+        name: 'Last Blade, The - Beyond the Destiny (Europe).ngc'
+      },
+      {
+        name: 'Renketsu Puzzle Tsunagete Pon! Color (Japan).ngc'
+      }
+    ]
   }
 ]
 
@@ -187,6 +289,7 @@ cores.forEach(function (info) {
           core.unload_game()
         })
         it('running for 50 frames', function () {
+          this.timeout(10000)
           for (let i = 0; i < 50; i++) {
             core.run()
           }
@@ -195,7 +298,7 @@ cores.forEach(function (info) {
           expect(core.input_state.alwaysCalledWith(sinon.match.number, sinon.match.number, sinon.match.number, sinon.match.number))
           expect(core.audio_sample_batch.alwaysCalledWith(sinon.match.object, sinon.match.object, sinon.match.number))
         })
-        it('mashing buttons', function () {
+        /* it('mashing buttons', function () {
           core.input_state = function () {
             return (Math.floor(Math.random() * 100) === 0) ? 1 : 0
           }
@@ -226,7 +329,7 @@ cores.forEach(function (info) {
           core.unserialize(save)
           let newsave = new Uint8Array(core.serialize())
           expect(newsave).deep.equal(save)
-        })
+        }) */
       })
     })
   })
