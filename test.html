@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Mocha Unit Tests</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,14 +10,16 @@
     <script src="jspm_packages/npm/mocha@2.2.5/mocha.js"></script>
     <script src="jspm_packages/system.js"></script>
     <script src="config.js"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="mocha"></div>
     <script>
-      mocha.setup("bdd")
-      System.import("test").then(function (){
-        mocha.run()
-      })
+        mocha.setup("bdd")
+        System.import("test").then(function() {
+            mocha.run()
+        })
     </script>
-  </body>
+</body>
+
 </html>
