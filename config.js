@@ -14,6 +14,7 @@ System.config({
     "crypto-browserify": "npm:crypto-browserify@3.9.14",
     "fetch": "github:github/fetch@0.9.0",
     "fs": "github:jspm/nodelibs-fs@0.1.2",
+    "json": "github:systemjs/plugin-json@0.1.0",
     "mocha": "npm:mocha@2.2.5",
     "path": "github:jspm/nodelibs-path@0.1.0",
     "samsam": "npm:samsam@1.1.2",
@@ -362,4 +363,3 @@ System.config({
     }
   }
 });
-

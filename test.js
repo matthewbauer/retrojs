@@ -1,4 +1,4 @@
-/* globals describe, it, beforeEach, afterEach */
+/* globals describe, it, before, after, beforeEach, afterEach */
 
 import chai from 'chai'
 const expect = chai.expect
@@ -16,223 +16,49 @@ System.config({
   }
 })
 
-const cores = [
-  {
-    name: 'gambatte',
-    roms: [
-      {
-        name: 'Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc'
-      },
-      {
-        name: 'Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb'
-      },
-      {
-        name: 'Pac-Man (USA).gb'
-      },
-      {
-        name: 'Frogger (USA) (Rev A).gbc'
-      }
-    ],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'snes9x-next',
-    roms: [
-      {
-        name: 'Super Mario All-Stars (USA).sfc'
-      },
-      {
-        name: 'Super Star Wars - Return of the Jedi (Europe) (Rev 1).sfc'
-      },
-      {
-        name: 'Chrono Trigger (USA).sfc'
-      }
-    ],
-    system_info: {
-      library_name: 'Snes9X Next',
-      library_version: 'v1.52.4',
-      valid_extensions: 'smc|fig|sfc|gd3|gd7|dx2|bsx|swc',
-      need_fullpath: false,
-      block_extract: false
-    },
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'tyrquake',
-    roms: [],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'vba-next',
-    roms: [
-      {
-        name: 'Super Mario Advance 4 - Super Mario Bros. 3 (USA, Australia) (Rev 1).gba'
-      },
-      {
-        name: 'Pokemon - Ruby Version (USA).gba'
-      }
-    ],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: '4do',
-    roms: [],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'bluemsx',
-    roms: [
-      {
-        name: 'Star Wars (USA).col'
-      },
-      {
-        name: 'Bubble Bobble (Japan) (Alt 1),rom'
-      },
-      {
-        name: 'Space Invaders (Japan).rom'
-      }
-    ],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'quicknes',
-    roms: [],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'gw',
-    roms: [],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'handy',
-    roms: [
-      {
-        name: 'Steel Talons (USA, Europe).lnx'
-      }
-    ],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'o2em',
-    roms: [],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'picodrive',
-    roms: [
-      {
-        name: 'Simpsons, The - Bart vs. the Space Mutants (Europe).sms'
-      },
-      {
-        name: 'Little Wizard (Europe).smc'
-      },
-      {
-        name: 'Professor Pico e l\'Enigma della Scatola di Pastelli, Il (Italy).md'
-      },
-      {
-        name: 'Kuma no Pooh-san - Christopher Robin wo Sagase! (Japan).md'
-      },
-      {
-        name: 'World Series Baseball \'96 (USA).md'
-      },
-      {
-        name: 'Wheel of Fortune (USA).gg'
-      }
-    ],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'vecx',
-    roms: [
-      {
-        name: 'Berzerk (World).vec'
-      }
-    ],
-    region: 'REGION_PAL'
-  },
-  {
-    name: 'stella',
-    roms: [],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'wswan',
-    roms: [
-      {
-        name: 'Tetris (Japan).wsc'
-      },
-      {
-        name: 'Bakusou Dekotora Densetsu for WonderSwan (Japan).ws'
-      }
-    ],
-    region: 'REGION_NTSC'
-  },
-  {
-    name: 'vb',
-    roms: [
-      {
-        name: 'V-Tetris (Japan).vb'
-      }
-    ],
-    region: 'REGION_PAL'
-  },
-  {
-    name: 'pce-fast',
-    roms: [
-      {
-        name: 'Sinistron (USA).pce'
-      }
-    ],
-    region: 'REGION_PAL'
-  },
-  {
-    name: 'ngp',
-    roms: [
-      {
-        name: 'Last Blade, The - Beyond the Destiny (Europe).ngc'
-      },
-      {
-        name: 'Renketsu Puzzle Tsunagete Pon! Color (Japan).ngc'
-      }
-    ]
-  }
-]
+import data from './test.json!json'
+let info = data.cores[0]
 
-cores.forEach(function (info) {
+//cores.forEach(function (info) {
   describe(info.name, function () {
     let core
-    beforeEach(function (done) {
+    var environment = sinon.spy(function (cmd, _data) {
+      if (cmd === core.environment.get_log_interface) {
+        return sinon.spy()
+      }
+    })
+    var audio_sample = sinon.spy()
+    var audio_sample_batch = sinon.spy(function (left, right, frames) {
+      return frames
+    })
+    var input_state = sinon.spy(function () {
+      return 0
+    })
+    var input_poll = sinon.spy()
+    var video_refresh = sinon.spy()
+    before(function (done) {
       System.import(`core:${info.name}`).then(function (_core) {
         core = _core
-        core.log = sinon.spy()
-        core.environment = sinon.spy(function (cmd, _data) {
-          if (cmd === core.ENVIRONMENT_GET_LOG_INTERFACE) {
-            return core.log
-          }
-        })
-        core.audio_sample = sinon.spy()
-        core.audio_sample_batch = sinon.spy(function (left, right, frames) {
-          return frames
-        })
-        core.input_state = sinon.spy(function () {
-          return 0
-        })
-        core.input_poll = sinon.spy()
-        core.video_refresh = sinon.spy()
+        core.set_environment(environment)
+        core.set_audio_sample(audio_sample)
+        core.set_audio_sample_batch(audio_sample_batch)
+        core.set_input_state(input_state)
+        core.set_input_poll(input_poll)
+        core.set_video_refresh(video_refresh)
         core.init()
-      }).then(done, done)
+        done()
+      }).catch(done)
+    })
+    after(function () {
+      core.deinit()
     })
     describe('properties', function () {
-      it('API_VERSION === 1', function () {
-        expect(core.API_VERSION).to.equal(1)
-      })
       it('api_version()', function () {
         expect(core.api_version()).to.equal(1)
         expect(core.api_version()).to.equal(core.API_VERSION)
       })
       it('get_region()', function () {
-        expect(core.get_region()).to.equal(core[info.region])
+        expect(core.get_region()).to.equal(core.region[info.region])
       })
       it('get_system_info()', function () {
         let info = core.get_system_info()
@@ -243,7 +69,7 @@ cores.forEach(function (info) {
         expect(info.block_extract).to.be.a('boolean')
       })
       if (info.system_info) {
-        it('get_system_info() outputs correctly', function () {
+        it('get_system_info() matches core info', function () {
           expect(core.get_system_info()).deep.equal(info.system_info)
         })
       }
@@ -263,14 +89,6 @@ cores.forEach(function (info) {
         core.set_controller_port_device(0, core.DEVICE_JOYPAD)
       })
     })
-    describe('memory', function () {
-      it('get_memory_size', function () {
-        expect(core.get_memory_size(core.MEMORY_SAVE_RAM)).to.be.a('number')
-        expect(core.get_memory_size(core.MEMORY_RTC)).to.be.a('number')
-        expect(core.get_memory_size(core.MEMORY_SYSTEM_RAM)).to.be.a('number')
-        expect(core.get_memory_size(core.MEMORY_VIDEO_RAM)).to.be.a('number')
-      })
-    })
     describe('cheats', function () {
       it('cheat_reset', function () {
         core.cheat_reset()
@@ -283,7 +101,8 @@ cores.forEach(function (info) {
             core.load_game({
               data: new Uint8Array(data)
             })
-          }).then(done, done)
+            done()
+          }).catch(done)
         })
         afterEach(function () {
           core.unload_game()
@@ -293,12 +112,12 @@ cores.forEach(function (info) {
           for (let i = 0; i < 50; i++) {
             core.run()
           }
-          expect(core.input_poll.alwaysCalledWith())
-          expect(core.video_refresh.alwaysCalledWith(sinon.match.object, sinon.match.number, sinon.match.number, sinon.match.number))
-          expect(core.input_state.alwaysCalledWith(sinon.match.number, sinon.match.number, sinon.match.number, sinon.match.number))
-          expect(core.audio_sample_batch.alwaysCalledWith(sinon.match.object, sinon.match.object, sinon.match.number))
+          expect(input_poll.alwaysCalledWith())
+          expect(video_refresh.alwaysCalledWith(sinon.match.object, sinon.match.number, sinon.match.number, sinon.match.number))
+          expect(input_state.alwaysCalledWith(sinon.match.number, sinon.match.number, sinon.match.number, sinon.match.number))
+          expect(audio_sample_batch.alwaysCalledWith(sinon.match.object, sinon.match.object, sinon.match.number))
         })
-        /* it('mashing buttons', function () {
+        it('mashing buttons', function () {
           core.input_state = function () {
             return (Math.floor(Math.random() * 100) === 0) ? 1 : 0
           }
@@ -329,8 +148,8 @@ cores.forEach(function (info) {
           core.unserialize(save)
           let newsave = new Uint8Array(core.serialize())
           expect(newsave).deep.equal(save)
-        }) */
+        })
       })
     })
   })
-})
+//})

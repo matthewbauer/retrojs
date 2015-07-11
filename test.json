@@ -1,0 +1,185 @@
+{
+  "cores": [
+    {
+      "name": "snes9x-next",
+      "roms": [
+        {
+          "name": "Super Mario All-Stars (USA).sfc"
+        },
+        {
+          "name": "Super Star Wars - Return of the Jedi (Europe) (Rev 1).sfc"
+        },
+        {
+          "name": "Chrono Trigger (USA).sfc"
+        }
+      ],
+      "system_info": {
+        "library_name": "Snes9X Next",
+        "library_version": "v1.52.4",
+        "valid_extensions": "smc|fig|sfc|gd3|gd7|dx2|bsx|swc",
+        "need_fullpath": false,
+        "block_extract": false
+      },
+      "region": "ntsc"
+    },
+    {
+      "name": "gambatte",
+      "roms": [
+        {
+          "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc"
+        },
+        {
+          "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb"
+        },
+        {
+          "name": "Pac-Man (USA).gb"
+        },
+        {
+          "name": "Frogger (USA) (Rev A).gbc"
+        }
+      ],
+      "region": "ntsc"
+    },
+    {
+      "name": "tyrquake",
+      "roms": [],
+      "region": "ntsc"
+    },
+    {
+      "name": "vba-next",
+      "roms": [
+        {
+          "name": "Super Mario Advance 4 - Super Mario Bros. 3 (USA, Australia) (Rev 1).gba"
+        },
+        {
+          "name": "Pokemon - Ruby Version (USA).gba"
+        }
+      ],
+      "region": "ntsc"
+    },
+    {
+      "name": "4do",
+      "roms": [],
+      "region": "ntsc"
+    },
+    {
+      "name": "bluemsx",
+      "roms": [
+        {
+          "name": "Star Wars (USA).col"
+        },
+        {
+          "name": "Bubble Bobble (Japan) (Alt 1),rom"
+        },
+        {
+          "name": "Space Invaders (Japan).rom"
+        }
+      ],
+      "region": "ntsc"
+    },
+    {
+      "name": "quicknes",
+      "roms": [],
+      "region": "ntsc"
+    },
+    {
+      "name": "gw",
+      "roms": [],
+      "region": "ntsc"
+    },
+    {
+      "name": "handy",
+      "roms": [
+        {
+          "name": "Steel Talons (USA, Europe).lnx"
+        }
+      ],
+      "region": "ntsc"
+    },
+    {
+      "name": "o2em",
+      "roms": [],
+      "region": "ntsc"
+    },
+    {
+      "name": "picodrive",
+      "roms": [
+        {
+          "name": "Simpsons, The - Bart vs. the Space Mutants (Europe).sms"
+        },
+        {
+          "name": "Little Wizard (Europe).smc"
+        },
+        {
+          "name": "Professor Pico e l\"Enigma della Scatola di Pastelli, Il (Italy).md"
+        },
+        {
+          "name": "Kuma no Pooh-san - Christopher Robin wo Sagase! (Japan).md"
+        },
+        {
+          "name": "World Series Baseball \"96 (USA).md"
+        },
+        {
+          "name": "Wheel of Fortune (USA).gg"
+        }
+      ],
+      "region": "ntsc"
+    },
+    {
+      "name": "vecx",
+      "roms": [
+        {
+          "name": "Berzerk (World).vec"
+        }
+      ],
+      "region": "pal"
+    },
+    {
+      "name": "stella",
+      "roms": [],
+      "region": "ntsc"
+    },
+    {
+      "name": "wswan",
+      "roms": [
+        {
+          "name": "Tetris (Japan).wsc"
+        },
+        {
+          "name": "Bakusou Dekotora Densetsu for WonderSwan (Japan).ws"
+        }
+      ],
+      "region": "ntsc"
+    },
+    {
+      "name": "vb",
+      "roms": [
+        {
+          "name": "V-Tetris (Japan).vb"
+        }
+      ],
+      "region": "pal"
+    },
+    {
+      "name": "pce-fast",
+      "roms": [
+        {
+          "name": "Sinistron (USA).pce"
+        }
+      ],
+      "region": "pal"
+    },
+    {
+      "name": "ngp",
+      "roms": [
+        {
+          "name": "Last Blade, The - Beyond the Destiny (Europe).ngc"
+        },
+        {
+          "name": "Renketsu Puzzle Tsunagete Pon! Color (Japan).ngc"
+        }
+      ],
+      "region": "ntsc"
+    }
+  ]
+}
