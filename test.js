@@ -17,15 +17,15 @@ describe('retrojs', function () {
       var environment = sinon.spy(function (cmd, _data) {
         if (cmd === core.environment.get_log_interface) {
           return sinon.spy(function () {console.error(arguments)})
-        } else if (cmd === core.environment.get_can_dupe) {
+        } else if (cmd === core.ENVIRONMENT_GET_CAN_DUPE) {
           return true
-        } else if (cmd === core.environment.get_overscan) {
+        } else if (cmd === core.ENVIRONMENT_GET_OVERSCAN) {
           return true
-        } else if (cmd === core.environment.set_pixel_format) {
+        } else if (cmd === core.ENVIRONMENT_SET_PIXEL_FORMAT) {
           return true
-        } else if (cmd === core.environment.set_performance_level) {
+        } else if (cmd === core.ENVIRONMENT_SET_PERFORMANCE_LEVEL) {
           return true
-        } else if (cmd === core.environment.set_variables) {
+        } else if (cmd === core.ENVIRONMENT_SET_VARIABLES) {
           return true
         }
       })
@@ -55,7 +55,7 @@ describe('retrojs', function () {
           expect(core.api_version()).to.equal(core.API_VERSION)
         })
         it('get_region()', function () {
-          expect(core.get_region()).to.equal(core.region[info.region])
+          expect(core.get_region()).to.equal(core['REGION_' + info.region])
         })
         it('get_system_info()', function () {
           let info = core.get_system_info()
