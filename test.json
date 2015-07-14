@@ -63,66 +63,13 @@
       "region": "ntsc"
     },
     {
-      "name": "bluemsx",
-      "roms": [
-        {
-          "name": "Star Wars (USA).col"
-        },
-        {
-          "name": "Bubble Bobble (Japan) (Alt 1),rom"
-        },
-        {
-          "name": "Space Invaders (Japan).rom"
-        }
-      ],
-      "region": "ntsc"
-    },
-    {
-      "name": "quicknes",
-      "roms": [],
-      "region": "ntsc"
-    },
-    {
       "name": "gw",
       "roms": [],
       "region": "ntsc"
     },
     {
-      "name": "handy",
-      "roms": [
-        {
-          "name": "Steel Talons (USA, Europe).lnx"
-        }
-      ],
-      "region": "ntsc"
-    },
-    {
       "name": "o2em",
       "roms": [],
-      "region": "ntsc"
-    },
-    {
-      "name": "picodrive",
-      "roms": [
-        {
-          "name": "Simpsons, The - Bart vs. the Space Mutants (Europe).sms"
-        },
-        {
-          "name": "Little Wizard (Europe).smc"
-        },
-        {
-          "name": "Professor Pico e l\"Enigma della Scatola di Pastelli, Il (Italy).md"
-        },
-        {
-          "name": "Kuma no Pooh-san - Christopher Robin wo Sagase! (Japan).md"
-        },
-        {
-          "name": "World Series Baseball \"96 (USA).md"
-        },
-        {
-          "name": "Wheel of Fortune (USA).gg"
-        }
-      ],
       "region": "ntsc"
     },
     {
@@ -138,48 +85,5 @@
       "name": "stella",
       "roms": [],
       "region": "ntsc"
-    },
-    {
-      "name": "wswan",
-      "roms": [
-        {
-          "name": "Tetris (Japan).wsc"
-        },
-        {
-          "name": "Bakusou Dekotora Densetsu for WonderSwan (Japan).ws"
-        }
-      ],
-      "region": "ntsc"
-    },
-    {
-      "name": "vb",
-      "roms": [
-        {
-          "name": "V-Tetris (Japan).vb"
-        }
-      ],
-      "region": "pal"
-    },
-    {
-      "name": "pce-fast",
-      "roms": [
-        {
-          "name": "Sinistron (USA).pce"
-        }
-      ],
-      "region": "pal"
-    },
-    {
-      "name": "ngp",
-      "roms": [
-        {
-          "name": "Last Blade, The - Beyond the Destiny (Europe).ngc"
-        },
-        {
-          "name": "Renketsu Puzzle Tsunagete Pon! Color (Japan).ngc"
-        }
-      ],
-      "region": "ntsc"
-    }
-  ]
+    }  ]
 }

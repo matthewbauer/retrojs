@@ -2,11 +2,11 @@
 
 source ~/emsdk_portable/emsdk_set_env.sh
 
-for core in core/{gambatte,snes9x-next,vba-next,4do,bluemsx,gw,handy,o2em,picodrive,vecx,quicknes,stella,wswan,ngp,pce-fast,vb}
+for core in core/*
 do
   # FBA has trouble with not having enough memory.
   emcc `find $core -name '*.bc' -print` -O3 -o $core/index.js \
-  -s ALLOW_MEMORY_GROWTH=1 -s RESERVED_FUNCTION_POINTERS=6 \
+  -s ALLOW_MEMORY_GROWTH=1 -s RESERVED_FUNCTION_POINTERS=7 \
   -s EXPORTED_FUNCTIONS=@exports.json -s SHELL_FILE="'`pwd`/shell.js'" \
   -s NO_DYNAMIC_EXECUTION=1 --memory-init-file 0
 done
