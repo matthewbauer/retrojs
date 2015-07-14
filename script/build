@@ -5,7 +5,7 @@ source ~/emsdk_portable/emsdk_set_env.sh
 for core in core/*
 do
   # FBA has trouble with not having enough memory.
-  emcc `find $core -name '*.bc' -print` -O3 -o $core/index.js \
+  emcc `find $core -name '*.bc' -print` -O3 -o $core/core.js \
   -s ALLOW_MEMORY_GROWTH=1 -s RESERVED_FUNCTION_POINTERS=7 \
   -s EXPORTED_FUNCTIONS=@exports.json -s SHELL_FILE="'`pwd`/shell.js'" \
   -s NO_DYNAMIC_EXECUTION=1 --memory-init-file 0
