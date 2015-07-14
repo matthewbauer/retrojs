@@ -11,6 +11,7 @@ System.config({
   "map": {
     "chai": "npm:chai@3.0.0",
     "json": "github:systemjs/plugin-json@0.1.0",
+    "mocha": "npm:mocha@2.2.5",
     "raw": "github:matthewbauer/plugin-raw@0.1.13",
     "sinon": "npm:sinon@1.15.4",
     "traceur": "github:jmcriffey/bower-traceur@0.0.88",
@@ -47,6 +48,9 @@ System.config({
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:mocha@2.2.5": {
+      "css": "github:systemjs/plugin-css@0.1.13"
     },
     "npm:sinon@1.15.4": {
       "formatio": "npm:formatio@1.1.1",
