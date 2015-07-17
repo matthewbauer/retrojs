@@ -49,10 +49,10 @@ The API closely follows libretro.h with pointers converted into Javascript objec
 ## Building
 To build, you will need to run the bootstrapper script:
 
-`sh
+```sh
 chmod +x script/bootstrap
 ./script/bootstrap
-`
+```
 
 This will pull in all of the cores that can be built. Using emmake, you can compile the core. Each Makefile within core/* should create a .bc file. After which you can run ./script/build to create index.js files from the *.bc files. These js files will expose the libretro API once loaded.
 
