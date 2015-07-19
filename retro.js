@@ -1,11 +1,11 @@
-/* global Module */
+/* global Module, Runtime */
 
 /* Wrapper around core Modules. */
 
 // TODO: should avoid hardcoding type sizes
 // TODO: should figure out a good way to organize constants
 //  (grouping as objects might make things more complicated)
-// TODO: Make sure this is compiled
+// TODO: Make sure this is uglified
 
 Module.LANGUAGE_CHINESE_SIMPLIFIED = 11
 Module.LANGUAGE_CHINESE_TRADITIONAL = 10
@@ -301,6 +301,8 @@ Module.SENSOR_ACCELEROMETER_X = 1
 Module.SENSOR_ACCELEROMETER_Y = 1
 Module.SENSOR_ACCELEROMETER_Z = 2
 
+Module._ptrs = []
+
 Module._unstringify = function (ptr, str) {
   var _str = this._malloc(str.length + 1)
   this._ptrs.push(_str)
@@ -320,46 +322,39 @@ Module._get_variable = function (ptr) {
   }
 }
 
-Module._get_av_info = function (_data) {
+Module._get_av_info = function (ptr) {
   return {
     geometry: {
-      base_width: this.getValue(_data, 'i32'),
-      base_height: this.getValue(_data + 4, 'i32'),
-      max_width: this.getValue(_data + 8, 'i32'),
-      max_height: this.getValue(_data + 12, 'i32'),
-      aspect_ratio: this.getValue(_data + 16, 'float')
+      base_width: this.getValue(ptr, 'i32'),
+      base_height: this.getValue(ptr + 4, 'i32'),
+      max_width: this.getValue(ptr + 8, 'i32'),
+      max_height: this.getValue(ptr + 12, 'i32'),
+      aspect_ratio: this.getValue(ptr + 16, 'float')
     },
     timing: {
-      fps: this.getValue(_data + 24, 'double'),
-      sample_rate: this.getValue(_data + 32, 'double')
+      fps: this.getValue(ptr + 24, 'double'),
+      sample_rate: this.getValue(ptr + 32, 'double')
     }
   }
 }
 
-Module._set_info = function (_info, info) {
-  if (info.path) {
-    this._unstringify(_info, info.path)
-  }
-  if (info.meta) {
-    this._unstringify(_info + 12, info.meta)
-  }
-  var _data = this._malloc(info.data.length)
+Module._set_info = function (ptr, data) {
+  var _data = this._malloc(data.length)
   this._ptrs.push(_data)
-  new Uint8Array(this.HEAP8.buffer, _data, info.data.length).set(info.data)
-  this.setValue(_info + 4, _data, '*')
-  this.setValue(_info + 8, info.data.length, 'i32')
-  return _info
+  new Uint8Array(this.HEAP8.buffer, _data, data.length).set(data)
+  this.setValue(ptr + 4, _data, '*')
+  this.setValue(ptr + 8, data.length, 'i32')
 }
 
 Module.get_system_info = function () {
-  var _data = this._malloc(14)
+  var _data = this._malloc(20)
   this._retro_get_system_info(_data)
   var obj = {
     library_name: this._stringify(_data),
     library_version: this._stringify(_data + 4),
     valid_extensions: this._stringify(_data + 8),
-    need_fullpath: this.getValue(_data + 12, 'i8') > 0,
-    block_extract: this.getValue(_data + 13, 'i8') > 0
+    need_fullpath: this.getValue(_data + 12, 'i32') > 0,
+    block_extract: this.getValue(_data + 16, 'i32') > 0
   }
   this._free(_data)
   return obj
@@ -380,7 +375,7 @@ Module.serialize = function () {
   if (this._retro_serialize(_data, size)) {
     data = new Uint8Array(this.HEAP8.buffer, _data, size)
   }
-  // this._free(_data)
+  this._free(_data)
   return data
 }
 
@@ -388,7 +383,7 @@ Module.unserialize = function (data) {
   var _data = this._malloc(data.length)
   new Uint8Array(this.HEAP8.buffer, _data, data.length).set(data)
   var result = this._retro_unserialize(_data, data.length)
-  // this._free(_data)
+  this._free(_data)
   return result
 }
 
@@ -402,17 +397,17 @@ Module.cheat_set = function (index, enabled, code) {
 Module.load_game = function (data) {
   var _info = this._malloc(16)
   this._ptrs.push(_info)
-  this._set_info(_info, {data: data})
+  this._set_info(_info, data)
   return this._retro_load_game(_info)
 }
 
-Module.load_game_special = function (game_type, infos) {
-  var _info = this._malloc(16 * infos.length)
+Module.load_game_special = function (game_type, datas) {
+  var _info = this._malloc(16 * datas.length)
   this._ptrs.push(_info)
-  for (var info in infos) {
-    this._set_info(_info + 16 * info, infos[info])
+  for (var data in datas) {
+    this._set_info(_info + 16 * data, datas[data])
   }
-  return this._retro_load_game_special(game_type, _info, infos.length)
+  return this._retro_load_game_special(game_type, _info, datas.length)
 }
 
 Module.get_memory_data = function (id) {
@@ -488,9 +483,10 @@ Module.set_environment = function (fn) { // complete libretro spec
       case this.ENVIRONMENT_GET_LANGUAGE:
       case this.ENVIRONMENT_GET_CAN_DUPE:
       case this.ENVIRONMENT_GET_INPUT_DEVICE_CAPABILITIES:
-      case this.ENVIRONMENT_GET_VARIABLE: {
-        this.setValue(_data, fn(cmd), 'i32')
-        return true
+      case this.ENVIRONMENT_GET_VARIABLE_UPDATE: {
+        var result = fn(cmd)
+        this.setValue(_data, result, 'i32')
+        return result
       }
       case this.ENVIRONMENT_GET_SYSTEM_DIRECTORY:
       case this.ENVIRONMENT_GET_LIBRETRO_PATH:
@@ -512,7 +508,7 @@ Module.set_environment = function (fn) { // complete libretro spec
           for (var vararg in varargs) {
             args.push(this.Pointer_stringify(varargs[vararg]))
           }
-          fn.apply(null, [cmd, level].concat(args))
+          func.apply(null, [level].concat(args))
         }.bind(this, func)))
         return true
       }
@@ -602,12 +598,12 @@ Module.unload_game = function () {
   for (var ptr in this._ptrs) {
     this._free(this._ptrs[ptr])
   }
-  this._ptrs = []
 }
 
 Module.get_region = function () {
   return this._retro_get_region()
 }
+
 Module.cheat_reset = function () {
   this._retro_cheat_reset()
 }
