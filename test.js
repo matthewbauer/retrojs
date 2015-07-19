@@ -5,7 +5,7 @@ import sinon from 'sinon'
 import data from './test.json'
 import System from 'systemjs'
 
-describe('retrojs', function () {
+describe('cores', function () {
   before(function (done) {
     System.import('./config.js').then(function () {
       done()
@@ -14,9 +14,9 @@ describe('retrojs', function () {
   data.cores.forEach(function (info) {
     describe(info.name, function () {
       let core
-      var environment = sinon.spy(function (cmd, _data) {
-        if (cmd === core.environment.get_log_interface) {
-          return sinon.spy(function () {console.error(arguments)})
+      var environment = function (cmd, _data) {
+        if (cmd === core.ENVIRONMENT_GET_LOG_INTERFACE) {
+          return sinon.spy(function (data) {})
         } else if (cmd === core.ENVIRONMENT_GET_CAN_DUPE) {
           return true
         } else if (cmd === core.ENVIRONMENT_GET_OVERSCAN) {
@@ -27,17 +27,19 @@ describe('retrojs', function () {
           return true
         } else if (cmd === core.ENVIRONMENT_SET_VARIABLES) {
           return true
+        } else if (cmd === core.ENVIRONMENT_GET_VARIABLE_UPDATE) {
+          return false
+        } else {
+          return true
         }
-      })
+      }
       var audio_sample = sinon.spy()
-      var audio_sample_batch = sinon.spy(function (left, right, frames) {
-        return frames
-      })
-      var input_state = sinon.stub().returns(0)
-      var input_poll = sinon.spy()
-      var video_refresh = sinon.spy()
+      var audio_sample_batch = sinon.spy(function (left, right, frames) {return frames})
+      var input_state = sinon.spy(function () {return 0})
+      var input_poll = sinon.spy(function () {})
+      var video_refresh = sinon.spy(function () {})
       before(function (done) {
-        System.import(`./core/${info.name}/index.js`).then(function (_core) {
+        System.import(`./core/${info.name}/cjs.js`).then(function (_core) {
           core = _core
           core.set_environment(environment)
           core.set_audio_sample(audio_sample)
@@ -92,7 +94,7 @@ describe('retrojs', function () {
         })
       })
       info.roms.forEach(function (rom) {
-        describe(rom.name, function (done) {
+        describe(rom.name, function () {
           beforeEach(function (done) {
             System.import(`./roms/${rom.name}!raw`).then(function (data) {
               core.load_game(new Uint8Array(data))
@@ -103,7 +105,6 @@ describe('retrojs', function () {
             core.unload_game()
           })
           it('running for 50 frames', function () {
-            this.timeout(10000)
             for (let i = 0; i < 50; i++) {
               core.run()
             }
@@ -113,7 +114,7 @@ describe('retrojs', function () {
             expect(audio_sample_batch.alwaysCalledWith(sinon.match.object, sinon.match.object, sinon.match.number))
           })
           it('mashing buttons', function () {
-            input_state.returns(1)
+            // input_state.returns(1)
             for (let i = 0; i < 100; i++) {
               core.run()
             }

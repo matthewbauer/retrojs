@@ -20,7 +20,7 @@
         "need_fullpath": false,
         "block_extract": false
       },
-      "region": "ntsc"
+      "region": "NTSC"
     },
     {
       "name": "gambatte",
@@ -38,12 +38,7 @@
           "name": "Frogger (USA) (Rev A).gbc"
         }
       ],
-      "region": "ntsc"
-    },
-    {
-      "name": "tyrquake",
-      "roms": [],
-      "region": "ntsc"
+      "region": "NTSC"
     },
     {
       "name": "vba-next",
@@ -55,22 +50,7 @@
           "name": "Pokemon - Ruby Version (USA).gba"
         }
       ],
-      "region": "ntsc"
-    },
-    {
-      "name": "4do",
-      "roms": [],
-      "region": "ntsc"
-    },
-    {
-      "name": "gw",
-      "roms": [],
-      "region": "ntsc"
-    },
-    {
-      "name": "o2em",
-      "roms": [],
-      "region": "ntsc"
+      "region": "NTSC"
     },
     {
       "name": "vecx",
@@ -79,11 +59,7 @@
           "name": "Berzerk (World).vec"
         }
       ],
-      "region": "pal"
-    },
-    {
-      "name": "stella",
-      "roms": [],
-      "region": "ntsc"
-    }  ]
+      "region": "PAL"
+    }
+  ]
 }
