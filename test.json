@@ -26,16 +26,20 @@
       "name": "gambatte",
       "roms": [
         {
-          "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc"
+          "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc",
+          "skipSave": true
         },
         {
-          "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb"
+          "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb",
+          "skipSave": true
         },
         {
-          "name": "Pac-Man (USA).gb"
+          "name": "Pac-Man (USA).gb",
+          "skipSave": true
         },
         {
-          "name": "Frogger (USA) (Rev A).gbc"
+          "name": "Frogger (USA) (Rev A).gbc",
+          "skipSave": true
         }
       ],
       "region": "NTSC"
@@ -44,19 +48,24 @@
       "name": "vba-next",
       "roms": [
         {
-          "name": "Super Mario Advance 4 - Super Mario Bros. 3 (USA, Australia) (Rev 1).gba"
+          "name": "Super Mario Advance 4 - Super Mario Bros. 3 (USA, Australia) (Rev 1).gba",
+          "skipSave": true
         },
         {
-          "name": "Pokemon - Ruby Version (USA).gba"
+          "name": "Pokemon - Ruby Version (USA).gba",
+          "skipSave": true
         }
       ],
       "region": "NTSC"
     },
     {
       "name": "vecx",
+      "timeout": 10000,
       "roms": [
         {
-          "name": "Berzerk (World).vec"
+          "name": "Berzerk (World).vec",
+          "skipSave": true,
+          "skip60": true
         }
       ],
       "region": "PAL"

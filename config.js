@@ -1,18 +1,20 @@
 System.config({
   "transpiler": "traceur",
   "paths": {
-    "*": "*.js",
     "github:*": "jspm_packages/github/*.js",
     "npm:*": "jspm_packages/npm/*.js"
-  }
+  },
+  "defaultJSExtensions": true
 });
 
 System.config({
   "map": {
     "chai": "npm:chai@3.0.0",
+    "fetch": "github:github/fetch@0.9.0",
+    "fs": "github:jspm/nodelibs-fs@0.1.2",
     "json": "github:systemjs/plugin-json@0.1.0",
     "mocha": "npm:mocha@2.2.5",
-    "raw": "github:matthewbauer/plugin-raw@0.1.13",
+    "raw": "github:matthewbauer/plugin-raw@0.2.3",
     "sinon": "npm:sinon@1.15.4",
     "traceur": "github:jmcriffey/bower-traceur@0.0.88",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.88",
@@ -24,6 +26,14 @@ System.config({
     },
     "github:jspm/nodelibs-util@0.1.0": {
       "util": "npm:util@0.10.3"
+    },
+    "github:matthewbauer/plugin-raw@0.2.1": {
+      "fetch": "github:github/fetch@0.9.0",
+      "fs": "github:jspm/nodelibs-fs@0.1.2"
+    },
+    "github:matthewbauer/plugin-raw@0.2.3": {
+      "fetch": "github:github/fetch@0.9.0",
+      "fs": "github:jspm/nodelibs-fs@0.1.2"
     },
     "npm:buffer@3.3.1": {
       "base64-js": "npm:base64-js@0.0.8",

@@ -14,7 +14,7 @@
     <div id="mocha"></div>
     <script>
       mocha.setup("bdd")
-      System.import("test").then(function (){
+      System.import("./test.js").then(function (){
         mocha.run()
       })
     </script>

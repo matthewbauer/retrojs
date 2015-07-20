@@ -6,7 +6,7 @@
       "fs": "github:jspm/nodelibs-fs@^0.1.2",
       "json": "github:systemjs/plugin-json@^0.1.0",
       "mocha": "npm:mocha@^2.2.5",
-      "raw": "github:matthewbauer/plugin-raw@^0.2.0",
+      "raw": "github:matthewbauer/plugin-raw@0.2.3",
       "sinon": "npm:sinon@^1.15.4"
     },
     "devDependencies": {

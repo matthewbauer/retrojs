@@ -7,18 +7,18 @@
 //  (grouping as objects might make things more complicated)
 // TODO: Make sure this is uglified
 
-Module.LANGUAGE_CHINESE_SIMPLIFIED = 11
-Module.LANGUAGE_CHINESE_TRADITIONAL = 10
-Module.LANGUAGE_KOREAN = 9
-Module.LANGUAGE_RUSSIAN = 8
-Module.LANGUAGE_PORTUGUESE = 7
-Module.LANGUAGE_DUTCH = 6
-Module.LANGUAGE_ITALIAN = 5
-Module.LANGUAGE_GERMAN = 4
-Module.LANGUAGE_SPANISH = 3
-Module.LANGUAGE_FRENCH = 2
-Module.LANGUAGE_JAPANESE = 1
 Module.LANGUAGE_ENGLISH = 0
+Module.LANGUAGE_JAPANESE = 1
+Module.LANGUAGE_FRENCH = 2
+Module.LANGUAGE_SPANISH = 3
+Module.LANGUAGE_GERMAN = 4
+Module.LANGUAGE_ITALIAN = 5
+Module.LANGUAGE_DUTCH = 6
+Module.LANGUAGE_PORTUGUESE = 7
+Module.LANGUAGE_RUSSIAN = 8
+Module.LANGUAGE_KOREAN = 9
+Module.LANGUAGE_CHINESE_TRADITIONAL = 10
+Module.LANGUAGE_CHINESE_SIMPLIFIED = 11
 Module.K_UNDO = 322
 Module.K_EURO = 321
 Module.K_POWER = 320
@@ -543,7 +543,6 @@ Module.set_video_refresh = function (fn) {
   this._retro_set_video_refresh(Runtime.addFunction(function (fn, _data, width, height, pitch) {
     var data = new Uint8Array(this.HEAP8.buffer, _data, height * pitch)
     fn(data, width, height, pitch)
-    this._free(_data)
   }.bind(this, fn)))
 }
 
@@ -556,7 +555,6 @@ Module.set_audio_sample_batch = function (fn) {
       left[i] = data[i * 2] / 0x8000
       right[i] = data[i * 2 + 1] / 0x8000
     }
-    this._free(_data)
     return fn(left, right, frames)
   }.bind(this, fn)))
 }
