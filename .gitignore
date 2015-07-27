@@ -4,3 +4,4 @@ node_modules
 npm-debug.log
 jspm_packages
 pkg
+config.js
