@@ -461,24 +461,6 @@ Module.set_environment = function (fn) { // complete libretro spec
         }
         return fn(cmd, variables)
       }
-      case this.ENVIRONMENT_SET_AUDIO_CALLBACK: {
-        var audio = fn(cmd)
-        this.setValue(_data, Runtime.addFunction(audio.callback), '*')
-        this.setValue(_data + 4, Runtime.addFunction(audio.set_state), '*')
-        return true
-      }
-      case this.ENVIRONMENT_SET_CONTROLLER_INFO: {
-        // var controllers = []
-        // for (var ptr = _data; this.getValue(ptr, '*') != null; ptr += 8) {
-        //   var _controller = this.getValue(ptr, '*')
-        //   var controller = {}
-        //   var num_types = this.getValue(ptr + 4, 'i32')
-        //   for (var type = 0; type < num_types; type += 1) {
-        //   }
-        //   controllers.push(controller)
-        // }
-        return true
-      }
       case this.ENVIRONMENT_GET_CAN_DUPE:
       case this.ENVIRONMENT_GET_OVERSCAN:
       case this.ENVIRONMENT_GET_VARIABLE_UPDATE: {
@@ -512,26 +494,6 @@ Module.set_environment = function (fn) { // complete libretro spec
           }
           func.apply(null, [level].concat(args))
         }.bind(this, func)), '*')
-        return true
-      }
-      case this.ENVIRONMENT_GET_LOCATION_INTERFACE: {
-        var location = fn(cmd)
-        this.setValue(_data, Runtime.addFunction(location.start), '*')
-        this.setValue(_data + 4, Runtime.addFunction(location.stop), '*')
-        this.setValue(_data + 8, Runtime.addFunction(function (location, lat, lon, horiz_accuracy, vert_accuracy) {
-          var position = location.get_position()
-          this.setValue(lat, position.lat, 'double')
-          this.setValue(lon, position.lon, 'double')
-          this.setValue(horiz_accuracy, position.horiz_accuracy, 'double')
-          this.setValue(vert_accuracy, position.vert_accuracy, 'double')
-        }.bind(this, location)), '*')
-        this.setValue(_data + 12, Runtime.addFunction(location.set_interval), '*')
-        this.setValue(_data + 16, Runtime.addFunction(location.initialized), '*')
-        this.setValue(_data + 20, Runtime.addFunction(location.deinitialized), '*')
-        return true
-      }
-      case this.ENVIRONMENT_GET_RUMBLE_INTERFACE: {
-        this.setValue(_data, Runtime.addFunction(fn(cmd)), '*')
         return true
       }
       default: {
