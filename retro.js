@@ -543,7 +543,7 @@ Module.set_environment = function (fn) { // complete libretro spec
 
 Module.set_video_refresh = function (fn) {
   this._retro_set_video_refresh(Runtime.addFunction(function (fn, _data, width, height, pitch) {
-    var data = new Uint8Array(this.HEAP8.buffer, _data, height * pitch)
+    var data = new Uint16Array(this.HEAP8.buffer, _data, height * pitch)
     fn(data, width, height, pitch)
   }.bind(this, fn)))
 }
