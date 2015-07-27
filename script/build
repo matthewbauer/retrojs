@@ -4,6 +4,6 @@ source ~/emsdk_portable/emsdk_set_env.sh
 
 for core in core/*
 do
-  emcc `find $core -name '*.bc' -print` -O3 -o $core/core.js -s ALLOW_MEMORY_GROWTH=1 -s EMULATED_FUNCTION_POINTERS=1 -s EXPORTED_FUNCTIONS=@exports.json -s SHELL_FILE="'`pwd`/shell.js'" -s NO_DYNAMIC_EXECUTION=1 --memory-init-file 0
+  emcc `find $core -name '*.bc' -print` -O3 -o $core/core.js -s RESERVED_FUNCTION_POINTERS=7 -s TOTAL_MEMORY=67108864 -s EXPORTED_FUNCTIONS=@exports.json -s SHELL_FILE="'`pwd`/shell.js'" -s NO_DYNAMIC_EXECUTION=1 --memory-init-file 0
   cp retro.js cjs.js amd.js $core
 done
