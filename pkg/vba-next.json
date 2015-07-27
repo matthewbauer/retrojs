@@ -1,7 +1,0 @@
-{
-  "name": "vba-next",
-  "version": "0.3.0",
-  "dependencies": {},
-  "devDependencies": {},
-  "main": "cjs.js"
-}
