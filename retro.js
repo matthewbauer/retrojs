@@ -479,14 +479,16 @@ Module.set_environment = function (fn) { // complete libretro spec
         // }
         return true
       }
-      case this.ENVIRONMENT_GET_OVERSCAN:
-      case this.ENVIRONMENT_GET_LANGUAGE:
       case this.ENVIRONMENT_GET_CAN_DUPE:
-      case this.ENVIRONMENT_GET_INPUT_DEVICE_CAPABILITIES:
+      case this.ENVIRONMENT_GET_OVERSCAN:
       case this.ENVIRONMENT_GET_VARIABLE_UPDATE: {
-        var result = fn(cmd)
-        this.setValue(_data, result, 'i32')
-        return result
+        this.setValue(_data, fn(cmd), 'i16')
+        return true
+      }
+      case this.ENVIRONMENT_GET_LANGUAGE:
+      case this.ENVIRONMENT_GET_INPUT_DEVICE_CAPABILITIES: {
+        this.setValue(_data, fn(cmd), 'i32')
+        return true
       }
       case this.ENVIRONMENT_GET_SYSTEM_DIRECTORY:
       case this.ENVIRONMENT_GET_LIBRETRO_PATH:
