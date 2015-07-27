@@ -497,7 +497,7 @@ Module.set_environment = function (fn) { // complete libretro spec
         return true
       }
       case this.ENVIRONMENT_GET_VARIABLE: {
-        this._unstringify(fn(cmd, this._get_variable(_data)), _data + 4)
+        this._unstringify(_data + 4, fn(cmd, this._get_variable(_data)))
         return true
       }
       case this.ENVIRONMENT_GET_LOG_INTERFACE: {
