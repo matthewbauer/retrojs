@@ -496,6 +496,17 @@ Module.set_environment = function (fn) { // complete libretro spec
         }.bind(this, func)), '*')
         return true
       }
+      case this.ENVIRONMENT_GET_PERF_INTERFACE: {
+        var perf = fn(cmd)
+        this.setValue(_data, Runtime.addFunction(perf.get_time_usec), '*')
+        this.setValue(_data + 4, Runtime.addFunction(perf.get_cpu_features), '*')
+        this.setValue(_data + 8, Runtime.addFunction(perf.get_perf_counter), '*')
+        this.setValue(_data + 12, Runtime.addFunction(perf.register), '*')
+        this.setValue(_data + 16, Runtime.addFunction(perf.start), '*')
+        this.setValue(_data + 20, Runtime.addFunction(perf.stop), '*')
+        this.setValue(_data + 24, Runtime.addFunction(perf.log), '*')
+        return true
+      }
       default: {
         return fn(cmd, _data)
       }
@@ -557,9 +568,9 @@ Module.run = function () {
 
 Module.unload_game = function () {
   this._retro_unload_game()
-  for (var ptr in this._ptrs) {
-    this._free(this._ptrs[ptr])
-  }
+  // for (var ptr in this._ptrs) {
+  //   this._free(this._ptrs[ptr])
+  // }
 }
 
 Module.get_region = function () {

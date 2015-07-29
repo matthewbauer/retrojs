@@ -1,4 +1,4 @@
-/* globals describe, it, before, beforeEach */
+/* globals describe, it, before, beforeEach, afterEach */
 
 import {expect} from 'chai'
 import sinon from 'sinon'
@@ -32,6 +32,12 @@ data.cores.forEach(function (info) {
         return true
       } else if (cmd === core.ENVIRONMENT_GET_VARIABLE_UPDATE) {
         return false
+      } else if (cmd === core.ENVIRONMENT_GET_PERF_INTERFACE) {
+        return {
+          get_time_usec: function () {
+            return new Date().getTime() / 1000
+          }
+        }
       } else {
         return true
       }
@@ -107,9 +113,9 @@ data.cores.forEach(function (info) {
             done()
           }).catch(done)
         })
-        // afterEach(function () {
-        //   core.unload_game()
-        // })
+        afterEach(function () {
+          core.unload_game()
+        })
         it('running for 50 frames', function () {
           for (let i = 0; i < 50; i++) {
             core.run()

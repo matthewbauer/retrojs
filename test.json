@@ -69,6 +69,16 @@
         }
       ],
       "region": "PAL"
+    },
+    {
+      "name": "gw",
+      "region": "NTSC",
+      "roms": [
+        {
+          "name": "Donkey Kong (Nintendo, Multi Screen).mgw",
+          "skipSave": true
+        }
+      ]
     }
   ]
 }
