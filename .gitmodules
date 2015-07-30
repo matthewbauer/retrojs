@@ -1,168 +1,69 @@
-[submodule "snes9x-next"]
-	path = core/snes9x-next
-	url = https://github.com/libretro/snes9x-next.git
-[submodule "tyrquake"]
-	path = core/tyrquake
-	url = https://github.com/libretro/tyrquake.git
-[submodule "vba-next"]
-	path = core/vba-next
-	url = https://github.com/libretro/vba-next.git
-[submodule "gw"]
-	path = core/gw
-	url = https://github.com/libretro/gw-libretro.git
-[submodule "fba"]
-	path = core/fba
-	url = https://github.com/libretro/libretro-fba.git
-[submodule "4do"]
-	path = core/4do
-	url = https://github.com/libretro/4do-libretro.git
-[submodule "bluemsx"]
-	path = core/bluemsx
-	url = https://github.com/libretro/blueMSX-libretro.git
-[submodule "o2em"]
-	path = core/o2em
-	url = https://github.com/libretro/libretro-o2em.git
-[submodule "vecx"]
-	path = core/vecx
-	url = https://github.com/libretro/libretro-vecx.git
-[submodule "hatari"]
-	path = core/hatari
-	url = https://github.com/libretro/hatari.git
-[submodule "yabause"]
-	path = core/yabause
-	url = https://github.com/libretro/yabause.git
-[submodule "cap32"]
-	path = core/cap32
-	url = https://github.com/libretro/libretro-cap32.git
-[submodule "uae"]
-	path = core/uae
-	url = https://github.com/libretro/libretro-uae.git
-[submodule "handy"]
-	path = core/handy
-	url = https://github.com/libretro/libretro-handy.git
-[submodule "dosbox"]
-	path = core/dosbox
-	url = https://github.com/libretro/dosbox-libretro.git
-[submodule "desmume"]
-	path = core/desmume
-	url = https://github.com/libretro/desmume.git
-[submodule "fceumm"]
-	path = core/fceumm
-	url = https://github.com/libretro/libretro-fceumm.git
-[submodule "picodrive"]
-	path = core/picodrive
-	url = https://github.com/libretro/picodrive.git
+#
+# All of the following work fine.
+#
 [submodule "gambatte"]
 	path = core/gambatte
 	url = https://github.com/libretro/gambatte-libretro.git
-[submodule "bnes"]
-	path = core/bnes
-	url = https://github.com/libretro/bnes-libretro.git
-[submodule "quicknes"]
-	path = core/quicknes
-	url = https://github.com/libretro/QuickNES_Core.git
+[submodule "snes9x-next"]
+	path = core/snes9x-next
+	url = https://github.com/libretro/snes9x-next.git
+[submodule "vba-next"]
+	path = core/vba-next
+	url = https://github.com/libretro/vba-next.git
+[submodule "vecx"]
+	path = core/vecx
+	url = https://github.com/libretro/libretro-vecx.git
+[submodule "gw"]
+	path = core/gw
+	url = https://github.com/libretro/gw-libretro.git
 [submodule "stella"]
 	path = core/stella
 	url = https://github.com/libretro/stella-libretro.git
-[submodule "fuse"]
-	path = core/fuse
-	url = https://github.com/libretro/fuse-libretro.git
+
+#
+# These are works in progress
+#
+[submodule "mame"]
+	path = core/mame
+	url = https://github.com/matthewbauer/mame.git
+[submodule "em-dosbox"]
+	path = core/em-dosbox
+	url = https://github.com/dreamlayers/em-dosbox.git
 [submodule "mupen64plus"]
 	path = core/mupen64plus
 	url = https://github.com/libretro/mupen64plus-libretro.git
-[submodule "beetle-supergrafx"]
-	path = core/beetle-supergrafx
-	url = https://github.com/libretro/beetle-supergrafx-libretro.git
+
+#
+# Limited usefulness?
+#
+[submodule "tyrquake"]
+	path = core/tyrquake
+	url = https://github.com/libretro/tyrquake.git
 [submodule "prboom"]
 	path = core/prboom
 	url = https://github.com/libretro/libretro-prboom.git
-[submodule "prosystem"]
-	path = core/prosystem
-	url = https://github.com/libretro/prosystem-libretro.git
-[submodule "meteor"]
-	path = core/meteor
-	url = https://github.com/libretro/meteor-libretro.git
-[submodule "tgbdual"]
-	path = core/tgbdual
-	url = https://github.com/libretro/tgbdual-libretro.git
-[submodule "virtualjaguar"]
-	path = core/virtualjaguar
-	url = https://github.com/libretro/virtualjaguar-libretro.git
-[submodule "ppsspp"]
-	path = core/ppsspp
-	url = https://github.com/libretro/libretro-ppsspp.git
-[submodule "nestopia"]
-	path = core/nestopia
-	url = https://github.com/libretro/nestopia.git
-[submodule "scummvm"]
-	path = core/scummvm
-	url = https://github.com/libretro/scummvm.git
-[submodule "ffmpeg"]
-	path = core/ffmpeg
-	url = https://github.com/libretro/FFmpeg.git
-[submodule "mame"]
-	path = core/mame
-	url = https://github.com/mamedev/mame.git
-[submodule "mgba"]
-	path = core/mgba
-	url = https://github.com/libretro/mgba.git
+
+#
+# These emulate the same platforms as a working core
+#
+[submodule "catsfc"]
+	path = core/catsfc
+	url = https://github.com/libretro/CATSFC-libretro.git
+[submodule "snes9x"]
+	path = core/snes9x
+	url = https://github.com/snes9xgit/snes9x.git
 [submodule "pocketsnes"]
 	path = core/pocketsnes
 	url = https://github.com/libretro/pocketsnes-libretro.git
-[submodule "genesis"]
-	path = core/genesis
-	url = https://github.com/libretro/Genesis-Plus-GX.git
-[submodule "pcsx"]
-	path = core/pcsx
-	url = https://github.com/libretro/pcsx_rearmed.git
-[submodule "bnes"]
-	path = core/bnes
-	url = https://github.com/libretro/bnes-libretro.git
-[submodule "mednafen-psx"]
-	path = core/mednafen-psx
-	url = https://github.com/libretro/mednafen-psx-libretro.git
+[submodule "vbam"]
+	path = core/vbam
+	url = https://github.com/libretro/vbam-libretro.git
 [submodule "bsnes"]
 	path = core/bsnes
 	url = https://github.com/libretro/bsnes-libretro.git
 [submodule "bsnes-mercury"]
 	path = core/bsnes-mercury
 	url = https://github.com/libretro/bsnes-mercury.git
-[submodule "gpsp"]
-	path = core/gpsp
-	url = https://github.com/libretro/gpsp.git
-[submodule "dolphin"]
-	path = core/dolphin
-	url = https://github.com/libretro/dolphin.git
-[submodule "vbam"]
-	path = core/vbam
-	url = https://github.com/libretro/vbam-libretro.git
-[submodule "catsfc"]
-	path = core/catsfc
-	url = https://github.com/libretro/CATSFC-libretro.git
-[submodule "em-dosbox"]
-	path = core/em-dosbox
-	url = https://github.com/dreamlayers/em-dosbox.git
-[submodule "beetle-pcfx"]
-	path = core/beetle-pcfx
-	url = https://github.com/libretro/beetle-pcfx-libretro.git
-[submodule "beetle-lynx"]
-	path = core/beetle-lynx
-	url = https://github.com/libretro/beetle-lynx-libretro.git
-[submodule "beetle-bsnes"]
-	path = core/beetle-bsnes
-	url = https://github.com/libretro/beetle-bsnes-libretro.git
-[submodule "beetle-gba"]
-	path = core/beetle-gba
-	url = https://github.com/libretro/beetle-bsnes-libretro.git
-[submodule "beetle-wswan"]
-	path = core/wswan
-	url = https://github.com/libretro/beetle-wswan-libretro.git
-[submodule "beetle-vb"]
-	path = core/vb
-	url = https://github.com/libretro/beetle-vb-libretro.git
-[submodule "beetle-ngp"]
-	path = core/ngp
-	url = https://github.com/libretro/beetle-ngp-libretro.git
-[submodule "beetle-pce-fast"]
-	path = core/pce-fast
-	url = https://github.com/libretro/beetle-pce-fast-libretro.git
+[submodule "meteor"]
+	path = core/meteor
+	url = https://github.com/libretro/meteor-libretro.git
