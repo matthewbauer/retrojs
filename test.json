@@ -79,6 +79,16 @@
           "skipSave": true
         }
       ]
+    },
+    {
+      "name": "stella",
+      "roms": [
+        {
+          "name": "Pacman.bin",
+          "skipSave": true
+        }
+      ],
+      "region": "NTSC"
     }
   ]
 }
