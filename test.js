@@ -35,7 +35,7 @@ data.cores.forEach(function (info) {
       } else if (cmd === core.ENVIRONMENT_GET_PERF_INTERFACE) {
         return {
           get_time_usec: function () {
-            return new Date().getTime() / 1000
+            return new Date().getTime() * 1000
           }
         }
       } else {
