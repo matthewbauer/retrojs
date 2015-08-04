@@ -19,6 +19,9 @@
 [submodule "stella"]
 	path = core/stella
 	url = https://github.com/libretro/stella-libretro.git
+[submodule "nestopia"]
+	path = core/nestopia
+	url = https://github.com/rdanbrook/nestopia.git
 
 #
 # These are works in progress
@@ -32,10 +35,6 @@
 [submodule "mupen64plus"]
 	path = core/mupen64plus
 	url = https://github.com/libretro/mupen64plus-libretro.git
-
-#
-# Limited usefulness?
-#
 [submodule "tyrquake"]
 	path = core/tyrquake
 	url = https://github.com/libretro/tyrquake.git
