@@ -9,5 +9,5 @@ for core in core/*
 do
   BC_FILE=`find $core -name '*.bc' -print`
   (cd `dirname $BC_FILE` && emcc `basename $BC_FILE` -O3 -o core.js -s RESERVED_FUNCTION_POINTERS=15 -s TOTAL_MEMORY=268435456 -s EXPORTED_FUNCTIONS=@$EXPORTS -s SHELL_FILE=$SHELL_FILE -s NO_DYNAMIC_EXECUTION=1 --memory-init-file 0)
-  cp retro.js cjs.js amd.js $core
+  cp retro.js $core
 done

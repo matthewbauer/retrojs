@@ -89,6 +89,12 @@
         }
       ],
       "region": "NTSC"
+    },
+    {
+      "name": "nestopia",
+      "roms": [
+      ],
+      "region": "NTSC"
     }
   ]
 }

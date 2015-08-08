@@ -4,6 +4,6 @@ for core in core/*
 do
   cp pkg/`basename $core`.json $core/package.json
   cp .npmignore $core
-  cp retro.js cjs.js amd.js $core
+  cp retro.js $core
   (cd $core && npm publish)
 done

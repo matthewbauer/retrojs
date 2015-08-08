@@ -1,6 +1,7 @@
 /* globals describe, it, before, beforeEach, afterEach */
 
-import {expect} from 'chai'
+import chai from 'chai'
+let expect = chai.expect
 import sinon from 'sinon'
 import data from './test.json'
 
@@ -51,7 +52,7 @@ data.cores.forEach(function (info) {
       this.timeout(info.timeout)
     }
     before(function (done) {
-      System.import(`./core/${info.name}/cjs.js`).then(function (_core) {
+      System.import(`./core/${info.name}/core`).then(function (_core) {
         core = _core
         core.set_environment(environment)
         core.set_audio_sample(audio_sample)
