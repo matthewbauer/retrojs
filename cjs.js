@@ -1,4 +1,4 @@
 "format cjs";
-require('./core.js');
-require('./retro.js');
+var Module = require('./core.js');
+require('./retro.js')(Module);
 module.exports = Module;
