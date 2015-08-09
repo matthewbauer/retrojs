@@ -1,5 +1,4 @@
-/* Wrapper around core this. */
-
+'format esm';
 export default function () {
   this.LANGUAGE_ENGLISH = 0
   this.LANGUAGE_JAPANESE = 1

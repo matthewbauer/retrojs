@@ -5,7 +5,9 @@ define(['./retro'], function (retro) {
   var ENVIRONMENT_IS_SHELL = false;
   var Module = {
     'print': function () {},
-    'printErr': function () {}
+    'printErr': function () {},
+    'noExitRuntime': true,
+    'noInitialRun': true
   };
   {{BODY}};
   Module.Runtime = Runtime;
