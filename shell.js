@@ -1,5 +1,5 @@
 'format amd';
-define(['./retro'], function (retro) {
+define(function () {
   var ENVIRONMENT_IS_WEB = true;
   var ENVIRONMENT_IS_NODE = false;
   var ENVIRONMENT_IS_SHELL = false;
@@ -11,6 +11,5 @@ define(['./retro'], function (retro) {
   };
   {{BODY}};
   Module.Runtime = Runtime;
-  retro.default.call(Module);
   return Module;
 });

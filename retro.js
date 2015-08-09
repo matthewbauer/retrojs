@@ -1,5 +1,6 @@
-'format esm';
-export default function () {
+'format amd';
+
+function addHelpers () {
   this.LANGUAGE_ENGLISH = 0
   this.LANGUAGE_JAPANESE = 1
   this.LANGUAGE_FRENCH = 2
@@ -578,3 +579,8 @@ export default function () {
     this._retro_set_controller_port_device(port, device)
   }
 }
+
+define(['./core'], function (Core) {
+  addHelpers.call(Core);
+  return Core;
+});
