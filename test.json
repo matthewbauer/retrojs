@@ -93,6 +93,9 @@
     {
       "name": "nestopia",
       "roms": [
+        {
+          "name": "Zelda II - The Adventure of Link (USA).nes"
+        }
       ],
       "region": "NTSC"
     }
