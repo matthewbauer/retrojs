@@ -98,6 +98,16 @@
         }
       ],
       "region": "NTSC"
+    },
+    {
+      "name": "mupen64plus",
+      "roms": [
+        {
+          "name": "Yoshi's Story (USA) (En,Ja).n64",
+          "skipSave": true
+        }
+      ],
+      "region": "NTSC"
     }
   ]
 }

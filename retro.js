@@ -1,4 +1,4 @@
-'format amd';
+'format amd'
 define(['./core'], function (Core) {
   function addHelpers () {
     this.LANGUAGE_ENGLISH = 0
@@ -501,6 +501,10 @@ define(['./core'], function (Core) {
             this.setValue(_data + 24, this.Runtime.addFunction(perf.log), '*')
             return true
           }
+          case this.ENVIRONMENT_GET_RUMBLE_INTERFACE: {
+            this.setValue(_data, this.Runtime.addFunction(fn(cmd)), '*')
+            return true
+          }
           default: {
             return fn(cmd, _data)
           }
@@ -579,6 +583,6 @@ define(['./core'], function (Core) {
       this._retro_set_controller_port_device(port, device)
     }
   }
-  addHelpers.call(Core);
-  return Core;
-});
+  addHelpers.call(Core)
+  return Core
+})
