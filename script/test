@@ -1,3 +1,0 @@
-#!/bin/sh
-
-mocha --compilers js:babel/register test.js

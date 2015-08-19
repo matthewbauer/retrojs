@@ -1,6 +1,0 @@
-#!/bin/sh
-
-sh script/bootstrap
-sh script/clean
-sh script/build
-sh script/test
