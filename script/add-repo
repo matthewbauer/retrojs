@@ -1,3 +1,3 @@
 #!/bin/sh
 
-git submodule add --force --name $1 https://github.com/libretro/$1.git core/$1
+git submodule add --force --name $1 https://github.com/libretro/$1-libretro.git core/$1

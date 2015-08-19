@@ -22,6 +22,9 @@
 [submodule "nestopia"]
 	path = core/nestopia
 	url = https://github.com/rdanbrook/nestopia.git
+[submodule "mupen64plus"]
+	path = core/mupen64plus
+	url = https://github.com/libretro/mupen64plus-libretro.git
 
 #
 # These are works in progress
@@ -32,15 +35,22 @@
 [submodule "em-dosbox"]
 	path = core/em-dosbox
 	url = https://github.com/dreamlayers/em-dosbox.git
-[submodule "mupen64plus"]
-	path = core/mupen64plus
-	url = https://github.com/libretro/mupen64plus-libretro.git
+[submodule "fuse"]
+	path = core/fuse
+	url = https://github.com/libretro/fuse-libretro.git
+
+#
+# Maybe eventually...
+#
 [submodule "tyrquake"]
 	path = core/tyrquake
 	url = https://github.com/libretro/tyrquake.git
 [submodule "prboom"]
 	path = core/prboom
 	url = https://github.com/libretro/libretro-prboom.git
+[submodule "81"]
+	path = core/81
+	url = https://github.com/libretro/81-libretro.git
 
 #
 # These emulate the same platforms as a working core

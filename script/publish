@@ -1,9 +1,9 @@
 #!/bin/sh
 
-for core in core/*
-do
-  cp pkg/`basename $core`.json $core/package.json
-  cp .npmignore $core
-  cp retro.js $core
-  (cd $core && npm publish)
-done
+# for core in core/*
+# do
+#   cp pkg/`basename $core`.json $core/package.json
+#   cp .npmignore $core
+#   cp retro.js $core
+#   (cd $core && npm publish)
+# done

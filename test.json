@@ -108,6 +108,13 @@
         }
       ],
       "region": "NTSC"
+    },
+    {
+      "name": "fuse",
+      "region": "NTSC",
+      "roms": [
+        
+      ]
     }
   ]
 }
