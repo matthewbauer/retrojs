@@ -113,7 +113,9 @@
       "name": "fuse",
       "region": "NTSC",
       "roms": [
-        
+        {
+          "name": "Jetpac (1983)(Ultimate).tzx"
+        }
       ]
     }
   ]
