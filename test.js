@@ -39,6 +39,8 @@ data.cores.forEach(function(info) {
         } else {
           return ''
         }
+      } else if (cmd === core.ENVIRONMENT_GET_SYSTEM_DIRECTORY) {
+        return '.'
       } else if (cmd === core.ENVIRONMENT_GET_PERF_INTERFACE) {
         return {
           get_time_usec: function() {
@@ -47,7 +49,10 @@ data.cores.forEach(function(info) {
           get_cpu_features: function() {
             return 0
           },
-          perf_log: function() {}
+          log: function() {},
+          stop: function() {},
+          start: function() {},
+          perf_register: function() {}
         }
       } else if (cmd === core.ENVIRONMENT_GET_RUMBLE_INTERFACE) {
         return function () {

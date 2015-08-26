@@ -11,5 +11,6 @@ define([], function () {
   };
   {{BODY}};
   Module.Runtime = Runtime;
+  Module.FS = FS;
   return Module;
 });

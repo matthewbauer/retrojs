@@ -338,6 +338,13 @@ define(['./core'], function (Core) {
       new Uint8Array(this.HEAP8.buffer, _data, data.length).set(data)
       this.setValue(ptr + 4, _data, '*')
       this.setValue(ptr + 8, data.length, 'i32')
+
+      // need_fullpath = true support
+      var path = 'dummy'
+      var stream = this.FS.open(path, 'w+')
+      this.FS.write(stream, data, 0, data.length, 0)
+      this.FS.close(stream)
+      this._unstringify(ptr, path)
     }
 
     this.get_system_info = function () {

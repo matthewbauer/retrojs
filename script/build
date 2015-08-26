@@ -5,10 +5,16 @@ source ~/emsdk_portable/emsdk_set_env.sh
 SHELL_FILE="'`pwd`/shell.js'"
 EXPORTS=`pwd`/exports.json
 
-for core in core/*
+if test "$#" -gt 0; then
+  cores=$@
+else
+  cores=core/*
+fi
+
+for core in $cores
 do
   BC_FILE=`find $core -name '*.bc' -print`
   DIR=`pwd`/$core
-  (cd `dirname $BC_FILE` && emcc `basename $BC_FILE` -O3 -o ${DIR}/core.js -s RESERVED_FUNCTION_POINTERS=15 -s TOTAL_MEMORY=268435456 -s EXPORTED_FUNCTIONS=@$EXPORTS -s SHELL_FILE=$SHELL_FILE -s NO_DYNAMIC_EXECUTION=1 --memory-init-file 0 -s NO_EXIT_RUNTIME=1)
+  (cd `dirname $BC_FILE` && emcc `basename $BC_FILE` -O3 -o ${DIR}/core.js -s RESERVED_FUNCTION_POINTERS=15 -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_FUNCTIONS=@$EXPORTS -s SHELL_FILE=$SHELL_FILE -s NO_DYNAMIC_EXECUTION=1 --memory-init-file 0 -s NO_EXIT_RUNTIME=1)
   cp retro.js $core
 done

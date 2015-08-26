@@ -1,9 +1,22 @@
-#!/bin/sh
+#!/usr/bin/env node
 
-# for core in core/*
-# do
-#   cp pkg/`basename $core`.json $core/package.json
-#   cp .npmignore $core
-#   cp retro.js $core
-#   (cd $core && npm publish)
-# done
+var fs = require('fs')
+var npm = require('npm')
+fs.readdir('core', function(err, cores) {
+  cores.forEach(function(core) {
+    if (file[0] === '.')
+      return
+    var json = {
+      name: file,
+      version: '0.7.0',
+      main: 'retro.js',
+      homepage: 'https://github.com/matthewbauer/retrojs',
+      dependencies: {}
+    }
+    fs.writeFile('core/' + core + '/package.json', JSON.stringify(json), function() {
+      npm.commands.publish('core/' + core, function() {
+        fs.unlink('core/' + core + '/package.json')
+      })
+    })
+  })
+})

@@ -25,32 +25,68 @@
 [submodule "mupen64plus"]
 	path = core/mupen64plus
 	url = https://github.com/libretro/mupen64plus-libretro.git
+[submodule "dosbox"]
+	path = core/dosbox
+	url = https://github.com/libretro/dosbox-libretro.git
+[submodule "fuse"]
+	path = core/fuse
+	url = https://github.com/libretro/fuse-libretro.git
+[submodule "picodrive"]
+	path = core/picodrive
+	url = https://github.com/libretro/picodrive.git
+[submodule "virtualjaguar"]
+	path = core/virtualjaguar
+	url = https://github.com/libretro/virtualjaguar-libretro.git
+[submodule "prosystem"]
+	path = core/prosystem
+	url = https://github.com/libretro/prosystem-libretro.git
 
 #
 # These are works in progress
 #
 [submodule "mame"]
 	path = core/mame
-	url = https://github.com/matthewbauer/mame.git
-[submodule "em-dosbox"]
-	path = core/em-dosbox
-	url = https://github.com/dreamlayers/em-dosbox.git
-[submodule "fuse"]
-	path = core/fuse
-	url = https://github.com/libretro/fuse-libretro.git
+	url = https://github.com/libretro/mame.git
+[submodule "dosbox"]
+	path = core/dosbox
+	url = https://github.com/libretro/dosbox-libretro.git
+[submodule "desmume"]
+	path = core/desmume
+	url = https://github.com/libretro/desmume.git
+[submodule "ppsspp"]
+	path = core/ppsspp
+	url = https://github.com/libretro/libretro-ppsspp.git
+[submodule "pcsx1"]
+	path = core/pcsx1
+	url = https://github.com/libretro/pcsx1-libretro.git
 
 #
 # Maybe eventually...
 #
+[submodule "81"]
+	path = core/81
+	url = https://github.com/libretro/81-libretro.git
+[submodule "blueMSX"]
+	path = core/blueMSX
+	url = https://github.com/libretro/blueMSX-libretro.git
 [submodule "tyrquake"]
 	path = core/tyrquake
 	url = https://github.com/libretro/tyrquake.git
 [submodule "prboom"]
 	path = core/prboom
 	url = https://github.com/libretro/libretro-prboom.git
-[submodule "81"]
-	path = core/81
-	url = https://github.com/libretro/81-libretro.git
+[submodule "handy"]
+	path = core/handy
+	url = https://github.com/libretro/handy-libretro.git
+[submodule "4do"]
+	path = core/4do
+	url = https://github.com/libretro/4do-libretro.git
+[submodule "fba"]
+	path = core/fba
+	url = https://github.com/libretro/libretro-fba.git
+[submodule "o2em"]
+	path = core/o2em
+	url = https://github.com/libretro/libretro-o2em.git
 
 #
 # These emulate the same platforms as a working core
@@ -76,3 +112,6 @@
 [submodule "meteor"]
 	path = core/meteor
 	url = https://github.com/libretro/meteor-libretro.git
+[submodule "genesis-plus-gx"]
+	path = core/genesis-plus-gx
+	url = https://github.com/libretro/Genesis-Plus-GX.git

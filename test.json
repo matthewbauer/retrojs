@@ -117,6 +117,37 @@
           "name": "Jetpac (1983)(Ultimate).tzx"
         }
       ]
+    },
+    {
+      "name": "picodrive",
+      "region": "NTSC",
+      "roms": [
+        {
+          "name": "Simpsons, The - Bart vs. the Space Mutants (Europe).sms",
+          "skipSave": true
+        }
+      ]
+    },
+    {
+      "name": "prosystem",
+      "region": "NTSC",
+      "roms": [
+        {
+          "name": "Mario Bros. (USA).a78",
+          "skip60": true,
+          "skipSave": true
+        },
+        {
+          "name": "Water Ski (USA).a78",
+          "skip60": true,
+          "skipSave": true
+        }
+      ]
+    },
+    {
+      "name": "virtualjaguar",
+      "region": "NTSC",
+      "roms": []
     }
   ]
 }
