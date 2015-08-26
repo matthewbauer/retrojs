@@ -8,12 +8,12 @@ These cores seem to work and are available from NPM:
 * snes9x-next
 * gambatte
 * vba-next
-* fceumm
+* nestopia
 * gw
-* handy
-* o2em
 * picodrive
 * vecx
+* virtualjaguar
+* mupen64plus
 
 ## API
 The API closely follows libretro.h with pointers converted into Javascript objects to abstract Emscripten memory.
