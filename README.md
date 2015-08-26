@@ -15,18 +15,8 @@ These cores seem to work and are available from NPM:
 * picodrive
 * vecx
 
-## Callbacks
-To run the cores you must define the following callbacks:
-
-* core.video_refresh = function (data, width, height, pitch) {}
-* core.environment = function (cmd, _data) {}
-* core.audio_sample_batch = function (left, right, frames) {}
-* core.audio_sample = function (left, right) {}
-* core.input_poll = function () {}
-* core.input_state = function (port, device, index, id) {}
-
 ## API
-The API closely follows libretro.h with pointers converted into Javascript objects.
+The API closely follows libretro.h with pointers converted into Javascript objects to abstract Emscripten memory.
 
 * init
 * deinit
@@ -44,7 +34,16 @@ The API closely follows libretro.h with pointers converted into Javascript objec
 * serialize
 * unserialize
 * load_game
+* load_game_special
 * get_memory_data
+* set_audio_sample_batch
+* set_video_refresh
+* set_audio_sample
+* set_environment
+* set_input_state
+* set_input_poll
+
+Constants are exporeted as well. They are currently set to the 
 
 ## Building
 To build, you will need to run the bootstrapper script:
