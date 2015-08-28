@@ -2,6 +2,27 @@
 
 This project compiles some libretro projects into nice CommonJS modules using Emscripten.
 
+## Building
+To build, you will need to do the following:
+
+```sh
+git clone --recursive https://github.com/matthewbauer/retrojs.git
+cd retrojs
+npm install
+git submodule foreach emmake make
+npm run build
+```
+
+Using emmake, you can compile the core. Each Makefile within core/* should create a .bc file. After which you can run ./script/build to create index.js files from the *.bc files. These js files will expose the libretro API once loaded.
+
+## Testing
+To run the tests from node:
+```
+npm test
+```
+
+The test file test.html can be loaded in the browser to run after index.js files have been built.
+
 ## Cores
 These cores seem to work and are available from NPM:
 
@@ -44,17 +65,3 @@ The API closely follows libretro.h with pointers converted into Javascript objec
 * set_input_poll
 
 Constants are exporeted as well. They are currently set to the 
-
-## Building
-To build, you will need to do the following:
-
-```sh
-git clone --recursive https://github.com/matthewbauer/retrojs.git
-cd retrojs
-npm install
-```
-
-This will pull in all of the cores that can be built. Using emmake, you can compile the core. Each Makefile within core/* should create a .bc file. After which you can run ./script/build to create index.js files from the *.bc files. These js files will expose the libretro API once loaded.
-
-## Testing
-The test file test.html can be loaded in the browser to run after index.js files have been built.
