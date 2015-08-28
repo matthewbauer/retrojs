@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ~/emsdk_portable/emsdk_set_env.sh
+git submodule foreach emmake make
 
 SHELL_FILE="'`pwd`/shell.js'"
 EXPORTS=`pwd`/exports.json
