@@ -3,7 +3,7 @@
 #
 [submodule "gambatte"]
 	path = core/gambatte
-	url = https://github.com/matthewbauer/gambatte-matthewbauer.git
+	url = https://github.com/matthewbauer/gambatte-libretro.git
 [submodule "snes9x-next"]
 	path = core/snes9x-next
 	url = https://github.com/matthewbauer/snes9x-next.git
