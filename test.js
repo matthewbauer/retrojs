@@ -8,9 +8,7 @@ import data from './test.json'
 if (typeof System === 'undefined') {
   System = require('systemjs')
   before(function(done) {
-    System.import('./config.js').then(function() {
-      done()
-    }).catch(done)
+    System.import('./config.js').then(function(){done()}, done)
   })
 }
 
@@ -84,8 +82,7 @@ data.cores.forEach(function(info) {
         core.set_input_poll(input_poll)
         core.set_video_refresh(video_refresh)
         core.init()
-        done()
-      }).catch(done)
+      }).then(function(){done()}, done)
     })
     describe('properties', function() {
       it('api_version()', function() {
@@ -134,8 +131,7 @@ data.cores.forEach(function(info) {
         beforeEach(function(done) {
           System.import(`./roms/${rom.name}!raw`).then(function(data) {
             core.load_game(new Uint8Array(data))
-            done()
-          }).catch(done)
+          }).then(function(){done()}, done)
         })
         afterEach(function() {
           core.unload_game()
