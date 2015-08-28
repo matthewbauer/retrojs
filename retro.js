@@ -1,4 +1,9 @@
 'format amd'
+if (typeof define !== 'function') {
+  if (typeof require === 'function') {
+    var define = require('amdefine')(module)
+  }
+}
 define(['./core'], function (Core) {
   function addHelpers () {
     this.LANGUAGE_ENGLISH = 0
@@ -340,7 +345,7 @@ define(['./core'], function (Core) {
       this.setValue(ptr + 8, data.length, 'i32')
 
       // need_fullpath = true support
-      var path = 'dummy'
+      var path = '/dummy.raw'
       var stream = this.FS.open(path, 'w+')
       this.FS.write(stream, data, 0, data.length, 0)
       this.FS.close(stream)
