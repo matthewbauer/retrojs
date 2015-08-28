@@ -6,6 +6,10 @@ node_js:
   - "iojs"
   - "iojs-v1.0.4"
 script:
+  - wget http://www.cmake.org/files/v3.2/cmake-3.2.3-Linux-x86_64.tar.gz
+  - mkdir cmake-dist
+  - tar -xzf cmake-3.2.3-Linux-x86_64.tar.gz -C cmake-dist --strip-components=1
+  - export PATH=$PWD/cmake-dist/bin:$PATH
   - wget https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz
   - tar xfz emsdk-portable.tar.gz
   - (cd emsdk_portable && ./emsdk update && ./emsdk install latest && ./emsdk activate latest && source ./emsdk_env.sh)
