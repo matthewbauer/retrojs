@@ -5,9 +5,8 @@ node_js:
   - "0.10"
   - "iojs"
   - "iojs-v1.0.4"
-post_install:
+script:
   - wget https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz
   - tar xfz emsdk-portable.tar.gz
   - (cd emsdk_portable && ./emsdk update && ./emsdk install latest && ./emsdk activate latest && source ./emsdk_env.sh)
-script:
   - npm run build
