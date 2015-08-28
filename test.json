@@ -4,13 +4,16 @@
       "name": "snes9x-next",
       "roms": [
         {
-          "name": "Super Mario All-Stars (USA).sfc"
+          "name": "Super Mario All-Stars (USA).sfc",
+          "skip60": true
         },
         {
-          "name": "Super Star Wars - Return of the Jedi (Europe) (Rev 1).sfc"
+          "name": "Super Star Wars - Return of the Jedi (Europe) (Rev 1).sfc",
+          "skip60": true
         },
         {
-          "name": "Chrono Trigger (USA).sfc"
+          "name": "Chrono Trigger (USA).sfc",
+          "skip60": true
         }
       ],
       "system_info": {
@@ -27,11 +30,13 @@
       "roms": [
         {
           "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc",
-          "skipSave": true
+          "skipSave": true,
+          "skip60": true
         },
         {
           "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb",
-          "skipSave": true
+          "skipSave": true,
+          "skip60": true
         },
         {
           "name": "Pac-Man (USA).gb",
@@ -39,7 +44,8 @@
         },
         {
           "name": "Frogger (USA) (Rev A).gbc",
-          "skipSave": true
+          "skipSave": true,
+          "skip60": true
         }
       ],
       "region": "NTSC"
@@ -111,11 +117,8 @@
     },
     {
       "name": "fuse",
-      "region": "NTSC",
+      "region": "PAL",
       "roms": [
-        {
-          "name": "Jetpac (1983)(Ultimate).tzx"
-        }
       ]
     },
     {
