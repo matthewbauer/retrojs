@@ -15,6 +15,6 @@ for core in $cores
 do
   BC_FILE=`find $core -name '*.bc' -print`
   DIR=`pwd`/$core
-  (cd `dirname $BC_FILE` && emcc `basename $BC_FILE` -O3 -o ${DIR}/core.js -s RESERVED_FUNCTION_POINTERS=15 -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_FUNCTIONS=@$EXPORTS -s SHELL_FILE=$SHELL_FILE -s NO_DYNAMIC_EXECUTION=1 --memory-init-file 0 -s NO_EXIT_RUNTIME=1)
+  (cd `dirname $BC_FILE` && emcc `basename $BC_FILE` -O3 -o ${DIR}/core.js --memory-init-file 0 -s EMULATED_FUNCTION_POINTERS=1 -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_FUNCTIONS=@$EXPORTS -s SHELL_FILE=$SHELL_FILE -s NO_DYNAMIC_EXECUTION=1 -s NO_EXIT_RUNTIME=1)
   cp retro.js $core
 done
