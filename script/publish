@@ -1,22 +1,28 @@
 #!/usr/bin/env node
 
+var denodeify = require('denodeify')
 var fs = require('fs')
 var npm = require('npm')
-fs.readdir('core', function(err, cores) {
-  cores.forEach(function(core) {
-    if (file[0] === '.')
+denodeify(fs.readdir)('core').then(function (cores) {
+  return Promise.all(cores.map(function(core) {
+    if (core[0] === '.')
       return
-    var json = {
-      name: file,
-      version: '0.7.0',
-      main: 'retro.js',
-      homepage: 'https://github.com/matthewbauer/retrojs',
-      dependencies: {}
-    }
-    fs.writeFile('core/' + core + '/package.json', JSON.stringify(json), function() {
-      npm.commands.publish('core/' + core, function() {
-        fs.unlink('core/' + core + '/package.json')
-      })
+    return Promise.resolve().then(function() {
+      return denodeify(npm.load)()
+    }).then(function() {
+      return denodeify(fs.writeFile)('core/' + core + '/package.json', JSON.stringify({
+        name: core,
+        version: '0.7.0',
+        main: 'retro.js',
+        homepage: 'https://github.com/matthewbauer/retrojs',
+        dependencies: {
+          "amdefine": "*"
+        }
+      }))
+    }).then(function() {
+      return denodeify(npm.commands.publish)(['core/' + core])
+    }).then(function() {
+      return denodeify(fs.unlink)('core/' + core + '/package.json')
     })
-  })
-})
+  }))
+}).catch(console.error)
