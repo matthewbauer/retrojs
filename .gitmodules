@@ -3,111 +3,111 @@
 #
 [submodule "gambatte"]
 	path = core/gambatte
-	url = https://github.com/libretro/gambatte-libretro.git
+	url = https://github.com/matthewbauer/gambatte-matthewbauer.git
 [submodule "snes9x-next"]
 	path = core/snes9x-next
-	url = https://github.com/libretro/snes9x-next.git
+	url = https://github.com/matthewbauer/snes9x-next.git
 [submodule "vba-next"]
 	path = core/vba-next
-	url = https://github.com/libretro/vba-next.git
+	url = https://github.com/matthewbauer/vba-next.git
 [submodule "vecx"]
 	path = core/vecx
-	url = https://github.com/libretro/libretro-vecx.git
+	url = https://github.com/matthewbauer/libretro-vecx.git
 [submodule "gw"]
 	path = core/gw
-	url = https://github.com/libretro/gw-libretro.git
+	url = https://github.com/matthewbauer/gw-libretro.git
 [submodule "stella"]
 	path = core/stella
-	url = https://github.com/libretro/stella-libretro.git
+	url = https://github.com/matthewbauer/stella-libretro.git
 [submodule "nestopia"]
 	path = core/nestopia
-	url = https://github.com/rdanbrook/nestopia.git
+	url = https://github.com/matthewbauer/nestopia.git
 [submodule "mupen64plus"]
 	path = core/mupen64plus
-	url = https://github.com/libretro/mupen64plus-libretro.git
+	url = https://github.com/matthewbauer/mupen64plus-libretro.git
 [submodule "dosbox"]
 	path = core/dosbox
-	url = https://github.com/libretro/dosbox-libretro.git
+	url = https://github.com/matthewbauer/dosbox-libretro.git
 [submodule "fuse"]
 	path = core/fuse
-	url = https://github.com/libretro/fuse-libretro.git
+	url = https://github.com/matthewbauer/fuse-libretro.git
 [submodule "picodrive"]
 	path = core/picodrive
-	url = https://github.com/libretro/picodrive.git
+	url = https://github.com/matthewbauer/picodrive.git
 [submodule "virtualjaguar"]
 	path = core/virtualjaguar
-	url = https://github.com/libretro/virtualjaguar-libretro.git
+	url = https://github.com/matthewbauer/virtualjaguar-libretro.git
 [submodule "prosystem"]
 	path = core/prosystem
-	url = https://github.com/libretro/prosystem-libretro.git
+	url = https://github.com/matthewbauer/prosystem-libretro.git
 
 #
 # Maybe someday...
 #
 [submodule "mame"]
 	path = core/mame
-	url = https://github.com/libretro/mame.git
+	url = https://github.com/matthewbauer/mame.git
 [submodule "dosbox"]
 	path = core/dosbox
-	url = https://github.com/libretro/dosbox-libretro.git
+	url = https://github.com/matthewbauer/dosbox-libretro.git
 [submodule "desmume"]
 	path = core/desmume
-	url = https://github.com/libretro/desmume.git
+	url = https://github.com/matthewbauer/desmume.git
 [submodule "ppsspp"]
 	path = core/ppsspp
-	url = https://github.com/libretro/libretro-ppsspp.git
+	url = https://github.com/matthewbauer/libretro-ppsspp.git
 [submodule "pcsx1"]
 	path = core/pcsx1
-	url = https://github.com/libretro/pcsx1-libretro.git
+	url = https://github.com/matthewbauer/pcsx1-libretro.git
 [submodule "81"]
 	path = core/81
-	url = https://github.com/libretro/81-libretro.git
+	url = https://github.com/matthewbauer/81-libretro.git
 [submodule "blueMSX"]
 	path = core/blueMSX
-	url = https://github.com/libretro/blueMSX-libretro.git
+	url = https://github.com/matthewbauer/blueMSX-libretro.git
 [submodule "tyrquake"]
 	path = core/tyrquake
-	url = https://github.com/libretro/tyrquake.git
+	url = https://github.com/matthewbauer/tyrquake.git
 [submodule "prboom"]
 	path = core/prboom
-	url = https://github.com/libretro/libretro-prboom.git
+	url = https://github.com/matthewbauer/libretro-prboom.git
 [submodule "handy"]
 	path = core/handy
-	url = https://github.com/libretro/handy-libretro.git
+	url = https://github.com/matthewbauer/handy-libretro.git
 [submodule "4do"]
 	path = core/4do
-	url = https://github.com/libretro/4do-libretro.git
+	url = https://github.com/matthewbauer/4do-libretro.git
 [submodule "fba"]
 	path = core/fba
-	url = https://github.com/libretro/libretro-fba.git
+	url = https://github.com/matthewbauer/libretro-fba.git
 [submodule "o2em"]
 	path = core/o2em
-	url = https://github.com/libretro/libretro-o2em.git
+	url = https://github.com/matthewbauer/libretro-o2em.git
 
 #
 # These emulate the same platforms as a working core
 #
 [submodule "catsfc"]
 	path = core/catsfc
-	url = https://github.com/libretro/CATSFC-libretro.git
+	url = https://github.com/matthewbauer/CATSFC-libretro.git
 [submodule "snes9x"]
 	path = core/snes9x
 	url = https://github.com/snes9xgit/snes9x.git
 [submodule "pocketsnes"]
 	path = core/pocketsnes
-	url = https://github.com/libretro/pocketsnes-libretro.git
+	url = https://github.com/matthewbauer/pocketsnes-libretro.git
 [submodule "vbam"]
 	path = core/vbam
-	url = https://github.com/libretro/vbam-libretro.git
+	url = https://github.com/matthewbauer/vbam-libretro.git
 [submodule "bsnes"]
 	path = core/bsnes
-	url = https://github.com/libretro/bsnes-libretro.git
+	url = https://github.com/matthewbauer/bsnes-libretro.git
 [submodule "bsnes-mercury"]
 	path = core/bsnes-mercury
-	url = https://github.com/libretro/bsnes-mercury.git
+	url = https://github.com/matthewbauer/bsnes-mercury.git
 [submodule "meteor"]
 	path = core/meteor
-	url = https://github.com/libretro/meteor-libretro.git
+	url = https://github.com/matthewbauer/meteor-libretro.git
 [submodule "genesis-plus-gx"]
 	path = core/genesis-plus-gx
-	url = https://github.com/libretro/Genesis-Plus-GX.git
+	url = https://github.com/matthewbauer/Genesis-Plus-GX.git
