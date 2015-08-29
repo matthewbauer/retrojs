@@ -9,7 +9,6 @@ To build, you will need to do the following:
 git clone --recursive https://github.com/matthewbauer/retrojs.git
 cd retrojs
 npm install
-git submodule foreach emmake make
 npm run build
 ```
 
