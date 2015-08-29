@@ -2,7 +2,6 @@ language: node_js
 sudo: false
 before_install:
   - git clone https://github.com/urho3d/emscripten-sdk.git emsdk_portable
-  - (cd emsdk_portable && source ./emsdk_env.sh)
 node_js:
   - "0.12"
   - "0.11"
@@ -10,4 +9,5 @@ node_js:
   - "iojs"
   - "iojs-v1.0.4"
 script:
+  - (cd emsdk_portable && source ./emsdk_env.sh)
   - npm run build
