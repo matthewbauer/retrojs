@@ -1,6 +1,6 @@
 #!/bin/sh
 
-git submodule foreach emmake make
+git submodule foreach emmake make platform=emscripten
 
 SHELL_FILE="'`pwd`/shell.js'"
 EXPORTS=`pwd`/exports.json
