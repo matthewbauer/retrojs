@@ -13,8 +13,6 @@ git submodule foreach emmake make
 npm run build
 ```
 
-Using emmake, you can compile the core. Each Makefile within core/* should create a .bc file. After which you can run ./script/build to create index.js files from the *.bc files. These js files will expose the libretro API once loaded.
-
 ## Testing
 To run the tests from node:
 ```
