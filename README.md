@@ -3,7 +3,7 @@
 This project compiles some libretro projects into nice CommonJS modules using Emscripten.
 
 ## Building
-To build, you will need to do the following:
+To build, you will need to have Node and Emscripten installed and run the following:
 
 ```sh
 git clone --recursive https://github.com/matthewbauer/retrojs.git
