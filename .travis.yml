@@ -1,13 +1,22 @@
 language: node_js
 sudo: false
-before_install:
-  - git clone https://github.com/urho3d/emscripten-sdk.git emsdk_portable
 node_js:
   - "0.12"
   - "0.11"
   - "0.10"
   - "iojs"
   - "iojs-v1.0.4"
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+      - kubuntu-backports
+      - ubuntu-toolchain-r-test
+    packages:
+      - cmake
+      - g++-4.9
+before_script:
+  - git clone https://github.com/urho3d/emscripten-sdk.git && emscripten-sdk/emsdk activate --build=Release sdk-incoming-64bit && source emscripten-sdk/emsdk_env.sh && export EMSCRIPTEN_ROOT_PATH=$EMSCRIPTEN && export EMSCRIPTEN=1
 script:
   - cd emsdk_portable
   - source ./emsdk_env.sh
