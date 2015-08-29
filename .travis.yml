@@ -9,5 +9,7 @@ node_js:
   - "iojs"
   - "iojs-v1.0.4"
 script:
-  - (cd emsdk_portable && source ./emsdk_env.sh)
+  - cd emsdk_portable
+  - source ./emsdk_env.sh
+  - cd ..
   - npm run build
