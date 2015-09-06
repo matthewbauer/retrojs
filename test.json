@@ -10,11 +10,13 @@
         },
         {
           "name": "Super Star Wars - Return of the Jedi (Europe) (Rev 1).sfc",
-          "skip60": true
+          "skip60": true,
+          "skipSave": true
         },
         {
           "name": "Chrono Trigger (USA).sfc",
-          "skip60": true
+          "skip60": true,
+          "skipSave": true
         }
       ],
       "system_info": {
