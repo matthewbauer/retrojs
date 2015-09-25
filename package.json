@@ -1,6 +1,5 @@
 {
   "jspm": {
-    "directories": {},
     "dependencies": {
       "chai": "npm:chai@^3.0.0",
       "fs": "github:jspm/nodelibs-fs@^0.1.2",
@@ -10,6 +9,9 @@
       "sinon": "npm:sinon@^1.15.4"
     },
     "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4",
       "traceur": "github:jmcriffey/bower-traceur@0.0.91",
       "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.91"
     }
@@ -29,5 +31,6 @@
     "build": "sh ./script/build",
     "publish": "node ./script/publish",
     "install": "jspm install -y"
-  }
+  },
+  "version": "0.7.1"
 }

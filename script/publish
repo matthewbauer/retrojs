@@ -3,7 +3,12 @@
 var denodeify = require('denodeify')
 var fs = require('fs')
 var npm = require('npm')
-denodeify(fs.readdir)('core').then(function (cores) {
+function getDirs() {
+  if (process.argv.length > 0)
+    return Promise.resolve(process.argv)
+  return denodeify(fs.readdir)('core')
+}
+getDirs().then(function (cores) {
   return Promise.all(cores.map(function(core) {
     if (core[0] === '.')
       return
@@ -12,7 +17,7 @@ denodeify(fs.readdir)('core').then(function (cores) {
     }).then(function() {
       return denodeify(fs.writeFile)('core/' + core + '/package.json', JSON.stringify({
         name: core,
-        version: '0.7.0',
+        version: require('../package.json').version,
         main: 'retro.js',
         homepage: 'https://github.com/matthewbauer/retrojs',
         dependencies: {
