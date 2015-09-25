@@ -16,7 +16,6 @@ denodeify(fs.readdir)('core').then(function (cores) {
         main: 'retro.js',
         homepage: 'https://github.com/matthewbauer/retrojs',
         dependencies: {
-          "amdefine": "*"
         }
       }))
     }).then(function() {
