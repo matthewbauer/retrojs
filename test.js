@@ -162,7 +162,6 @@ data.cores.forEach(function(info) {
         }
         if (!rom.skipSave) {
           it('saving...', function() {
-            this.timeout(3000) // shouldn't take this long
             let save = new Uint8Array(core.serialize())
             core.reset()
             let notnewsave = new Uint8Array(core.serialize())
