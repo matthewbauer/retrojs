@@ -7,6 +7,10 @@ env:
   - CORE=vba-next
   - CORE=gambatte
   - CORE=nestopia
+  - CORE=picodrive
+  - CORE=stella
+  - CORE=gw
+  - CORE=vecx
 addons:
   apt:
     sources:
