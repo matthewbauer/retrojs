@@ -4,19 +4,13 @@
       "name": "snes9x-next",
       "roms": [
         {
-          "name": "Super Mario All-Stars (USA).sfc",
-          "skip60": true,
-          "skipSave": true
+          "name": "Super Mario All-Stars (USA).sfc"
         },
         {
-          "name": "Super Star Wars - Return of the Jedi (Europe) (Rev 1).sfc",
-          "skip60": true,
-          "skipSave": true
+          "name": "Super Star Wars - Return of the Jedi (Europe) (Rev 1).sfc"
         },
         {
-          "name": "Chrono Trigger (USA).sfc",
-          "skip60": true,
-          "skipSave": true
+          "name": "Chrono Trigger (USA).sfc"
         }
       ],
       "system_info": {
@@ -33,13 +27,11 @@
       "roms": [
         {
           "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc",
-          "skipSave": true,
-          "skip60": true
+          "skipSave": true
         },
         {
           "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb",
-          "skipSave": true,
-          "skip60": true
+          "skipSave": true
         },
         {
           "name": "Pac-Man (USA).gb",
