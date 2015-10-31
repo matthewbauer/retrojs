@@ -1,7 +1,12 @@
 language: node_js
 sudo: false
 node_js:
-  - "0.12"
+  - "5.0"
+env:
+  - CORE=snes9x-next
+  - CORE=vba-next
+  - CORE=gambatte
+  - CORE=nestopia
 addons:
   apt:
     sources:
@@ -12,5 +17,5 @@ addons:
 before_script:
   - git clone https://github.com/urho3d/emscripten-sdk.git && emscripten-sdk/emsdk activate --build=Release sdk-incoming-64bit && source emscripten-sdk/emsdk_env.sh && export EMSCRIPTEN_ROOT_PATH=$EMSCRIPTEN && export EMSCRIPTEN=1
 script:
-  - npm run build
-  - npm test
+  - npm run build -- core/$CORE
+  - npm test -- -g $CORE
