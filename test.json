@@ -27,15 +27,18 @@
       "roms": [
         {
           "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc",
-          "skipSave": true
+          "skipSave": true,
+          "skip60": true
         },
         {
           "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb",
-          "skipSave": true
+          "skipSave": true,
+          "skip60": true
         },
         {
           "name": "Pac-Man (USA).gb",
-          "skipSave": true
+          "skipSave": true,
+          "skip60": true
         },
         {
           "name": "Frogger (USA) (Rev A).gbc",
