@@ -28,6 +28,7 @@ before_script:
     git clone https://github.com/juj/emsdk.git
     cd emsdk
     ./emsdk update
+    export CC=clang CXX=clang++
     ./emsdk install $SDK
     ./emsdk activate $SDK
     source ./emsdk_env.sh
