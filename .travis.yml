@@ -16,6 +16,12 @@ env:
     - CORE=vecx
 git:
   submodules: false
+addons:
+  apt:
+    sources:
+      - kubuntu-backports
+    packages:
+      - cmake-2.8.12
 before_script:
   - |
     git clone https://github.com/juj/emsdk.git
@@ -35,4 +41,5 @@ cache:
     - node_modules
     - jspm_packages
     - emsdk
-    - cmake-dist
+    - cmake-2.8.11
+    - cmake
