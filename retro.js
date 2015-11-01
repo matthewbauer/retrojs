@@ -341,9 +341,9 @@ define(['./core'], function (Core) {
 
       // need_fullpath = true support
       var path = '/dummy.raw'
-      var stream = this.FS.open(path, 'w+')
-      this.FS.write(stream, data, 0, data.length, 0)
-      this.FS.close(stream)
+      var stream = this.FS_open(path, 'w+')
+      this.FS_write(stream, data, 0, data.length, 0)
+      this.FS_close(stream)
       this._unstringify(ptr, path)
     }
 

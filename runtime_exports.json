@@ -1,0 +1,11 @@
+[
+  "Runtime",
+  "getValue",
+  "setValue",
+  "Pointer_stringify",
+  "writeStringToMemory",
+  "UTF8ToString",
+  "FS_open",
+  "FS_write",
+  "FS_close"
+]

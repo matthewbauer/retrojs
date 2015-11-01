@@ -1,9 +1,4 @@
 'format amd'
-if (typeof define !== 'function') {
-  if (typeof require === 'function') {
-    var define = require('amdefine')(module)
-  }
-}
 define([], function () {
   var ENVIRONMENT_IS_WEB = true
   var ENVIRONMENT_IS_NODE = false
@@ -15,7 +10,5 @@ define([], function () {
     'noInitialRun': true
   }
   {{BODY}}
-  Module.Runtime = Runtime
-  Module.FS = FS
   return Module
 })
