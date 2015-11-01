@@ -4,7 +4,7 @@ node_js:
   - "5.0"
 env:
   global:
-    - SDK=latest
+    - SDK=sdk-1.34.1-64bit
   matrix:
     - CORE=snes9x-next
     - CORE=vba-next
@@ -18,15 +18,12 @@ git:
   submodules: false
 before_script:
   - |
-    CMAKE_URL="http://www.cmake.org/files/v3.3/cmake-3.3.1-Linux-x86_64.tar.gz"
-    mkdir cmake && travis_retry wget --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
-    export PATH=${DEPS_DIR}/cmake/bin:${PATH}
-  - |
     wget -qO- https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz | tar xvz
-    ./emsdk_portable/emsdk update
-    ./emsdk_portable/emsdk install $SDK
-    ./emsdk_portable/emsdk activate $SDK
-    source ./emsdk_portable/emsdk_env.sh
+    cd emsdk_portable
+    ./emsdk update
+    ./emsdk install $SDK
+    ./emsdk activate $SDK
+    source ./emsdk_env.sh
 before_install:
   - git submodule update --init core/$CORE
 script:
