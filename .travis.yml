@@ -21,7 +21,7 @@ addons:
     sources:
       - kubuntu-backports
     packages:
-      - cmake-2.8.12
+      - cmake
 before_script:
   - |
     git clone https://github.com/juj/emsdk.git
