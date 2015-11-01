@@ -4,7 +4,7 @@ node_js:
   - "5.0"
 env:
   global:
-    - SDK=sdk-1.34.1-64bit
+    - SDK=latest
   matrix:
     - CORE=snes9x-next
     - CORE=vba-next
@@ -34,3 +34,9 @@ before_install:
 script:
   - npm run build -- core/$CORE
   - npm test -- -g $CORE
+cache:
+  bundler: true
+  directories:
+    - node_modules
+    - jspm_packages
+    - emsdk_portable
