@@ -19,16 +19,18 @@ git:
 addons:
   apt:
     sources:
+      - ubuntu-toolchain-r-test
       - kubuntu-backports
     packages:
+      - gcc-4.8
+      - g++-4.8
       - cmake
-      - clang
 before_script:
   - |
     git clone https://github.com/juj/emsdk.git
     cd emsdk
+    export CXX="g++-4.8" CC="gcc-4.8"
     ./emsdk update
-    export CC=clang CXX=clang++
     ./emsdk install $SDK
     ./emsdk activate $SDK
     source ./emsdk_env.sh
