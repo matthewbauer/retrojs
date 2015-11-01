@@ -25,6 +25,7 @@ git:
   submodules: false
 before_script:
   - wget -qO- https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz | tar xvz
+  - ./emsdk_portable/emsdk update
   - ./emsdk_portable/emsdk install $SDK
   - ./emsdk_portable/emsdk activate $SDK
   - source ./emsdk_portable/emsdk_env.sh
