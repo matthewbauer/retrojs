@@ -26,7 +26,6 @@ do
       -s EXPORTED_RUNTIME_METHODS=@$DIR/runtime_exports.json \
       -s SHELL_FILE=$SHELL_FILE \
       -s AGGRESSIVE_VARIABLE_ELIMINATION=1 \
-      -s OUTLINING_LIMIT=20000 \
   )
   cp retro.js $core
 done
