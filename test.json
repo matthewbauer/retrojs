@@ -63,7 +63,8 @@
       "timeout": 10000,
       "roms": [
         {
-          "name": "Berzerk (World).vec"
+          "name": "Berzerk (World).vec",
+          "skipSave": true
         }
       ],
       "region": "PAL"
