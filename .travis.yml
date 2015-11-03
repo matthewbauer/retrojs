@@ -3,47 +3,27 @@ sudo: false
 node_js:
   - "5.0"
 env:
-  global:
-    - SDK=latest
-  matrix:
-    - CORE=snes9x-next
-    - CORE=vba-next
-    - CORE=gambatte
-    - CORE=nestopia
-    - CORE=picodrive
-    - CORE=stella
-    - CORE=gw
-    - CORE=vecx
-git:
-  submodules: false
+  - CORE=snes9x-next
+  - CORE=vba-next
+  - CORE=gambatte
+  - CORE=nestopia
+  - CORE=picodrive
+  - CORE=stella
+  - CORE=gw
+  - CORE=vecx
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-      - kubuntu-backports
     packages:
-      - gcc-4.8
-      - g++-4.8
       - cmake
+      - g++-4.9
+git:
+  submodules: false
 before_script:
-  - |
-    git clone https://github.com/juj/emsdk.git
-    cd emsdk
-    export CXX="g++-4.8" CC="gcc-4.8"
-    ./emsdk update
-    ./emsdk install $SDK
-    ./emsdk activate $SDK
-    source ./emsdk_env.sh
+  - git clone https://github.com/urho3d/emscripten-sdk.git && emscripten-sdk/emsdk activate --build=Release sdk-incoming-64bit && source emscripten-sdk/emsdk_env.sh && export EMSCRIPTEN_ROOT_PATH=$EMSCRIPTEN && export EMSCRIPTEN=1
 before_install:
   - git submodule update --init core/$CORE
 script:
   - npm run build -- core/$CORE
   - npm test -- -g $CORE
-cache:
-  bundler: true
-  directories:
-    - node_modules
-    - jspm_packages
-    - emsdk
-    - cmake-2.8.11
-    - cmake
