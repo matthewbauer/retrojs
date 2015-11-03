@@ -27,23 +27,19 @@
       "roms": [
         {
           "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc",
-          "skipSave": true,
-          "skip60": true
+          "skipSave": true
         },
         {
           "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb",
-          "skipSave": true,
-          "skip60": true
+          "skipSave": true
         },
         {
           "name": "Pac-Man (USA).gb",
-          "skipSave": true,
-          "skip60": true
+          "skipSave": true
         },
         {
           "name": "Frogger (USA) (Rev A).gbc",
-          "skipSave": true,
-          "skip60": true
+          "skipSave": true
         }
       ],
       "region": "NTSC"
@@ -66,6 +62,9 @@
       "name": "vecx",
       "timeout": 10000,
       "roms": [
+        {
+          "name": "Berzerk (World).vec"
+        }
       ],
       "region": "PAL"
     },
@@ -93,8 +92,7 @@
       "name": "nestopia",
       "roms": [
         {
-          "name": "Zelda II - The Adventure of Link (USA).nes",
-          "skip60": true
+          "name": "Zelda II - The Adventure of Link (USA).nes"
         }
       ],
       "region": "NTSC"
