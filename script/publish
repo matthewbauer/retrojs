@@ -4,9 +4,10 @@ var denodeify = require('denodeify')
 var fs = require('fs')
 var npm = require('npm')
 function getDirs() {
-  if (process.argv.length > 0)
-    return Promise.resolve(process.argv)
-  return denodeify(fs.readdir)('core')
+  if (process.argv.length > 2)
+    return Promise.resolve(process.argv.slice(1))
+  else
+    return denodeify(fs.readdir)('core')
 }
 getDirs().then(function (cores) {
   return Promise.all(cores.map(function(core) {
