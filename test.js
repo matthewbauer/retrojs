@@ -2,7 +2,6 @@
 
 import chai from 'chai'
 let expect = chai.expect
-import sinon from 'sinon'
 import data from './test.json'
 
 if (typeof System === 'undefined') {
@@ -18,7 +17,7 @@ data.cores.forEach(function(info) {
     let core
     var environment = function(cmd, _data) {
       if (cmd === core.ENVIRONMENT_GET_LOG_INTERFACE) {
-        return sinon.spy(function(data) {})
+        return function(data) {}
       } else if (cmd === core.ENVIRONMENT_GET_CAN_DUPE) {
         return true
       } else if (cmd === core.ENVIRONMENT_GET_OVERSCAN) {
@@ -60,15 +59,15 @@ data.cores.forEach(function(info) {
         return true
       }
     }
-    var audio_sample = sinon.spy()
-    var audio_sample_batch = sinon.spy(function(left, right, frames) {
+    var audio_sample = function(){}
+    var audio_sample_batch = function(left, right, frames) {
       return frames
-    })
-    var input_state = sinon.spy(function() {
+    }
+    var input_state = function() {
       return 0
-    })
-    var input_poll = sinon.spy(function() {})
-    var video_refresh = sinon.spy(function() {})
+    }
+    var input_poll = function() {}
+    var video_refresh = function() {}
     if (info.timeout) {
       this.timeout(info.timeout)
     }
@@ -140,10 +139,6 @@ data.cores.forEach(function(info) {
           for (let i = 0; i < 50; i++) {
             core.run()
           }
-          expect(input_poll.alwaysCalledWith())
-          expect(video_refresh.alwaysCalledWith(sinon.match.object, sinon.match.number, sinon.match.number, sinon.match.number))
-          expect(input_state.alwaysCalledWith(sinon.match.number, sinon.match.number, sinon.match.number, sinon.match.number))
-          expect(audio_sample_batch.alwaysCalledWith(sinon.match.object, sinon.match.object, sinon.match.number))
         })
         it('mashing buttons', function() {
           // input_state.returns(1)
