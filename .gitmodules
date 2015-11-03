@@ -8,23 +8,18 @@
 [submodule "snes9x-next"]
 	path = core/snes9x-next
 	url = https://github.com/matthewbauer/snes9x-next.git
-	branch = emscripten
 [submodule "vba-next"]
 	path = core/vba-next
 	url = https://github.com/matthewbauer/vba-next.git
-	branch = emscripten
 [submodule "vecx"]
 	path = core/vecx
 	url = https://github.com/matthewbauer/libretro-vecx.git
-	branch = emscripten
 [submodule "gw"]
 	path = core/gw
 	url = https://github.com/matthewbauer/gw-libretro.git
-	branch = emscripten
 [submodule "stella"]
 	path = core/stella
 	url = https://github.com/matthewbauer/stella-libretro.git
-	branch = emscripten
 [submodule "nestopia"]
 	path = core/nestopia
 	url = https://github.com/matthewbauer/nestopia.git
