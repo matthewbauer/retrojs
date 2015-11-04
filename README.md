@@ -28,10 +28,10 @@ These cores seem to work and are available from NPM:
 * vba-next
 * nestopia
 * gw
-* picodrive
 * vecx
-* virtualjaguar
-* mupen64plus
+* picodrive (still very broken)
+* virtualjaguar (still very broken)
+* mupen64plus (still very broken)
 
 ## API
 The API closely follows libretro.h with pointers converted into Javascript objects to abstract Emscripten memory.
