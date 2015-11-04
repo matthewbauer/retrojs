@@ -1,8 +1,9 @@
 language: node_js
 sudo: false
 node_js:
-  - "5.0"
+- '5.0'
 env:
+  matrix:
   - CORE=snes9x-next
   - CORE=vba-next
   - CORE=gambatte
@@ -11,19 +12,23 @@ env:
   - CORE=stella
   - CORE=gw
   - CORE=vecx
+  global:
+    secure: A12Crb+3gA2IIyHYUogzLXjfnBSigUGMnYqnuANkf8Qe6PHvk96Kda91NMX/hhyn9eeh1mptWlmjAaxcrBtgSSxHSHhAJdebkUcVDJyV0PmwcGuGMICEU4BC0FhhZQxLY6ig0Yk8laUZd95nX6K+UwoLEldb8JIOGHF5822bQEEBpIx6Z0v5Hg4BR7aK3C+ji5JYON+pzYFqIuB3Gn3dFnUe5uSGPMP3a9XfFx4QSuULucl2nbEGFR30YWn89wbZ9fiYTVbIQeqyGSOpxa5U42VFWLil76Yq8WeBc4t7QBEzIcPx2iTENyk6EO1Mp0daNKmTCWAXhP/yCzrWW1PM5IslLoVJq6flsmohdFl3EzSwZeY3kGvMJEFTrH8Mt2qt8MUeNjQ1GuhNpLET9ziz77e9e2oemtm40M+xRUM5r3wDaTOGisiuUBt+cnWsNJYSMcjieXxbKUCWXCr838C55zNNOUTntxLnbSDH3dYfhBv3wWJb2Jd4bvo2tgw7sBwmxqvZKDyNgIvrwOL2PDaC50+AT3njObhY21nVtM+LG5F1sFIiNEdxQZM0TPxCQ5LpsYKpmXPzFXZTERnlyECorkBVlNeU6Tg1YQEJCR19aJCKGyh6p/y+47jFmO2tu57xhn4a5wcH6R6B1KdLrsHIX3/w4jtwAYRcm9Xg6NKrLrw=
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - cmake
-      - g++-4.9
+    - cmake
+    - g++-4.9
 git:
   submodules: false
 before_script:
-  - git clone https://github.com/matthewbauer/emscripten-sdk.git && emscripten-sdk/emsdk activate --build=Release sdk-incoming-64bit && source emscripten-sdk/emsdk_env.sh && export EMSCRIPTEN_ROOT_PATH=$EMSCRIPTEN && export EMSCRIPTEN=1
+- git clone https://github.com/matthewbauer/emscripten-sdk.git && emscripten-sdk/emsdk
+  activate --build=Release sdk-incoming-64bit && source emscripten-sdk/emsdk_env.sh
+  && export EMSCRIPTEN_ROOT_PATH=$EMSCRIPTEN && export EMSCRIPTEN=1
 before_install:
-  - git submodule update --init core/$CORE
+- git submodule update --init core/$CORE
 script:
-  - npm run build -- core/$CORE
-  - npm test -- -g $CORE
+- npm run build -- core/$CORE
+- npm test -- -g $CORE
