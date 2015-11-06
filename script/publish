@@ -5,7 +5,7 @@ var fs = require('fs')
 var npm = require('npm')
 function getDirs() {
   if (process.argv.length > 2)
-    return Promise.resolve(process.argv.slice(1))
+    return Promise.resolve(process.argv.slice(2))
   else
     return denodeify(fs.readdir)('core')
 }
