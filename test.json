@@ -136,22 +136,30 @@
     {
       "name": "fmsx",
       "region": "NTSC",
-      "roms": []
-    },
-    {
-      "name": "dosbox",
-      "region": "NTSC",
-      "roms": []
-    },
-    {
-      "name": "wswan",
-      "region": "NTSC",
-      "roms": []
+      "roms": [
+        {
+          "name": "Bubble Bobble (Japan) (Alt 1).rom",
+          "skipSave": true
+        },
+        {
+          "name": "Space Invaders (Japan).rom",
+          "skipSave": true
+        }
+      ]
     },
     {
       "name": "prosystem",
       "region": "NTSC",
-      "roms": []
+      "roms": [
+        {
+          "name": "Mario Bros. (USA).a78",
+          "skipSave": true
+        },
+        {
+          "name": "Water Ski (USA).a78",
+          "skipSave": true
+        }
+      ]
     }
   ]
 }
