@@ -132,6 +132,26 @@
          "skip60": true
        }
      ]
-    }
+    },
+    {
+      "name": "fmsx",
+      "region": "NTSC",
+      "roms": []
+    },
+    {
+      "name": "dosbox",
+      "region": "NTSC",
+      "roms": []
+    },
+    {
+      "name": "wswan",
+      "region": "NTSC",
+      "roms": []
+    },
+    {
+      "name": "prosystem",
+      "region": "NTSC",
+      "roms": []
+    },
   ]
 }
