@@ -36,11 +36,6 @@
 	url = https://github.com/matthewbauer/mupen64plus-libretro.git
 	branch = emscripten
 
-[submodule "dosbox"]
-	path = core/dosbox
-	url = https://github.com/matthewbauer/dosbox-libretro.git
-	branch = emscripten
-
 [submodule "picodrive"]
 	path = core/picodrive
 	url = https://github.com/matthewbauer/picodrive.git
