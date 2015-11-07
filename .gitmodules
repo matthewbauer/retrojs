@@ -54,7 +54,7 @@
 #
 [submodule "mame"]
 	path = core/mame
-	url = https://github.com/matthewbauer/mame.git
+	url = https://github.com/libretro/mame.git
 [submodule "dosbox"]
 	path = core/dosbox
 	url = https://github.com/matthewbauer/dosbox-libretro.git
