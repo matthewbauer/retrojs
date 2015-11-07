@@ -15,7 +15,6 @@ env:
   - CORE=mupen64plus
   - CORE=virtualjaguar
   - CORE=fmsx
-  - CORE=dosbox
   - CORE=wswan
   - CORE=prosystem
   global:
