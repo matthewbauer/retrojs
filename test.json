@@ -105,6 +105,10 @@
         {
           "name": "Simpsons, The - Bart vs. the Space Mutants (Europe).sms",
           "skipSave": true
+        },
+        {
+          "name": "Batman - The Video Game (USA).md",
+          "skipSave": true
         }
       ]
     },
