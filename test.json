@@ -121,6 +121,17 @@
           "skipSave": true
        }
      ]
+    },
+    {
+     "name": "virtualjaguar",
+     "region": "NTSC",
+     "roms": [
+       {
+         "name": "Checkered Flag (World).j64",
+         "skipSave": true,
+         "skip60": true
+       }
+     ]
     }
   ]
 }
