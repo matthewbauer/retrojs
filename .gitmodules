@@ -32,10 +32,6 @@
 	path = core/dosbox
 	url = https://github.com/matthewbauer/dosbox-libretro.git
 	branch = emscripten
-[submodule "fuse"]
-	path = core/fuse
-	url = https://github.com/matthewbauer/fuse-libretro.git
-	branch = emscripten
 [submodule "picodrive"]
 	path = core/picodrive
 	url = https://github.com/matthewbauer/picodrive.git
