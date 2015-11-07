@@ -13,7 +13,6 @@ env:
   - CORE=gw
   - CORE=vecx
   - CORE=mupen64plus
-  - CORE=virtualjaguar
   - CORE=fmsx
   - CORE=prosystem
   global:
