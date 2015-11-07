@@ -64,9 +64,6 @@
 [submodule "81"]
 	path = core/81
 	url = https://github.com/matthewbauer/81-libretro.git
-[submodule "blueMSX"]
-	path = core/blueMSX
-	url = https://github.com/matthewbauer/blueMSX-libretro.git
 [submodule "tyrquake"]
 	path = core/tyrquake
 	url = https://github.com/matthewbauer/tyrquake.git
@@ -85,6 +82,9 @@
 [submodule "o2em"]
 	path = core/o2em
 	url = https://github.com/matthewbauer/libretro-o2em.git
+[submodule "wswan"]
+	path = core/wswan
+	url = https://github.com/libretro/beetle-wswan-libretro.git
 
 #
 # These emulate the same platforms as a working core
@@ -112,7 +112,7 @@
 	url = https://github.com/matthewbauer/meteor-libretro.git
 [submodule "genesis-plus-gx"]
 	path = core/genesis-plus-gx
-	url = https://github.com/matthewbauer/Genesis-Plus-GX.git
-[submodule "wswan"]
-	path = core/wswan
-	url = https://github.com/libretro/beetle-wswan-libretro.git
+    url = https://github.com/matthewbauer/Genesis-Plus-GX.git
+[submodule "blueMSX"]
+	path = core/blueMSX
+	url = https://github.com/matthewbauer/blueMSX-libretro.git
