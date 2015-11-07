@@ -5,49 +5,58 @@
 	path = core/gambatte
 	url = https://github.com/matthewbauer/gambatte-libretro.git
 	branch = emscripten
+
 [submodule "snes9x-next"]
 	path = core/snes9x-next
 	url = https://github.com/matthewbauer/snes9x-next.git
+
 [submodule "vba-next"]
 	path = core/vba-next
 	url = https://github.com/matthewbauer/vba-next.git
+
 [submodule "vecx"]
 	path = core/vecx
 	url = https://github.com/matthewbauer/libretro-vecx.git
+
 [submodule "gw"]
 	path = core/gw
 	url = https://github.com/matthewbauer/gw-libretro.git
+
 [submodule "stella"]
 	path = core/stella
 	url = https://github.com/matthewbauer/stella-libretro.git
+
 [submodule "nestopia"]
 	path = core/nestopia
 	url = https://github.com/matthewbauer/nestopia.git
 	branch = emscripten
+
 [submodule "mupen64plus"]
 	path = core/mupen64plus
 	url = https://github.com/matthewbauer/mupen64plus-libretro.git
 	branch = emscripten
+
 [submodule "dosbox"]
 	path = core/dosbox
 	url = https://github.com/matthewbauer/dosbox-libretro.git
 	branch = emscripten
+
 [submodule "picodrive"]
 	path = core/picodrive
 	url = https://github.com/matthewbauer/picodrive.git
 	branch = emscripten
+
 [submodule "virtualjaguar"]
 	path = core/virtualjaguar
 	url = https://github.com/matthewbauer/virtualjaguar-libretro.git
-	branch = emscripten
-[submodule "prosystem"]
-	path = core/prosystem
-	url = https://github.com/matthewbauer/prosystem-libretro.git
-	branch = emscripten
 
 #
 # Maybe someday...
 #
+[submodule "prosystem"]
+	path = core/prosystem
+	url = https://github.com/matthewbauer/prosystem-libretro.git
+	branch = emscripten
 [submodule "mame"]
 	path = core/mame
 	url = https://github.com/libretro/mame.git
