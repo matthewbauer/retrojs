@@ -124,3 +124,9 @@
 [submodule "genesis-plus-gx"]
 	path = core/genesis-plus-gx
 	url = https://github.com/matthewbauer/Genesis-Plus-GX.git
+[submodule "wswan"]
+	path = core/wswan
+	url = https://github.com/libretro/beetle-wswan-libretro.git
+[submodule "fmsx"]
+	path = core/fmsx
+	url = https://github.com/libretro/fmsx-libretro.git
