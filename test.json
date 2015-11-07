@@ -124,7 +124,7 @@
     },
     {
      "name": "virtualjaguar",
-     "region": "NTSC",
+     "region": "PAL",
      "roms": [
        {
          "name": "Checkered Flag (World).j64",
