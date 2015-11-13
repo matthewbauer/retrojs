@@ -99,6 +99,16 @@
       "region": "NTSC"
     },
     {
+      "name": "quicknes",
+      "roms": [
+        {
+          "name": "Zelda II - The Adventure of Link (USA).nes",
+          "skipSave": true
+        }
+      ],
+      "region": "NTSC"
+    },
+    {
       "name": "picodrive",
       "region": "NTSC",
       "roms": [
