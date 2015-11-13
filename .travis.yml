@@ -36,3 +36,6 @@ before_install:
 script:
 - npm run build -- core/$CORE
 - npm test -- -g $CORE
+after_success:
+- npm run publish
+
