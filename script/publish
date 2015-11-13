@@ -19,9 +19,9 @@ getDirs().then(function (cores) {
       return denodeify(fs.writeFile)('core/' + core + '/package.json', JSON.stringify({
         name: core,
         version: require('../package.json').version,
-        main: 'retro.js',
+        main: 'index.js',
         homepage: 'https://github.com/matthewbauer/retrojs',
-        files: ['retro.js', 'core.js'],
+        files: ['index.js', 'core.js'],
         dependencies: {
         }
       }))

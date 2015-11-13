@@ -72,7 +72,7 @@ data.cores.forEach(function(info) {
       this.timeout(info.timeout)
     }
     before(function(done) {
-      System.import(`./core/${info.name}/retro`).then(function(_core) {
+      System.import(`./core/${info.name}/index`).then(function(_core) {
         core = _core
         core.set_environment(environment)
         core.set_audio_sample(audio_sample)

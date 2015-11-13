@@ -20,12 +20,12 @@ do
   DIR=`pwd`
   (cd `dirname $BC_FILE` && \
     emcc `basename $BC_FILE` -o ${DIR}/$core/core.js --memory-init-file 0 \
-      -O3 -Oz --closure 1 \
+      -O3 -Oz \
       -s RESERVED_FUNCTION_POINTERS=${RESERVED_FUNCTION_POINTERS-50} \
       -s TOTAL_MEMORY=${TOTAL_MEMORY-268435456} \
       -s EXPORTED_FUNCTIONS=@$DIR/exports.json \
       -s EXPORTED_RUNTIME_METHODS=@$DIR/runtime_exports.json \
       -s SHELL_FILE=$SHELL_FILE \
   )
-  cp retro.js $core
+  cp retro.js $core/index.js
 done
