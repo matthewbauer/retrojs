@@ -47,7 +47,7 @@
 	url = https://github.com/libretro/fmsx-libretro.git
 [submodule "quicknes"]
 	path = core/quicknes
-	url = https://github.com/libretro/QuickNES_Core.git
+	url = https://github.com/matthewbauer/QuickNES_Core.git
 	branch = emscripten
 
 #
