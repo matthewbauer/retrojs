@@ -16,19 +16,15 @@
     }
   },
   "devDependencies": {
-    "babel": "~5.6.14",
-    "chai": "~3.0.0",
+    "ava": "^0.4.2",
     "denodeify": "^1.2.1",
-    "jspm": "~0.16.0",
-    "mocha": "^2.2.5",
     "npm": "^2.14.1",
-    "systemjs": "^0.19.5"
+    "nyc": "^3.2.2"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel/register test.js",
+    "test": "ava",
     "build": "sh ./script/build",
     "publish": "node ./script/publish",
     "install": "jspm install -y"
-  },
-  "version": "1.0.4"
+  }
 }

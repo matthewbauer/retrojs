@@ -1,175 +1,289 @@
-{
-  "cores": [
-    {
-      "name": "snes9x-next",
-      "roms": [
-        {
-          "name": "Super Mario All-Stars (USA).sfc"
-        },
-        {
-          "name": "Super Star Wars - Return of the Jedi (Europe) (Rev 1).sfc"
-        },
-        {
-          "name": "Chrono Trigger (USA).sfc"
-        }
-      ],
-      "system_info": {
-        "library_name": "Snes9X Next",
-        "library_version": "v1.52.4",
-        "valid_extensions": "smc|fig|sfc|gd3|gd7|dx2|bsx|swc",
-        "need_fullpath": false,
-        "block_extract": false
+[
+  {
+    "name": "snes9x-next",
+    "roms": [
+      {
+        "name": "Super Mario All-Stars (USA).sfc"
       },
-      "region": "NTSC"
+      {
+        "name": "Super Star Wars - Return of the Jedi (Europe) (Rev 1).sfc"
+      },
+      {
+        "name": "Chrono Trigger (USA).sfc"
+      }
+    ],
+    "system_info": {
+      "library_name": "Snes9X Next",
+      "library_version": "v1.52.4",
+      "valid_extensions": "smc|fig|sfc|gd3|gd7|dx2|bsx|swc",
+      "need_fullpath": false,
+      "block_extract": false
     },
-    {
-      "name": "gambatte",
-      "roms": [
-        {
-          "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc",
-          "skipSave": true
-        },
-        {
-          "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb",
-          "skipSave": true
-        },
-        {
-          "name": "Pac-Man (USA).gb",
-          "skipSave": true
-        },
-        {
-          "name": "Frogger (USA) (Rev A).gbc",
-          "skipSave": true
-        }
-      ],
-      "region": "NTSC"
-    },
-    {
-      "name": "vba-next",
-      "roms": [
-        {
-          "name": "Super Mario Advance 4 - Super Mario Bros. 3 (USA, Australia) (Rev 1).gba",
-          "skipSave": true
-        },
-        {
-          "name": "Pokemon - Ruby Version (USA).gba",
-          "skipSave": true
-        }
-      ],
-      "region": "NTSC"
-    },
-    {
-      "name": "vecx",
-      "timeout": 10000,
-      "roms": [
-        {
-          "name": "Berzerk (World).vec",
-          "skipSave": true
-        }
-      ],
-      "region": "PAL"
-    },
-    {
-      "name": "gw",
-      "region": "NTSC",
-      "roms": [
-        {
-          "name": "Donkey Kong (Nintendo, Multi Screen).mgw",
-          "skipSave": true
-        }
-      ]
-    },
-    {
-      "name": "stella",
-      "roms": [
-        {
-          "name": "Pacman.bin",
-          "skipSave": true
-        }
-      ],
-      "region": "NTSC"
-    },
-    {
-      "name": "nestopia",
-      "roms": [
-        {
-          "name": "Zelda II - The Adventure of Link (USA).nes"
-        }
-      ],
-      "region": "NTSC"
-    },
-    {
-      "name": "quicknes",
-      "roms": [
-        {
-          "name": "Zelda II - The Adventure of Link (USA).nes",
-          "skipSave": true
-        }
-      ],
-      "region": "NTSC"
-    },
-    {
-      "name": "picodrive",
-      "region": "NTSC",
-      "roms": [
-        {
-          "name": "Simpsons, The - Bart vs. the Space Mutants (Europe).sms",
-          "skipSave": true
-        },
-        {
-          "name": "Batman - The Video Game (USA).md",
-          "skipSave": true
-        }
-      ]
-    },
-    {
-     "name": "mupen64plus",
-     "region": "NTSC",
-     "roms": [
-       {
-          "name": "Yoshi's Story (USA) (En,Ja).n64",
-          "skipSave": true
-       }
-     ]
-    },
-    {
-     "name": "virtualjaguar",
-     "region": "PAL",
-     "roms": [
-       {
-         "name": "Checkered Flag (World).j64",
-         "skipSave": true,
-         "skip60": true
-       }
-     ]
-    },
-    {
-      "name": "fmsx",
-      "region": "NTSC",
-      "roms": [
-        {
-          "name": "Bubble Bobble (Japan) (Alt 1).rom",
-          "skipSave": true
-        },
-        {
-          "name": "Space Invaders (Japan).rom",
-          "skipSave": true
-        }
-      ]
-    },
-    {
-      "name": "prosystem",
-      "region": "NTSC",
-      "roms": [
-        {
-          "name": "Mario Bros. (USA).a78",
-          "skipSave": true
-        },
-        {
-          "name": "Water Ski (USA).a78",
-          "skipSave": true
-        }
-      ]
-    }
-  ]
-}
+    "region": "NTSC"
+  },
+  {
+    "name": "gambatte",
+    "roms": [
+      {
+        "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc",
+        "skipSave": true
+      },
+      {
+        "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb",
+        "skipSave": true
+      },
+      {
+        "name": "Pac-Man (USA).gb",
+        "skipSave": true
+      },
+      {
+        "name": "Frogger (USA) (Rev A).gbc",
+        "skipSave": true
+      }
+    ],
+    "region": "NTSC"
+  },
+  {
+    "name": "vba-next",
+    "roms": [
+      {
+        "name": "Super Mario Advance 4 - Super Mario Bros. 3 (USA, Australia) (Rev 1).gba",
+        "skipSave": true
+      },
+      {
+        "name": "Pokemon - Ruby Version (USA).gba",
+        "skipSave": true
+      }
+    ],
+    "region": "NTSC"
+  },
+  {
+    "name": "vecx",
+    "roms": [
+      {
+        "name": "Berzerk (World).vec",
+        "skipSave": true
+      }
+    ],
+    "region": "PAL"
+  },
+  {
+    "name": "gw",
+    "region": "NTSC",
+    "roms": [
+      {
+        "name": "Donkey Kong (Nintendo, Multi Screen).mgw",
+        "skipSave": true
+      }
+    ]
+  },
+  {
+    "name": "stella",
+    "roms": [
+      {
+        "name": "Pacman.bin",
+        "skipSave": true
+      }
+    ],
+    "region": "NTSC"
+  },
+  {
+    "name": "nestopia",
+    "roms": [
+      {
+        "name": "Zelda II - The Adventure of Link (USA).nes"
+      },
+      {
+        "name": "Atomic.NES",
+        "skipSave": true
+      },
+      {
+        "name": "CMC80s.NES",
+        "skipSave": true
+      },
+      {
+        "name": "CMCWavy.NES",
+        "skipSave": true
+      },
+      {
+        "name": "Dithering.NES",
+        "skipSave": true
+      },
+      {
+        "name": "FDSPic.NES",
+        "skipSave": true
+      },
+      {
+        "name": "Flame.nes",
+        "skipSave": true
+      },
+      {
+        "name": "GENIE.NES",
+        "skipSave": true
+      },
+      {
+        "name": "GameGenie.NES",
+        "skipSave": true
+      },
+      {
+        "name": "Greys.NES",
+        "skipSave": true
+      },
+      {
+        "name": "Interlace1.NES",
+        "skipSave": true
+      },
+      {
+        "name": "Interlace2.NES",
+        "skipSave": true
+      },
+      {
+        "name": "Interlace3.NES",
+        "skipSave": true
+      },
+      {
+        "name": "Mandelbrot.NES",
+        "skipSave": true
+      },
+      {
+        "name": "MegaManJet.nes",
+        "skipSave": true
+      },
+      {
+        "name": "Moby2.NES",
+        "skipSave": true
+      },
+      {
+        "name": "Motion.NES",
+        "skipSave": true
+      },
+      {
+        "name": "NESA.NES",
+        "skipSave": true
+      },
+      {
+        "name": "NESA_TimesofLore.NES",
+        "skipSave": true
+      },
+      {
+        "name": "PALTEST.NES",
+        "skipSave": true
+      },
+      {
+        "name": "PolarPinwheel.NES",
+        "skipSave": true
+      },
+      {
+        "name": "PolarPop.NES",
+        "skipSave": true
+      },
+      {
+        "name": "PolarRot1.NES",
+        "skipSave": true
+      },
+      {
+        "name": "PolarRot21.NES",
+        "skipSave": true
+      },
+      {
+        "name": "PolarRot79.NES",
+        "skipSave": true
+      },
+      {
+        "name": "PolarRot8.NES",
+        "skipSave": true
+      },
+      {
+        "name": "RGB.NES",
+        "skipSave": true
+      },
+      {
+        "name": "SCROLL.NES"
+      },
+      {
+        "name": "SNDTEST.NES",
+        "skipSave": true
+      },
+      {
+        "name": "SOUND.NES"
+      },
+      {
+        "name": "SolarWars.NES",
+        "skipSave": true
+      },
+      {
+        "name": "SolarWarsSilent.NES",
+        "skipSave": true
+      },
+      {
+        "name": "StarsSE.NES",
+        "skipSave": true
+      },
+      {
+        "name": "Zelda.NES",
+        "skipSave": true
+      },
+      {
+        "name": "ZeldaJ.NES",
+        "skipSave": true
+      },
+      {
+        "name": "ZeldaLace.NES",
+        "skipSave": true
+      }
+    ],
+    "region": "NTSC"
+  },
+  {
+    "name": "quicknes",
+    "roms": [
+      {
+        "name": "Zelda II - The Adventure of Link (USA).nes",
+        "skipSave": true
+      }
+    ],
+    "region": "NTSC"
+  },
+  {
+    "name": "picodrive",
+    "region": "NTSC",
+    "roms": [
+      {
+        "name": "Simpsons, The - Bart vs. the Space Mutants (Europe).sms",
+        "skipSave": true
+      },
+      {
+        "name": "Batman - The Video Game (USA).md",
+        "skipSave": true
+      }
+    ]
+  },
+  {
+    "name": "fmsx",
+    "region": "NTSC",
+    "roms": [
+      {
+        "name": "Bubble Bobble (Japan) (Alt 1).rom",
+        "skipSave": true
+      },
+      {
+        "name": "Space Invaders (Japan).rom",
+        "skipSave": true
+      }
+    ]
+  },
+  {
+    "name": "prosystem",
+    "region": "NTSC",
+    "roms": [
+      {
+        "name": "Mario Bros. (USA).a78",
+        "skipSave": true
+      },
+      {
+        "name": "Water Ski (USA).a78",
+        "skipSave": true
+      }
+    ]
+  }
+]

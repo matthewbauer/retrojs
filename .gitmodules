@@ -120,3 +120,6 @@
 [submodule "blueMSX"]
 	path = core/blueMSX
 	url = https://github.com/matthewbauer/blueMSX-libretro.git
+[submodule "fceumm"]
+	path = core/fceumm
+	url = https://github.com/libretro/libretro-fceumm.git

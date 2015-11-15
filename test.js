@@ -1,44 +1,38 @@
-/* globals describe, it, before, beforeEach, afterEach */
+var test = require('ava')
+var fs = require('fs')
+var denodeify = require('denodeify')
+var cores = require('./test.json')
 
-import chai from 'chai'
-let expect = chai.expect
-import data from './test.json'
-
-if (typeof System === 'undefined') {
-  System = require('systemjs')
-  before(function(done) {
-    System.import('./config.js').then(function(){done()}, done)
-  })
-}
-
-data.cores.forEach(function(info) {
-  describe(info.name, function() {
-    this.timeout(10000)
-    let core
-    var environment = function(cmd, _data) {
-      if (cmd === core.ENVIRONMENT_GET_LOG_INTERFACE) {
+cores.forEach(function(core) {
+  if (core.name !== 'snes9x-next')
+    return
+  test.beforeEach(core.name + '.init()', function(t) {
+    delete require.cache[require.resolve('./core/' + core.name)]
+    t.context = require('./core/' + core.name)
+    t.context.set_environment(function(cmd, _data) {
+      if (cmd === t.context.ENVIRONMENT_GET_LOG_INTERFACE) {
         return function(data) {}
-      } else if (cmd === core.ENVIRONMENT_GET_CAN_DUPE) {
+      } else if (cmd === t.context.ENVIRONMENT_GET_CAN_DUPE) {
         return true
-      } else if (cmd === core.ENVIRONMENT_GET_OVERSCAN) {
+      } else if (cmd === t.context.ENVIRONMENT_GET_OVERSCAN) {
         return true
-      } else if (cmd === core.ENVIRONMENT_SET_PIXEL_FORMAT) {
+      } else if (cmd === t.context.ENVIRONMENT_SET_PIXEL_FORMAT) {
         return true
-      } else if (cmd === core.ENVIRONMENT_SET_PERFORMANCE_LEVEL) {
+      } else if (cmd === t.context.ENVIRONMENT_SET_PERFORMANCE_LEVEL) {
         return true
-      } else if (cmd === core.ENVIRONMENT_SET_VARIABLES) {
+      } else if (cmd === t.context.ENVIRONMENT_SET_VARIABLES) {
         return true
-      } else if (cmd === core.ENVIRONMENT_GET_VARIABLE_UPDATE) {
+      } else if (cmd === t.context.ENVIRONMENT_GET_VARIABLE_UPDATE) {
         return false
-      } else if (cmd === core.ENVIRONMENT_GET_VARIABLE) {
+      } else if (cmd === t.context.ENVIRONMENT_GET_VARIABLE) {
         if (_data.key === 'mupen64-gfxplugin') {
           return 'angrylion'
         } else {
           return ''
         }
-      } else if (cmd === core.ENVIRONMENT_GET_SYSTEM_DIRECTORY) {
+      } else if (cmd === t.context.ENVIRONMENT_GET_SYSTEM_DIRECTORY) {
         return '.'
-      } else if (cmd === core.ENVIRONMENT_GET_PERF_INTERFACE) {
+      } else if (cmd === t.context.ENVIRONMENT_GET_PERF_INTERFACE) {
         return {
           get_time_usec: function() {
             return new Date().getTime() * 1000
@@ -51,122 +45,142 @@ data.cores.forEach(function(info) {
           start: function() {},
           perf_register: function() {}
         }
-      } else if (cmd === core.ENVIRONMENT_GET_RUMBLE_INTERFACE) {
+      } else if (cmd === t.context.ENVIRONMENT_GET_RUMBLE_INTERFACE) {
         return function () {
           return true
         }
       } else {
         return true
       }
-    }
-    var audio_sample = function(){}
-    var audio_sample_batch = function(left, right, frames) {
-      return frames
-    }
-    var input_state = function() {
-      return 0
-    }
-    var input_poll = function() {}
-    var video_refresh = function() {}
-    if (info.timeout) {
-      this.timeout(info.timeout)
-    }
-    before(function(done) {
-      System.import(`./core/${info.name}/index`).then(function(_core) {
-        core = _core
-        core.set_environment(environment)
-        core.set_audio_sample(audio_sample)
-        core.set_audio_sample_batch(audio_sample_batch)
-        core.set_input_state(input_state)
-        core.set_input_poll(input_poll)
-        core.set_video_refresh(video_refresh)
-        core.init()
-      }).then(function(){done()}, done)
     })
-    describe('properties', function() {
-      it('api_version()', function() {
-        expect(core.api_version()).to.equal(1)
-        expect(core.api_version()).to.equal(core.API_VERSION)
+    t.context.set_audio_sample(function(){})
+    t.context.set_audio_sample_batch(function(left, right, frames) { return frames })
+    t.context.set_input_state(function() { return 0 })
+    t.context.set_input_poll(function(){})
+    t.context.set_video_refresh(function(){})
+    t.context.init()
+    t.end()
+  })
+  test.afterEach(core.name + '.deinit()', function(t) {
+    t.context.deinit()
+    t.end()
+  })
+  test(core.name + '.api_version()', function(t) {
+    t.is(t.context.api_version(), 1)
+    t.is(t.context.api_version(), t.context.API_VERSION)
+    t.end()
+  })
+  test(core.name + '.get_region()', function(t) {
+    t.is(t.context.get_region(), t.context['REGION_' + core.region])
+    t.end()
+  })
+  test(core.name + '.get_system_info()', function(t) {
+    var system_info = t.context.get_system_info()
+    t.is(typeof system_info.library_name, 'string')
+    t.is(typeof system_info.library_version, 'string')
+    t.is(typeof system_info.valid_extensions, 'string')
+    t.is(typeof system_info.need_fullpath, 'boolean')
+    t.is(typeof system_info.block_extract, 'boolean')
+    if (core.system_info) {
+      t.same(system_info, core.system_info)
+    } else {
+      // cores[key].system_info = system_info
+    }
+    t.end()
+  })
+  test(core.name + '.get_system_av_info()', function(t) {
+    var av_info = t.context.get_system_av_info()
+    t.is(typeof av_info.geometry.base_width,'number')
+    t.is(typeof av_info.geometry.base_height, 'number')
+    t.is(typeof av_info.geometry.max_width, 'number')
+    t.is(typeof av_info.geometry.max_height, 'number')
+    t.is(typeof av_info.geometry.aspect_ratio, 'number')
+    t.is(typeof av_info.timing.fps, 'number')
+    t.is(typeof av_info.timing.sample_rate, 'number')
+    if (core.av_info) {
+      t.same(av_info, core.av_info)
+    } else {
+      // cores[key].av_info = av_info
+    }
+    t.end()
+  })
+  test(core.name + '.set_controller_port_device()', function(t) {
+    t.context.set_controller_port_device(0, t.context.DEVICE_JOYPAD)
+    t.end()
+  })
+  test(core.name + '.cheat_reset()', function(t) {
+    t.context.cheat_reset()
+    t.end()
+  })
+  core.roms.forEach(function(rom) {
+    if (rom.name === 'Super Mario All-Stars (USA).sfc')
+    test.beforeEach(core.name + '.load_game(' + rom.name + ')', function(t) {
+      return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
+      .then(function(buffer) {
+        t.context.load_game(new Uint8Array(buffer))
       })
-      it('get_region()', function() {
-        expect(core.get_region()).to.equal(core['REGION_' + info.region])
-      })
-      it('get_system_info()', function() {
-        let info = core.get_system_info()
-        expect(info.library_name).to.be.a('string')
-        expect(info.library_version).to.be.a('string')
-        expect(info.valid_extensions).to.be.a('string')
-        expect(info.need_fullpath).to.be.a('boolean')
-        expect(info.block_extract).to.be.a('boolean')
-      })
-      if (info.system_info) {
-        it('get_system_info() matches core info', function() {
-          expect(core.get_system_info()).deep.equal(info.system_info)
-        })
+    })
+    test.afterEach(core.name + '.unload_game()', function(t) {
+      t.context.unload_game()
+      t.end()
+    })
+    test(core.name + ' : ' + rom.name + ' : running for 100 frames', function(t) {
+      for (var i = 0; i < 100; i++) {
+        t.context.run()
       }
-      it('get_system_av_info()', function() {
-        let info = core.get_system_av_info()
-        expect(info.geometry.base_width).to.be.a('number')
-        expect(info.geometry.base_height).to.be.a('number')
-        expect(info.geometry.max_width).to.be.a('number')
-        expect(info.geometry.max_height).to.be.a('number')
-        expect(info.geometry.aspect_ratio).to.be.a('number')
-        expect(info.timing.fps).to.be.a('number')
-        expect(info.timing.sample_rate).to.be.a('number')
-      })
+      t.end()
     })
-    describe('controllers', function() {
-      it('set_controller_port_device', function() {
-        core.set_controller_port_device(0, core.DEVICE_JOYPAD)
-      })
+    test(core.name + ' : ' + rom.name + ' : resetting game', function(t) {
+      for (var i = 0; i < 50; i++) {
+        t.context.run()
+      }
+      t.context.reset()
+      for (var i = 0; i < 50; i++) {
+        t.context.run()
+      }
+      t.end()
     })
-    describe('cheats', function() {
-      it('cheat_reset', function() {
-        core.cheat_reset()
+    test(core.name + ': ' + rom.name + ' : mashing buttons', function(t) {
+      t.context.set_input_state(function() {
+        return 1
       })
+      for (var i = 0; i < 100; i++) {
+        t.context.run()
+      }
+      t.end()
     })
-    info.roms.forEach(function(rom) {
-      describe(rom.name, function() {
-        beforeEach(function(done) {
-          System.import(`./roms/${rom.name}!raw`).then(function(data) {
-            core.load_game(new Uint8Array(data))
-          }).then(function(){done()}, done)
-        })
-        afterEach(function() {
-          core.unload_game()
-        })
-        it('running for 50 frames', function() {
-          for (let i = 0; i < 50; i++) {
-            core.run()
-          }
-        })
-        it('mashing buttons', function() {
-          // input_state.returns(1)
-          for (let i = 0; i < 100; i++) {
-            core.run()
-          }
-        })
-        if (!rom.skip60) {
-          it('fps >= 60', function() {
-            const frames = 100
-            this.timeout(1000 * frames / 60)
-            for (let i = 0; i < frames; i++) {
-              core.run()
-            }
+    if (rom.hasFirstFrame) {
+      test(core.name + ': ' + rom.name + ' : checking first frame', function(t) {
+        return denodeify(fs.readFile)('./fixtures/frames/0/' + rom.name + '.dat')
+        .then(function(buffer) {
+          t.context.set_video_refresh(function(frame) {
+            t.same(buffer, new Uint8Array(frame))
           })
-        }
-        if (!rom.skipSave) {
-          it('saving...', function() {
-            let save = new Uint8Array(core.serialize())
-            core.reset()
-            let notnewsave = new Uint8Array(core.serialize())
-            expect(notnewsave).not.deep.equal(save)
-            core.unserialize(save)
-            let newsave = new Uint8Array(core.serialize())
-            expect(newsave).deep.equal(save)
-          })
-        }
+          t.context.run()
+        })
       })
-    })
+    } else {
+      // test('generating first frame...', function(t) {
+      //   core.set_video_refresh(function(frame) {
+      //     denodeify(fs.writeFile)('./fixtures/frames/0/' + rom.name + '.dat', new Uint8Array(frame))
+      //     cores[key].rom.hasFirstFrame = true
+      //   })
+      //   core.run()
+      //   core.set_video_refresh(video_refresh)
+      //   t.end()
+      // })
+    }
+    if (!rom.skipSave) {
+      test(core.name + ': ' + rom.name + ' : saving', function(t) {
+        var save = new Uint8Array(t.context.serialize())
+        t.context.reset()
+        var notnewsave = new Uint8Array(t.context.serialize())
+        t.same(notnewsave, save)
+        t.context.unserialize(save)
+        var newsave = new Uint8Array(t.context.serialize())
+        t.same(newsave, save)
+        t.end()
+      })
+    }
   })
 })
