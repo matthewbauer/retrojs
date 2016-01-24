@@ -16,10 +16,10 @@
     }
   },
   "devDependencies": {
-    "ava": "^0.4.2",
+    "ava": "^0.11.0",
     "denodeify": "^1.2.1",
-    "npm": "^2.14.1",
-    "nyc": "^3.2.2"
+    "npm": "^3.6.0",
+    "nyc": "^5.4.0"
   },
   "scripts": {
     "test": "ava",

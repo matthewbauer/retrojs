@@ -6,7 +6,7 @@ var cores = require('./test.json')
 cores.forEach(function(core) {
   if (core.name !== 'snes9x-next')
     return
-  test.beforeEach(core.name + '.init()', function(t) {
+  test.cb.beforeEach(core.name + '.init()', function(t) {
     delete require.cache[require.resolve('./core/' + core.name)]
     t.context = require('./core/' + core.name)
     t.context.set_environment(function(cmd, _data) {
@@ -61,20 +61,20 @@ cores.forEach(function(core) {
     t.context.init()
     t.end()
   })
-  test.afterEach(core.name + '.deinit()', function(t) {
+  test.cb.afterEach(core.name + '.deinit()', function(t) {
     t.context.deinit()
     t.end()
   })
-  test(core.name + '.api_version()', function(t) {
+  test.cb(core.name + '.api_version()', function(t) {
     t.is(t.context.api_version(), 1)
     t.is(t.context.api_version(), t.context.API_VERSION)
     t.end()
   })
-  test(core.name + '.get_region()', function(t) {
+  test.cb(core.name + '.get_region()', function(t) {
     t.is(t.context.get_region(), t.context['REGION_' + core.region])
     t.end()
   })
-  test(core.name + '.get_system_info()', function(t) {
+  test.cb(core.name + '.get_system_info()', function(t) {
     var system_info = t.context.get_system_info()
     t.is(typeof system_info.library_name, 'string')
     t.is(typeof system_info.library_version, 'string')
@@ -88,7 +88,7 @@ cores.forEach(function(core) {
     }
     t.end()
   })
-  test(core.name + '.get_system_av_info()', function(t) {
+  test.cb(core.name + '.get_system_av_info()', function(t) {
     var av_info = t.context.get_system_av_info()
     t.is(typeof av_info.geometry.base_width,'number')
     t.is(typeof av_info.geometry.base_height, 'number')
@@ -104,33 +104,32 @@ cores.forEach(function(core) {
     }
     t.end()
   })
-  test(core.name + '.set_controller_port_device()', function(t) {
+  test.cb(core.name + '.set_controller_port_device()', function(t) {
     t.context.set_controller_port_device(0, t.context.DEVICE_JOYPAD)
     t.end()
   })
-  test(core.name + '.cheat_reset()', function(t) {
+  test.cb(core.name + '.cheat_reset()', function(t) {
     t.context.cheat_reset()
     t.end()
   })
   core.roms.forEach(function(rom) {
-    if (rom.name === 'Super Mario All-Stars (USA).sfc')
     test.beforeEach(core.name + '.load_game(' + rom.name + ')', function(t) {
       return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
       .then(function(buffer) {
         t.context.load_game(new Uint8Array(buffer))
       })
     })
-    test.afterEach(core.name + '.unload_game()', function(t) {
+    test.cb.afterEach(core.name + '.unload_game()', function(t) {
       t.context.unload_game()
       t.end()
     })
-    test(core.name + ' : ' + rom.name + ' : running for 100 frames', function(t) {
+    test.cb(core.name + ' : ' + rom.name + ' : running for 100 frames', function(t) {
       for (var i = 0; i < 100; i++) {
         t.context.run()
       }
       t.end()
     })
-    test(core.name + ' : ' + rom.name + ' : resetting game', function(t) {
+    test.cb(core.name + ' : ' + rom.name + ' : resetting game', function(t) {
       for (var i = 0; i < 50; i++) {
         t.context.run()
       }
@@ -140,7 +139,7 @@ cores.forEach(function(core) {
       }
       t.end()
     })
-    test(core.name + ': ' + rom.name + ' : mashing buttons', function(t) {
+    test.cb(core.name + ': ' + rom.name + ' : mashing buttons', function(t) {
       t.context.set_input_state(function() {
         return 1
       })
@@ -171,7 +170,7 @@ cores.forEach(function(core) {
       // })
     }
     if (!rom.skipSave) {
-      test(core.name + ': ' + rom.name + ' : saving', function(t) {
+      test.cb(core.name + ': ' + rom.name + ' : saving', function(t) {
         var save = new Uint8Array(t.context.serialize())
         t.context.reset()
         var notnewsave = new Uint8Array(t.context.serialize())
