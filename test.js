@@ -50,9 +50,12 @@ function environment(cmd, _data) {
 
 function loadCore(core) {
   var path = './core/' + core.name
-  delete require.cache[require.resolve(path)]
   return require(path)
 }
+
+test.afterEach(function(t) {
+  t.context.deinit()
+})
 
 function testGame(test, core, rom) {
   test(core.name + ' : ' + rom.name + ' : running for 100 frames', function(t) {
@@ -112,70 +115,70 @@ function testGame(test, core, rom) {
       }
     })
   })
-  if (rom.hasFirstFrame) {
-    test(core.name + ': ' + rom.name + ' : checking first frame', function(t) {
-      return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
-      .then(function(buffer) {
-        return denodeify(fs.readFile)('./fixtures/frames/0/' + rom.name + '.dat')
-        .then(function(b) {
-          t.context = loadCore(core)
-          t.context.set_environment(environment.bind(t.context))
-          t.context.set_audio_sample(function(){})
-          t.context.set_audio_sample_batch(function(left, right, frames) { return frames })
-          t.context.set_input_state(function() { return 0 })
-          t.context.set_input_poll(function(){})
-          t.context.set_video_refresh(function(frame) {
-            t.same(b, frame)
-          })
-          t.context.init()
-          t.context.load_game(new Uint8Array(buffer))
-          t.context.run()
-        })
-      })
-    })
-  } else {
-    test('generating first frame...', function(t) {
-      return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
-      .then(function(buffer) {
-        t.context = loadCore(core)
-        t.context.set_environment(environment.bind(t.context))
-        t.context.set_audio_sample(function(){})
-        t.context.set_audio_sample_batch(function(left, right, frames) { return frames })
-        t.context.set_input_state(function() { return 0 })
-        t.context.set_input_poll(function(){})
-        t.context.set_video_refresh(function(frame) {
-          fs.writeFileSync('./fixtures/frames/0/' + rom.name + '.dat', new Buffer(frame), 'binary')
-          rom.hasFirstFrame = true
-        })
-        t.context.init()
-        t.context.load_game(new Uint8Array(buffer))
-        t.context.run()
-      })
-    })
-  }
-  if (!rom.skipSave) {
-    test(core.name + ': ' + rom.name + ' : saving', function(t) {
-      return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
-      .then(function(buffer) {
-        t.context = loadCore(core)
-        t.context.set_environment(environment.bind(t.context))
-        t.context.set_audio_sample(function(){})
-        t.context.set_audio_sample_batch(function(left, right, frames) { return frames })
-        t.context.set_input_state(function() { return 0 })
-        t.context.set_input_poll(function(){})
-        t.context.set_video_refresh(function(){})
-        t.context.init()
-        t.context.load_game(new Uint8Array(buffer))
-        var save = new Uint8Array(t.context.serialize())
-        t.context.reset()
-        var notnewsave = new Uint8Array(t.context.serialize())
-        t.same(notnewsave, save)
-        t.context.unserialize(save)
-        var newsave = new Uint8Array(t.context.serialize())
-        t.same(newsave, save)
-      })
-    })
-  }
+  // if (rom.hasFirstFrame) {
+  //   test(core.name + ': ' + rom.name + ' : checking first frame', function(t) {
+  //     return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
+  //     .then(function(buffer) {
+  //       return denodeify(fs.readFile)('./fixtures/frames/0/' + rom.name + '.dat')
+  //       .then(function(b) {
+  //         t.context = loadCore(core)
+  //         t.context.set_environment(environment.bind(t.context))
+  //         t.context.set_audio_sample(function(){})
+  //         t.context.set_audio_sample_batch(function(left, right, frames) { return frames })
+  //         t.context.set_input_state(function() { return 0 })
+  //         t.context.set_input_poll(function(){})
+  //         t.context.set_video_refresh(function(frame) {
+  //           t.same(b, frame)
+  //         })
+  //         t.context.init()
+  //         t.context.load_game(new Uint8Array(buffer))
+  //         t.context.run()
+  //       })
+  //     })
+  //   })
+  // } else {
+  //   test('generating first frame...', function(t) {
+  //     return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
+  //     .then(function(buffer) {
+  //       t.context = loadCore(core)
+  //       t.context.set_environment(environment.bind(t.context))
+  //       t.context.set_audio_sample(function(){})
+  //       t.context.set_audio_sample_batch(function(left, right, frames) { return frames })
+  //       t.context.set_input_state(function() { return 0 })
+  //       t.context.set_input_poll(function(){})
+  //       t.context.set_video_refresh(function(frame) {
+  //         fs.writeFileSync('./fixtures/frames/0/' + rom.name + '.dat', new Buffer(frame), 'binary')
+  //         rom.hasFirstFrame = true
+  //       })
+  //       t.context.init()
+  //       t.context.load_game(new Uint8Array(buffer))
+  //       t.context.run()
+  //     })
+  //   })
+  // }
+  // if (!rom.skipSave) {
+  //   test(core.name + ': ' + rom.name + ' : saving', function(t) {
+  //     return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
+  //     .then(function(buffer) {
+  //       t.context = loadCore(core)
+  //       t.context.set_environment(environment.bind(t.context))
+  //       t.context.set_audio_sample(function(){})
+  //       t.context.set_audio_sample_batch(function(left, right, frames) { return frames })
+  //       t.context.set_input_state(function() { return 0 })
+  //       t.context.set_input_poll(function(){})
+  //       t.context.set_video_refresh(function(){})
+  //       t.context.init()
+  //       t.context.load_game(new Uint8Array(buffer))
+  //       var save = new Uint8Array(t.context.serialize())
+  //       t.context.reset()
+  //       var notnewsave = new Uint8Array(t.context.serialize())
+  //       t.same(notnewsave, save)
+  //       t.context.unserialize(save)
+  //       var newsave = new Uint8Array(t.context.serialize())
+  //       t.same(newsave, save)
+  //     })
+  //   })
+  // }
 }
 
 function testCore(test, core) {
@@ -233,13 +236,11 @@ function testCore(test, core) {
     t.end()
   })
   core.roms.forEach(function(rom) {
-    // testGame(test, core, rom)
+    testGame(test, core, rom)
   })
 }
 
-cores.forEach(function(core) {
-  testCore(test, core)
-})
+cores.forEach(function(core) { testCore(test, core) })
 
 test.after(function(t) {
   return denodeify(fs.writeFile)('./test.json', JSON.stringify(cores, undefined, 2))

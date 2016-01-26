@@ -10,3 +10,5 @@ for core in $cores
 do
   ./script/build-core $core &
 done
+
+wait
