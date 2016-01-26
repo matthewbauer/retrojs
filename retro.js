@@ -574,9 +574,9 @@ function addHelpers () {
 
   this.unload_game = function () {
     this._retro_unload_game()
-    // for (var ptr in this._ptrs) {
-    //   this._free(this._ptrs[ptr])
-    // }
+    //for (var ptr in this._ptrs) {
+    //  this._free(this._ptrs[ptr])
+    //}
   }
 
   this.get_region = function () {

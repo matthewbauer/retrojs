@@ -19,7 +19,20 @@
       "need_fullpath": false,
       "block_extract": false
     },
-    "region": "NTSC"
+    "region": "NTSC",
+    "av_info": {
+      "geometry": {
+        "base_width": 256,
+        "base_height": 224,
+        "max_width": 512,
+        "max_height": 512,
+        "aspect_ratio": 1.3333333730697632
+      },
+      "timing": {
+        "fps": 60.098811862348406,
+        "sample_rate": 32040.5
+      }
+    }
   },
   {
     "name": "gambatte",
@@ -41,7 +54,27 @@
         "skipSave": true
       }
     ],
-    "region": "NTSC"
+    "region": "NTSC",
+    "system_info": {
+      "library_name": "Gambatte",
+      "library_version": "v0.5.0",
+      "valid_extensions": "gb|gbc|dmg",
+      "need_fullpath": false,
+      "block_extract": true
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 160,
+        "base_height": 144,
+        "max_width": 160,
+        "max_height": 144,
+        "aspect_ratio": 0
+      },
+      "timing": {
+        "fps": 0,
+        "sample_rate": 0
+      }
+    }
   },
   {
     "name": "vba-next",
@@ -55,7 +88,27 @@
         "skipSave": true
       }
     ],
-    "region": "NTSC"
+    "region": "NTSC",
+    "system_info": {
+      "library_name": "VBA Next",
+      "library_version": "v1.0.2",
+      "valid_extensions": "gba",
+      "need_fullpath": false,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 240,
+        "base_height": 160,
+        "max_width": 240,
+        "max_height": 160,
+        "aspect_ratio": 1.5
+      },
+      "timing": {
+        "fps": 59.72750056960583,
+        "sample_rate": 32000
+      }
+    }
   },
   {
     "name": "vecx",
@@ -65,7 +118,27 @@
         "skipSave": true
       }
     ],
-    "region": "PAL"
+    "region": "PAL",
+    "system_info": {
+      "library_name": "VecX",
+      "library_version": "1.2",
+      "valid_extensions": "bin|vec",
+      "need_fullpath": false,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 330,
+        "base_height": 410,
+        "max_width": 330,
+        "max_height": 410,
+        "aspect_ratio": 0
+      },
+      "timing": {
+        "fps": 50,
+        "sample_rate": 44100
+      }
+    }
   },
   {
     "name": "gw",
@@ -75,7 +148,27 @@
         "name": "Donkey Kong (Nintendo, Multi Screen).mgw",
         "skipSave": true
       }
-    ]
+    ],
+    "system_info": {
+      "library_name": "Game & Watch",
+      "library_version": "1.0",
+      "valid_extensions": "mgw",
+      "need_fullpath": false,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 0,
+        "base_height": 0,
+        "max_width": 0,
+        "max_height": 0,
+        "aspect_ratio": 0
+      },
+      "timing": {
+        "fps": 60,
+        "sample_rate": 44100
+      }
+    }
   },
   {
     "name": "stella",
@@ -85,7 +178,27 @@
         "skipSave": true
       }
     ],
-    "region": "NTSC"
+    "region": "NTSC",
+    "system_info": {
+      "library_name": "Stella",
+      "library_version": "3.9.3",
+      "valid_extensions": "a26|bin",
+      "need_fullpath": false,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 320,
+        "base_height": 0,
+        "max_width": 320,
+        "max_height": 256,
+        "aspect_ratio": 1.3333333730697632
+      },
+      "timing": {
+        "fps": 1.793662034335766e-43,
+        "sample_rate": 31400
+      }
+    }
   },
   {
     "name": "nestopia",
@@ -232,7 +345,27 @@
         "skipSave": true
       }
     ],
-    "region": "NTSC"
+    "region": "NTSC",
+    "system_info": {
+      "library_name": "Nestopia",
+      "library_version": "v1.47-WIP",
+      "valid_extensions": "nes|fds",
+      "need_fullpath": false,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 256,
+        "base_height": 240,
+        "max_width": 602,
+        "max_height": 240,
+        "aspect_ratio": 1.3333333730697632
+      },
+      "timing": {
+        "fps": 60,
+        "sample_rate": 44100
+      }
+    }
   },
   {
     "name": "quicknes",
@@ -242,7 +375,27 @@
         "skipSave": true
       }
     ],
-    "region": "NTSC"
+    "region": "NTSC",
+    "system_info": {
+      "library_name": "QuickNES",
+      "library_version": "v1",
+      "valid_extensions": "nes",
+      "need_fullpath": false,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 240,
+        "base_height": 224,
+        "max_width": 240,
+        "max_height": 224,
+        "aspect_ratio": 1.3333333730697632
+      },
+      "timing": {
+        "fps": 60,
+        "sample_rate": 44100
+      }
+    }
   },
   {
     "name": "picodrive",
@@ -256,7 +409,27 @@
         "name": "Batman - The Video Game (USA).md",
         "skipSave": true
       }
-    ]
+    ],
+    "system_info": {
+      "library_name": "PicoDrive",
+      "library_version": "1.91",
+      "valid_extensions": "bin|gen|smd|md|32x|cue|iso|sms",
+      "need_fullpath": true,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 320,
+        "base_height": 0,
+        "max_width": 320,
+        "max_height": 240,
+        "aspect_ratio": 1.3333333730697632
+      },
+      "timing": {
+        "fps": 60,
+        "sample_rate": 44100
+      }
+    }
   },
   {
     "name": "fmsx",
@@ -270,7 +443,27 @@
         "name": "Space Invaders (Japan).rom",
         "skipSave": true
       }
-    ]
+    ],
+    "system_info": {
+      "library_name": "fMSX",
+      "library_version": "3.9",
+      "valid_extensions": "rom|mx1|mx2",
+      "need_fullpath": true,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 0,
+        "base_height": 0,
+        "max_width": 640,
+        "max_height": 480,
+        "aspect_ratio": 0
+      },
+      "timing": {
+        "fps": 60,
+        "sample_rate": 48000
+      }
+    }
   },
   {
     "name": "prosystem",
@@ -284,6 +477,26 @@
         "name": "Water Ski (USA).a78",
         "skipSave": true
       }
-    ]
+    ],
+    "system_info": {
+      "library_name": "ProSystem",
+      "library_version": "1.3e",
+      "valid_extensions": "a78|bin",
+      "need_fullpath": false,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 320,
+        "base_height": 240,
+        "max_width": 320,
+        "max_height": 292,
+        "aspect_ratio": 1.3333333730697632
+      },
+      "timing": {
+        "fps": 60,
+        "sample_rate": 48000
+      }
+    }
   }
 ]
