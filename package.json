@@ -19,12 +19,17 @@
     "ava": "^0.11.0",
     "denodeify": "^1.2.1",
     "npm": "^3.6.0",
-    "nyc": "^5.4.0"
+    "nyc": "^5.5.0"
   },
   "scripts": {
-    "test": "ava",
+    "test": "nyc ava",
     "build": "sh ./script/build",
     "publish": "node ./script/publish",
     "install": "jspm install -y"
+  },
+  "nyc": {
+    "exclude": [
+      "core/*/core.js"
+    ]
   }
 }
