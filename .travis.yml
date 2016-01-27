@@ -34,7 +34,7 @@ before_script:
 before_install:
   - git submodule update --init core/$CORE
 script:
-  - sh ./script/build-core -- core/$CORE
+  - sh ./script/build-core core/$CORE
   - npm test -- -g $CORE
 after_success:
   - npm run publish -- $CORE
