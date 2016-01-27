@@ -39,9 +39,9 @@
 	path = core/prosystem
 	url = https://github.com/matthewbauer/prosystem-libretro.git
 	branch = emscripten
-[submodule "mame"]
-	path = core/mame
-	url = https://github.com/libretro/mame.git
+#[submodule "mame"]
+#	path = core/mame
+#	url = https://github.com/libretro/mame.git
 [submodule "fmsx"]
 	path = core/fmsx
 	url = https://github.com/libretro/fmsx-libretro.git
@@ -86,9 +86,9 @@
 [submodule "o2em"]
 	path = core/o2em
 	url = https://github.com/matthewbauer/libretro-o2em.git
-[submodule "wswan"]
-	path = core/wswan
-	url = https://github.com/libretro/beetle-wswan-libretro.git
+#[submodule "wswan"]
+#	path = core/wswan
+#	url = https://github.com/libretro/beetle-wswan-libretro.git
 
 #
 # These emulate the same platforms as a working core

@@ -149,10 +149,6 @@
     "name": "gw",
     "region": "NTSC",
     "roms": [
-      {
-        "name": "Donkey Kong (Nintendo, Multi Screen).mgw",
-        "skipSave": true
-      }
     ],
     "system_info": {
       "library_name": "Game & Watch",
@@ -446,15 +442,6 @@
     "name": "fmsx",
     "region": "NTSC",
     "roms": [
-      {
-        "name": "Bubble Bobble (Japan) (Alt 1).rom",
-        "skipSave": true,
-        "hasFirstFrame": true
-      },
-      {
-        "name": "Space Invaders (Japan).rom",
-        "skipSave": true
-      }
     ],
     "system_info": {
       "library_name": "fMSX",
@@ -512,5 +499,11 @@
         "sample_rate": 48000
       }
     }
+  },
+  {
+    "name": "mupen64plus"
+  },
+  {
+    "name": "virtualjaguar"
   }
 ]
