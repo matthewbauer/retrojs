@@ -243,5 +243,5 @@ function testCore(test, core) {
 cores.forEach(function(core) { testCore(test, core) })
 
 test.after(function(t) {
-  return denodeify(fs.writeFile)('./test.json', JSON.stringify(cores, undefined, 2))
+  return denodeify(fs.writeFile)('./test.json', JSON.stringify(cores, undefined, 2) + '\n')
 })
