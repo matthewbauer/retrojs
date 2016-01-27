@@ -5,3 +5,5 @@ npm-debug.log
 jspm_packages
 pkg
 config.js
+coverage
+.nyc_output
