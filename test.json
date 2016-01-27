@@ -148,8 +148,7 @@
   {
     "name": "gw",
     "region": "NTSC",
-    "roms": [
-    ],
+    "roms": [],
     "system_info": {
       "library_name": "Game & Watch",
       "library_version": "1.0",
@@ -410,11 +409,6 @@
         "name": "Simpsons, The - Bart vs. the Space Mutants (Europe).sms",
         "skipSave": true,
         "hasFirstFrame": true
-      },
-      {
-        "name": "Batman - The Video Game (USA).md",
-        "skipSave": true,
-        "hasFirstFrame": true
       }
     ],
     "system_info": {
@@ -441,8 +435,7 @@
   {
     "name": "fmsx",
     "region": "NTSC",
-    "roms": [
-    ],
+    "roms": [],
     "system_info": {
       "library_name": "fMSX",
       "library_version": "3.9",
@@ -501,9 +494,8 @@
     }
   },
   {
-    "name": "mupen64plus"
-  },
-  {
-    "name": "virtualjaguar"
+    "name": "virtualjaguar",
+    "roms": [],
+    "region": "NTSC"
   }
 ]
