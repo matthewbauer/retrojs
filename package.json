@@ -23,7 +23,7 @@
     "nyc": "^5.5.0"
   },
   "scripts": {
-    "test": "ava -s",
+    "test": "nyc ava -s",
     "build": "sh ./script/build",
     "publish": "node ./script/publish",
     "install": "jspm install -y"
