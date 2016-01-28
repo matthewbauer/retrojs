@@ -80,18 +80,7 @@
   },
   {
     "name": "vba-next",
-    "roms": [
-      {
-        "name": "Super Mario Advance 4 - Super Mario Bros. 3 (USA, Australia) (Rev 1).gba",
-        "skipSave": true,
-        "hasFirstFrame": true
-      },
-      {
-        "name": "Pokemon - Ruby Version (USA).gba",
-        "skipSave": true,
-        "hasFirstFrame": true
-      }
-    ],
+    "roms": [],
     "region": "NTSC",
     "system_info": {
       "library_name": "VBA Next",
@@ -492,10 +481,5 @@
         "sample_rate": 48000
       }
     }
-  },
-  {
-    "name": "virtualjaguar",
-    "roms": [],
-    "region": "NTSC"
   }
 ]

@@ -8,12 +8,24 @@ DIR=`pwd`
 
 BC_FILE=`find $core -name '*.bc' -print`
 
+# nestopia: 16777216
+# stella: 16777216
+# vecx: 16777216
+# quicknes: 16777216
+# prosystem: 16777216
+# gambatte: 16777216
+# snes9x-next: 134217728
+# fmsx: 134217728
+# gw: 134217728
+# mupen64plus: 134217728
+# virtualjaguar: 134217728
+# vba-next: 134217728
+# picodrive: 134217728
+
 (cd `dirname $BC_FILE` && \
   emcc `basename ${BC_FILE}` -o ${DIR}/${core}/core.js -O3 -Oz \
-    -s ALIASING_FUNCTION_POINTERS=1 \
-    -s RESERVED_FUNCTION_POINTERS=10 \
-    -s EMULATED_FUNCTION_POINTERS=1 \
-    -s ALLOW_MEMORY_GROWTH=1 \
+    -s RESERVED_FUNCTION_POINTERS=${RESERVED_FUNCTION_POINTERS-200} \
+    -s TOTAL_MEMORY=${TOTAL_MEMORY-134217728} \
     -s EXPORTED_FUNCTIONS=@${DIR}/exports.json \
     -s EXPORTED_RUNTIME_METHODS=@${DIR}/runtime_exports.json \
     -s SHELL_FILE=${SHELL_FILE} \

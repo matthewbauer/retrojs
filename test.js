@@ -50,6 +50,7 @@ function environment(cmd, _data) {
 
 function loadCore(core) {
   var path = './core/' + core.name
+  delete require.cache[require.resolve(path)]
   return require(path)
 }
 
@@ -73,6 +74,7 @@ function testGame(test, core, rom) {
       for (var i = 0; i < 100; i++) {
         t.context.run()
       }
+      t.context.unload_game()
     })
   })
   test(core.name + ' : ' + rom.name + ' : resetting game', function(t) {
@@ -94,6 +96,7 @@ function testGame(test, core, rom) {
       for (var i = 0; i < 50; i++) {
         t.context.run()
       }
+      t.context.unload_game()
     })
   })
   test(core.name + ': ' + rom.name + ' : mashing buttons', function(t) {
@@ -113,6 +116,7 @@ function testGame(test, core, rom) {
       for (var i = 0; i < 100; i++) {
         t.context.run()
       }
+      t.context.unload_game()
     })
   })
   // if (rom.hasFirstFrame) {

@@ -297,6 +297,7 @@ function addHelpers () {
   this.SENSOR_ACCELEROMETER_Z = 2
 
   this._ptrs = []
+  this._funcs = []
 
   this._unstringify = function (ptr, str) {
     var _str = this._malloc(str.length + 1)
@@ -304,6 +305,12 @@ function addHelpers () {
     this.writeStringToMemory(str, _str)
     this.setValue(ptr, _str, '*')
     return ptr
+  }
+
+  this._addFunction = function (f) {
+    var func = this.Runtime.addFunction(f)
+    this._funcs.push(func)
+    return func
   }
 
   this._stringify = function (ptr) {
@@ -417,7 +424,7 @@ function addHelpers () {
   }
 
   this.set_environment = function (fn) { // complete libretro spec
-    this._retro_set_environment(this.Runtime.addFunction(function (fn, cmd, _data) {
+    this._retro_set_environment(this._addFunction(function (fn, cmd, _data) {
       switch (cmd) {
         case this.ENVIRONMENT_SHUTDOWN: {
           return fn(cmd)
@@ -488,7 +495,7 @@ function addHelpers () {
         }
         case this.ENVIRONMENT_GET_LOG_INTERFACE: {
           var func = fn(cmd)
-          this.setValue(_data, this.Runtime.addFunction(function (func, level) {
+          this.setValue(_data, this._addFunction(function (func, level) {
             var args = []
             var varargs = Array.prototype.slice.call(arguments, 3)
             for (var vararg in varargs) {
@@ -500,17 +507,17 @@ function addHelpers () {
         }
         case this.ENVIRONMENT_GET_PERF_INTERFACE: {
           var perf = fn(cmd)
-          this.setValue(_data, this.Runtime.addFunction(perf.get_time_usec), '*')
-          this.setValue(_data + 4, this.Runtime.addFunction(perf.get_cpu_features), '*')
-          this.setValue(_data + 8, this.Runtime.addFunction(perf.get_perf_counter), '*')
-          this.setValue(_data + 12, this.Runtime.addFunction(perf.register), '*')
-          this.setValue(_data + 16, this.Runtime.addFunction(perf.start), '*')
-          this.setValue(_data + 20, this.Runtime.addFunction(perf.stop), '*')
-          this.setValue(_data + 24, this.Runtime.addFunction(perf.log), '*')
+          this.setValue(_data, this._addFunction(perf.get_time_usec), '*')
+          this.setValue(_data + 4, this._addFunction(perf.get_cpu_features), '*')
+          this.setValue(_data + 8, this._addFunction(perf.get_perf_counter), '*')
+          this.setValue(_data + 12, this._addFunction(perf.register), '*')
+          this.setValue(_data + 16, this._addFunction(perf.start), '*')
+          this.setValue(_data + 20, this._addFunction(perf.stop), '*')
+          this.setValue(_data + 24, this._addFunction(perf.log), '*')
           return true
         }
         case this.ENVIRONMENT_GET_RUMBLE_INTERFACE: {
-          this.setValue(_data, this.Runtime.addFunction(fn(cmd)), '*')
+          this.setValue(_data, this._addFunction(fn(cmd)), '*')
           return true
         }
         default: {
@@ -521,14 +528,14 @@ function addHelpers () {
   }
 
   this.set_video_refresh = function (fn) {
-    this._retro_set_video_refresh(this.Runtime.addFunction(function (fn, _data, width, height, pitch) {
+    this._retro_set_video_refresh(this._addFunction(function (fn, _data, width, height, pitch) {
       var data = new Uint16Array(this.HEAPU16.buffer, _data, height * pitch)
       fn(data, width, height, pitch)
     }.bind(this, fn)))
   }
 
   this.set_audio_sample_batch = function (fn) {
-    this._retro_set_audio_sample_batch(this.Runtime.addFunction(function (fn, _data, frames) {
+    this._retro_set_audio_sample_batch(this._addFunction(function (fn, _data, frames) {
       var left = new Float32Array(frames)
       var right = new Float32Array(frames)
       var data = new Int16Array(this.HEAP16.buffer, _data, frames * 4)
@@ -541,15 +548,15 @@ function addHelpers () {
   }
 
   this.set_audio_sample = function (fn) {
-    this._retro_set_audio_sample(this.Runtime.addFunction(fn))
+    this._retro_set_audio_sample(this._addFunction(fn))
   }
 
   this.set_input_poll = function (fn) {
-    this._retro_set_input_poll(this.Runtime.addFunction(fn))
+    this._retro_set_input_poll(this._addFunction(fn))
   }
 
   this.set_input_state = function (fn) {
-    this._retro_set_input_state(this.Runtime.addFunction(fn))
+    this._retro_set_input_state(this._addFunction(fn))
   }
 
   this.init = function () {
@@ -558,6 +565,10 @@ function addHelpers () {
 
   this.deinit = function () {
     this._retro_deinit()
+    for (var func in this._funcs) {
+      this.Runtime.removeFunction(this._funcs[func])
+    }
+    this._funcs = []
   }
 
   this.api_version = function () {
@@ -574,9 +585,10 @@ function addHelpers () {
 
   this.unload_game = function () {
     this._retro_unload_game()
-    //for (var ptr in this._ptrs) {
-    //  this._free(this._ptrs[ptr])
-    //}
+    for (var ptr in this._ptrs) {
+      this._free(this._ptrs[ptr])
+    }
+    this._ptrs = []
   }
 
   this.get_region = function () {
