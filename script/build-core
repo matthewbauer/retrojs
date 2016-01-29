@@ -1,3 +1,5 @@
+#!/bin/sh
+
 core=$1
 
 SHELL_FILE="'`pwd`/shell.js'"

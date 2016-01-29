@@ -3,7 +3,7 @@ var fs = require('fs')
 var denodeify = require('denodeify')
 var _cores = require('./test.json')
 
-cores = _cores.filter(function(core) {
+var cores = _cores.filter(function(core) {
   return !process.env.CORE || core.name === process.env.CORE
 })
 
