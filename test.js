@@ -1,7 +1,11 @@
 var test = require('ava')
 var fs = require('fs')
 var denodeify = require('denodeify')
-var cores = require('./test.json')
+var _cores = require('./test.json')
+
+cores = _cores.filter(function(core) {
+  return !process.env.CORE || core.name === process.env.CORE
+})
 
 function environment(cmd, _data) {
   if (cmd === this.ENVIRONMENT_GET_LOG_INTERFACE) {
@@ -99,7 +103,7 @@ function testGame(test, core, rom) {
       t.context.unload_game()
     })
   })
-  test(core.name + ': ' + rom.name + ' : mashing buttons', function(t) {
+  test(core.name + ' : ' + rom.name + ' : mashing buttons', function(t) {
     return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
     .then(function(buffer) {
       t.context = loadCore(core)
@@ -247,5 +251,5 @@ function testCore(test, core) {
 cores.forEach(function(core) { testCore(test, core) })
 
 test.after(function(t) {
-  return denodeify(fs.writeFile)('./test.json', JSON.stringify(cores, undefined, 2) + '\n')
+  return denodeify(fs.writeFile)('./test.json', JSON.stringify(_cores, undefined, 2) + '\n')
 })
