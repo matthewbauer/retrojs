@@ -135,6 +135,31 @@
     }
   },
   {
+    "name": "gw",
+    "region": "NTSC",
+    "roms": [],
+    "system_info": {
+      "library_name": "Game & Watch",
+      "library_version": "1.0",
+      "valid_extensions": "mgw",
+      "need_fullpath": false,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 0,
+        "base_height": 0,
+        "max_width": 0,
+        "max_height": 0,
+        "aspect_ratio": 0
+      },
+      "timing": {
+        "fps": 60,
+        "sample_rate": 44100
+      }
+    }
+  },
+  {
     "name": "stella",
     "roms": [
       {
@@ -362,6 +387,62 @@
       "timing": {
         "fps": 60,
         "sample_rate": 44100
+      }
+    }
+  },
+  {
+    "name": "picodrive",
+    "region": "NTSC",
+    "roms": [
+      {
+        "name": "Simpsons, The - Bart vs. the Space Mutants (Europe).sms",
+        "skipSave": true,
+        "hasFirstFrame": true
+      }
+    ],
+    "system_info": {
+      "library_name": "PicoDrive",
+      "library_version": "1.91",
+      "valid_extensions": "bin|gen|smd|md|32x|cue|iso|sms",
+      "need_fullpath": true,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 320,
+        "base_height": 0,
+        "max_width": 320,
+        "max_height": 240,
+        "aspect_ratio": 1.3333333730697632
+      },
+      "timing": {
+        "fps": 60,
+        "sample_rate": 44100
+      }
+    }
+  },
+  {
+    "name": "fmsx",
+    "region": "NTSC",
+    "roms": [],
+    "system_info": {
+      "library_name": "fMSX",
+      "library_version": "3.9",
+      "valid_extensions": "rom|mx1|mx2",
+      "need_fullpath": true,
+      "block_extract": false
+    },
+    "av_info": {
+      "geometry": {
+        "base_width": 0,
+        "base_height": 0,
+        "max_width": 640,
+        "max_height": 480,
+        "aspect_ratio": 0
+      },
+      "timing": {
+        "fps": 60,
+        "sample_rate": 48000
       }
     }
   },
