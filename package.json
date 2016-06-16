@@ -16,7 +16,7 @@
     }
   },
   "devDependencies": {
-    "ava": "https://github.com/matthewbauer/ava.git#grep1",
+    "ava": "*",
     "denodeify": "^1.2.1",
     "jspm": "^0.16.25",
     "npm": "^3.6.0",
