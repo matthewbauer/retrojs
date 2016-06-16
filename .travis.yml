@@ -8,12 +8,9 @@ env:
     - CORE=vba-next
     - CORE=gambatte
     - CORE=nestopia
-    - CORE=picodrive
     - CORE=stella
-    - CORE=gw
     - CORE=vecx
     - CORE=mupen64plus
-    - CORE=fmsx
     - CORE=prosystem
     - CORE=quicknes
   global:
