@@ -63,7 +63,7 @@ test.afterEach(function(t) {
 })
 
 function testGame(test, core, rom) {
-  test(core.name + ' : ' + rom.name + ' : running for 100 frames', function(t) {
+  test.serial(core.name + ' : ' + rom.name + ' : running for 100 frames', function(t) {
     return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
     .then(function(buffer) {
       t.context = loadCore(core)
@@ -81,7 +81,7 @@ function testGame(test, core, rom) {
       t.context.unload_game()
     })
   })
-  test(core.name + ' : ' + rom.name + ' : resetting game', function(t) {
+  test.serial(core.name + ' : ' + rom.name + ' : resetting game', function(t) {
     return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
     .then(function(buffer) {
       t.context = loadCore(core)
@@ -103,7 +103,7 @@ function testGame(test, core, rom) {
       t.context.unload_game()
     })
   })
-  test(core.name + ' : ' + rom.name + ' : mashing buttons', function(t) {
+  test.serial(core.name + ' : ' + rom.name + ' : mashing buttons', function(t) {
     return denodeify(fs.readFile)('./fixtures/roms/' + rom.name)
     .then(function(buffer) {
       t.context = loadCore(core)
@@ -190,18 +190,18 @@ function testGame(test, core, rom) {
 }
 
 function testCore(test, core) {
-  test.cb(core.name + '.api_version()', function(t) {
+  test.serial.cb(core.name + '.api_version()', function(t) {
     t.context = loadCore(core)
     t.is(t.context.api_version(), 1)
     t.is(t.context.api_version(), t.context.API_VERSION)
     t.end()
   })
-  test.cb(core.name + '.get_region()', function(t) {
+  test.serial.cb(core.name + '.get_region()', function(t) {
     t.context = loadCore(core)
     t.is(t.context.get_region(), t.context['REGION_' + core.region])
     t.end()
   })
-  test.cb(core.name + '.get_system_info()', function(t) {
+  test.serial.cb(core.name + '.get_system_info()', function(t) {
     t.context = loadCore(core)
     var system_info = t.context.get_system_info()
     t.is(typeof system_info.library_name, 'string')
@@ -216,7 +216,7 @@ function testCore(test, core) {
     }
     t.end()
   })
-  test.cb(core.name + '.get_system_av_info()', function(t) {
+  test.serial.cb(core.name + '.get_system_av_info()', function(t) {
     t.context = loadCore(core)
     var av_info = t.context.get_system_av_info()
     t.is(typeof av_info.geometry.base_width,'number')
@@ -233,12 +233,12 @@ function testCore(test, core) {
     }
     t.end()
   })
-  test.cb(core.name + '.set_controller_port_device()', function(t) {
+  test.serial.cb(core.name + '.set_controller_port_device()', function(t) {
     t.context = loadCore(core)
     t.context.set_controller_port_device(0, t.context.DEVICE_JOYPAD)
     t.end()
   })
-  test.cb(core.name + '.cheat_reset()', function(t) {
+  test.serial.cb(core.name + '.cheat_reset()', function(t) {
     t.context = loadCore(core)
     t.context.cheat_reset()
     t.end()
