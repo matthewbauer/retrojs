@@ -1,18 +1,7 @@
 [
   {
     "name": "snes9x-next",
-    "roms": [
-      {
-        "name": "Super Mario All-Stars (USA).sfc",
-        "hasFirstFrame": true
-      },
-      {
-        "name": "Super Star Wars - Return of the Jedi (Europe) (Rev 1).sfc"
-      },
-      {
-        "name": "Chrono Trigger (USA).sfc"
-      }
-    ],
+    "roms": [],
     "system_info": {
       "library_name": "Snes9X Next",
       "library_version": "v1.52.4",
@@ -37,25 +26,7 @@
   },
   {
     "name": "gambatte",
-    "roms": [
-      {
-        "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced).gbc",
-        "skipSave": true,
-        "hasFirstFrame": true
-      },
-      {
-        "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced).gb",
-        "skipSave": true
-      },
-      {
-        "name": "Pac-Man (USA).gb",
-        "skipSave": true
-      },
-      {
-        "name": "Frogger (USA) (Rev A).gbc",
-        "skipSave": true
-      }
-    ],
+    "roms": [],
     "region": "NTSC",
     "system_info": {
       "library_name": "Gambatte",
@@ -105,13 +76,7 @@
   },
   {
     "name": "vecx",
-    "roms": [
-      {
-        "name": "Berzerk (World).vec",
-        "skipSave": true,
-        "hasFirstFrame": true
-      }
-    ],
+    "roms": [],
     "region": "PAL",
     "system_info": {
       "library_name": "VecX",
@@ -161,13 +126,7 @@
   },
   {
     "name": "stella",
-    "roms": [
-      {
-        "name": "Pacman.bin",
-        "skipSave": true,
-        "hasFirstFrame": true
-      }
-    ],
+    "roms": [],
     "region": "NTSC",
     "system_info": {
       "library_name": "Stella",
@@ -193,10 +152,6 @@
   {
     "name": "nestopia",
     "roms": [
-      {
-        "name": "Zelda II - The Adventure of Link (USA).nes",
-        "hasFirstFrame": true
-      },
       {
         "name": "Atomic.NES",
         "skipSave": true,
@@ -323,18 +278,6 @@
       {
         "name": "StarsSE.NES",
         "skipSave": true
-      },
-      {
-        "name": "Zelda.NES",
-        "skipSave": true
-      },
-      {
-        "name": "ZeldaJ.NES",
-        "skipSave": true
-      },
-      {
-        "name": "ZeldaLace.NES",
-        "skipSave": true
       }
     ],
     "region": "NTSC",
@@ -361,13 +304,7 @@
   },
   {
     "name": "quicknes",
-    "roms": [
-      {
-        "name": "Zelda II - The Adventure of Link (USA).nes",
-        "skipSave": true,
-        "hasFirstFrame": true
-      }
-    ],
+    "roms": [],
     "region": "NTSC",
     "system_info": {
       "library_name": "QuickNES",
@@ -393,13 +330,7 @@
   {
     "name": "picodrive",
     "region": "NTSC",
-    "roms": [
-      {
-        "name": "Simpsons, The - Bart vs. the Space Mutants (Europe).sms",
-        "skipSave": true,
-        "hasFirstFrame": true
-      }
-    ],
+    "roms": [],
     "system_info": {
       "library_name": "PicoDrive",
       "library_version": "1.91",
@@ -449,18 +380,7 @@
   {
     "name": "prosystem",
     "region": "NTSC",
-    "roms": [
-      {
-        "name": "Mario Bros. (USA).a78",
-        "skipSave": true,
-        "hasFirstFrame": true
-      },
-      {
-        "name": "Water Ski (USA).a78",
-        "skipSave": true,
-        "hasFirstFrame": true
-      }
-    ],
+    "roms": [],
     "system_info": {
       "library_name": "ProSystem",
       "library_version": "1.3e",
